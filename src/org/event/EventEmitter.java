@@ -28,6 +28,7 @@ public class EventEmitter {
     // - create an event emitter
     public EventEmitter() {
         listeners = new HashMap<>();
+        fallback = new DefaultEventListener();
     }
     
     
