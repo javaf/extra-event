@@ -11,13 +11,13 @@ the building, else *Sambhu* might see him.
 
 **Woof, Woofoof!** *Sambhu* cries coughing out smoke from his mouth, or is it? *"I will be back
 in a minute. Let there be pinpoint silence"*, *Sambhu* somehow speaks out. This is an **event**!
-You now **emit** this **event** to *Harish*, who LISTENs to this event. He jumps to action.
+You now `emit` this `event` to *Harish*, who `listens` to this event. He jumps to action.
 Rapidly tiptoeing he enters the class and in a minute he is beside you. Opens up a notebook with
-some previously scribbled pages, and a pen suddenly pops into his hand. You, the EVENT EMITTER,
-and Harish, the EVENT LISTENER have to wait for a full five minutes until Sambhu is back.
+some previously scribbled pages, and a pen suddenly pops into his hand. You, the `event emitter`,
+and Harish, the `event listener` have to wait for a full five minutes until Sambhu is back.
 
-Huh! Sambhu is shocked, and suddenly he turns into a tiger with his paws open. Didn't i tell he has
-his eyes and ears on everyone? BAM! BAM!
+**Huh!** Sambhu is shocked, and suddenly he turns into a tiger with his paws open. Didn't i tell he has
+his eyes and ears on everyone? **BAM! BAM!**
 
 Okay, that was bad. But atleast you now know that we use events in our life. In fact we use it
 all the time. If you have ever heard of interrupts, they are essentially hardware triggered events,
