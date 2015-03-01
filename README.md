@@ -50,11 +50,11 @@ follow the *reference*.
 
 | `class EventEmitter`         |                                                |
 |------------------------------|------------------------------------------------|
+| **EventEmitter**             | `()`                                           |
 | **add**                      | `("event", event-listener)`                    |
 | **emit**                     | `("event", "arg-name", arg-value, ...)`        |
 | **fallback**                 | `(event-listener)`                             |
 | **remove**                   | `()`, `("event")`, `("event", event-listener)` |
-| **EventEmitter**             | `()`                                           |
 
 | `interface IEventListener`   |                       |
 |------------------------------|-----------------------|
