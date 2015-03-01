@@ -58,11 +58,9 @@ follow the *reference*.
 
 | `interface IEventListener`   |                        |
 |------------------------------|------------------------|
-| **listen**       <br/> `("event", arguments)`
-| called when object implementing this interface is set as listener <br/>                                                   one listener can be attached to multiple events, hence `"events"`|
+| **listen**       <br/> `("event", arguments)`                                                                              | called when object implementing this interface is set as listener <br/>                                                   one listener can be attached to multiple events, hence `"events"`|
 
 | `class DefaultEventListener` | `implements IEventListener`  |
 |------------------------------|------------------------------|
-| **listen**       <br/> `("event", arguments)`
-| called when an event has no other listener and fallback is unchanged |
+| **listen**       <br/> `("event", arguments)`                                                                              | called when an event has no other listener and fallback is unchanged |
 
