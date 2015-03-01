@@ -52,11 +52,16 @@ import org.event.*;
 public class Main {
     
     public static void main(String[] args) {
-        EventEmitter event = new EventEmitter();
-        event.emit("hello", "msg", "Hello World!");
+        EventEmitter event = new EventEmitter();       // create event emitter
+        event.emit("hello", "msg", "Hello World!");    // DefaultEventListener listens
     }
 }
 ```
+```
+[hello] : {msg=Hello World!}
+```
+
+### Error Event
 
 
 
