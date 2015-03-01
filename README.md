@@ -1,7 +1,5 @@
 # java-event-emitter
 
-
-
 What is `java-event-emitter` you ask? Wait, lets first read a short story.
 
 > Imagine that you are in the middle chemistry class, jotting down notes on **Radicals** from the
