@@ -48,6 +48,8 @@ follow the *reference*.
 
 ## Reference
 
+-----------------|------|---------------------
 **EventEmitter** | `()` | create event emitter
-                | 
+                 | 
+-----------------|----------------------------
 
