@@ -48,8 +48,9 @@ follow the *reference*.
 
 ## Reference
 
------------------|------|---------------------
-**EventEmitter** | `()` | create event emitter
-                 | 
------------------|----------------------------
+| Function       | Parameters | description
+----------------:|------------|---------------------
+**EventEmitter** | `()`       | create event emitter
+                 |            |
+-----------------|------------|---------------
 
