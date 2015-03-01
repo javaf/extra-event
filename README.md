@@ -54,7 +54,7 @@ follow the *reference*.
 | **add**                      | `("event", listener)`                    |
 | **emit**                     | `("event", "argument", value, ...)`      |
 | **fallback**                 | `()`, `(listener)`                       |
-| **remove**                   | `()`, `("event")`, `("event", listener)` |
+| **remove**                   | `()`, <br/>`("event")`, `("event", listener)` |
 
 | `interface IEventListener`   |                        |
 |------------------------------|------------------------|
