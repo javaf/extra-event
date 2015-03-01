@@ -48,13 +48,13 @@ follow the *reference*.
 
 ## Reference
 
-| `class EventEmitter`         |                                          |
-|------------------------------|------------------------------------------|
-| **EventEmitter**             | `()`                                     |
-| **add**                      | `("event", listener)`                    |
-| **emit**                     | `("event", "argument", value, ...)`      |
-| **fallback**                 | `()`, `(listener)`                       |
-| **remove**                   | `()`, <br/>`("event")`, `("event", listener)` |
+| `class EventEmitter`         |                                                                      |
+|------------------------------|----------------------------------------------------------------------|
+| **EventEmitter** <br/> `()`  | create event emitter <br/> `EventEmitter event = new EventEmitter()` |
+| **add** <br/> `("event", listener)` | add listener to an event <br/> `event.add("write-done", writeDoneListener);` |
+| **emit** <br/> `("event", "argument", value, ...)` | emit an normal or error event <br/> `event.emit("write", "time", new Date(), "data", data); // normal` <br/> `event.emit("write", "err", e, "data", data); // error` |
+| **fallback** <br/> `()`, `(listener)` | get or set fallback listener incase an event has no listeners <br/> `DefaultEventListener` is default fallback <br/> `event.fallback(myFallbackListener); // ` |
+| **remove** <br/> `()`, `("event")`, `("event", listener)` | remove all listeners / all listeners  |
 
 | `interface IEventListener`   |                        |
 |------------------------------|------------------------|
