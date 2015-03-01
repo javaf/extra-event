@@ -54,8 +54,5 @@ follow the *reference*.
 | **add** | `("event", event-listener)` |
 | **emit** | `("event", "arg-name", arg-value, ...)` |
 | **fallback** | `(event-listener)` |
-| **remove** | `("event", event-listener)` |
-| | `("event")` |
-| | `()` |
-|----------|------------|
+| **remove** | `()`, `("event")`, `("event", event-listener)` |
 
