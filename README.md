@@ -8,7 +8,7 @@ He is waiting for Sambhu, the master, to somehow get distracted, so he can find 
 attendence marked. But, that is utterly impossible. Sambhu is a very alert man. He has his eyes and ears on everyone. So,
 Harish is waiting at the other end of the building, else Sambhu might see him.
 
-Woof, Woofoof! Sambhu vries coughing out smoke from his mouth, or is it? "I will be back in a minute. Let there be pinpoint
+Woof, Woofoof! Sambhu cries coughing out smoke from his mouth, or is it? "I will be back in a minute. Let there be pinpoint
 silence", Sambhu somehow speaks out. This is an EVENT! You now EMIT this EVENT to Harish, who LISTENs to this event. He jumps
 to action. Rapidly tiptoeing he enters the class and in a minute he is beside you. Opens up a notebook with some previously
 scribbled pages, and a pen suddenly pops into his hand. You, the EVENT EMITTER, and Harish, the EVENT LISTENER have to wait
