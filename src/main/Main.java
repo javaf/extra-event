@@ -9,8 +9,10 @@ import org.event.*;
 public class Main {
     
     public static void main(String[] args) {
+        HelloTeller hello = new HelloTeller();
+        ByeTeller bye = new ByeTeller();
         EventEmitter event = new EventEmitter();
-        try { int a = 1 / 0; }
-        catch(Exception e) { event.emit("hello", "err", e, "msg", "Hello World!"); }
+        event.add("action", hello).add("action", bye);
+        event.emit("action");
     }
 }
