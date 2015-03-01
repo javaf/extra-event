@@ -48,16 +48,14 @@ follow the *reference*.
 
 ## Reference
 
-| Function | Parameters | Example |
-|----------|------------|---------|
-| **EventEmitter** | `()` | `EventEmitter event = new EventEmitter();` |
-| create event emitter | | |
-| | | |
-| **add** | `("event", event-listener)` | `event.add("write-done", writeDoneListener);` |
-| add listener to an event | | |
-| | | |
-| **emit** | `("event", "arg-name", arg-value, ...)` | `event.emit("write-done", "time", new Date(), "data", data);` |
-| add listener to an event | | `event.emit("write-error", "err", e, "data", data); // error event must be listened` |
-| | | |
-|----------|------------|---------|
+| Function | Parameters |
+|----------|------------|
+| **EventEmitter** | `()` |
+| **add** | `("event", event-listener)` |
+| **emit** | `("event", "arg-name", arg-value, ...)` |
+| **fallback** | `(event-listener)` |
+| **remove** | `("event", event-listener)` |
+| | `("event")` |
+| | `()` |
+|----------|------------|
 
