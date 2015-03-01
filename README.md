@@ -56,3 +56,11 @@ follow the *reference*.
 | **remove** | `()`, `("event")`, `("event", event-listener)` |
 | **EventEmitter** | `()` |
 
+| interface IEventListener |  |
+|----------|------------|
+| **listen** | `("event", args-map)` |
+
+| class DefaultEventListener | `implements IEventListener`  |
+|----------|------------|
+| **listen** | `("event", args-map)` |
+
