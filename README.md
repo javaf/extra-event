@@ -48,9 +48,9 @@ follow the *reference*.
 
 ## Reference
 
-| Function       | Parameters | description
-----------------:|------------|---------------------
-**EventEmitter** | `()`       | create event emitter
-                 |            |
------------------|------------|---------------
+| Function | Parameters | Example |
+|----------|------------|---------|
+| **EventEmitter** | `()` | EventEmitter event = new EventEmitter(); |
+| create event emitter | | |
+|----------|------------|---------|
 
