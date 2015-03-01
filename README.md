@@ -56,6 +56,8 @@ follow the *reference*.
 +        event.emit("hello", "msg", "Hello World!");
 +    }
 +}
+```
+
 
 
 ## Reference
