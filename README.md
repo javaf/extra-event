@@ -48,11 +48,12 @@ follow the *reference*.
 
 ## Reference
 
-| **EventEmitter** | `()` |
+`class EventEmitter`
+| Function | Parameters |
 |----------|------------|
-| **EventEmitter** | `()` |
 | **add** | `("event", event-listener)` |
 | **emit** | `("event", "arg-name", arg-value, ...)` |
 | **fallback** | `(event-listener)` |
 | **remove** | `()`, `("event")`, `("event", event-listener)` |
+| **EventEmitter** | `()` |
 
