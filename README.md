@@ -35,10 +35,17 @@ A more `dynamic form of function call`.
 
 ## Usage
 
-Shall we get started? The interface of java-event-emitter is similar to that os EventEmitter
-in Node.js, which is a great javascript-based server language. Go through the examples,
-download the source code, add it to your project and follow the reference.
+Shall we get started? The interface of `java-event-emitter` is similar to that of `EventEmitter`
+in `Node.js`, which is a great javascript-based server language. Go through the *examples*,
+download the source code `src/org/data` and `src/org/event`, add it to your *project* and
+follow the *reference*.
 
 
+
+## Examples
+
+
+
+## Reference
 
 
