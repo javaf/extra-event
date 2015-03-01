@@ -91,30 +91,37 @@ Java Result: -1
 // required modules
 import org.event.*;
 
-class helloListener implements IEventListener {
+class HelloTeller implements IEventListener {
     
     @Override
     public void listen(String event, Map args) {
-        System.out.println()
+        System.out.println("Hello event "+event);
+    }
+}
+
+class ByeTeller implements IEventListener {
+    
+    @Override
+    public void listen(String event, Map args) {
+        System.out.println("Bye event "+event);
     }
 }
 
 public class Main {
     
     public static void main(String[] args) {
+        HelloTeller hello = new HelloTeller();
+        ByeTeller bye = new ByteTeller();
         EventEmitter event = new EventEmitter();
-        try { int a = 1 / 0; }
-        catch(Exception e) { event.emit("hello", "err", e, "msg", "Hello World!"); }
-        // err argument indicates it is an error event
+        event.add("action", hello).add("action", bye);
+        event.emit("action");
     }
 }
 ```
 
 ```
-[hello] : {msg=Hello World!, err=java.lang.ArithmeticException: / by zero}
-java.lang.ArithmeticException: / by zero
-	at main.Main.main(Main.java:13)
-Java Result: -1
+Hello event action
+Bye event action
 ```
 
 
