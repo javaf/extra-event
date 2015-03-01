@@ -7,7 +7,7 @@ an indicated charge quantity on top. **Harish**, your benchmate is yet to enter 
 He is waiting for **Sambhu**, the master, to somehow get distracted, so he can find a way to sneak
 into the class and have his attendence marked. But, that is utterly impossible. **Sambhu** is a
 very alert man. He has his eyes and ears on everyone. So, **Harish** is waiting at the other end of
-the building, else *Sambhu* might see him.
+the building, else **Sambhu** might see him.
 
 *Woof, Woofoof!* **Sambhu** cries coughing out smoke from his mouth, or is it? *"I will be back
 in a minute. Let there be pinpoint silence"*, **Sambhu** somehow speaks out. This is an `event`!
