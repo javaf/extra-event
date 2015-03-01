@@ -53,7 +53,7 @@ follow the *reference*.
 | **EventEmitter**             | `()`                                           |
 | **add**                      | `("event", event-listener)`                    |
 | **emit**                     | `("event", "arg-name", arg-value, ...)`        |
-| **fallback**                 | `(event-listener)`                             |
+| **fallback**                 | `()`, `(event-listener)`                             |
 | **remove**                   | `()`, `("event")`, `("event", event-listener)` |
 
 | `interface IEventListener`   |                       |
