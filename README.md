@@ -50,7 +50,7 @@ follow the *reference*.
 
 | Function | Parameters | Example |
 |----------|------------|---------|
-| **EventEmitter** | `()` | EventEmitter event = new EventEmitter(); |
+| **EventEmitter** | `()` | `EventEmitter event = new EventEmitter();` |
 | create event emitter | | |
 |----------|------------|---------|
 
