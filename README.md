@@ -49,6 +49,7 @@ follow the *reference*.
 ## Reference
 
 `class EventEmitter`
+
 | Function | Parameters |
 |----------|------------|
 | **add** | `("event", event-listener)` |
