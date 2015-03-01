@@ -48,7 +48,7 @@ follow the *reference*.
 
 ## Reference
 
-| Function | Parameters |
+| **EventEmitter** | `()` |
 |----------|------------|
 | **EventEmitter** | `()` |
 | **add** | `("event", event-listener)` |
