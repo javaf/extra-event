@@ -85,6 +85,38 @@ java.lang.ArithmeticException: / by zero
 Java Result: -1
 ```
 
+### Event Listener
+
+```java
+// required modules
+import org.event.*;
+
+class helloListener implements IEventListener {
+    
+    @Override
+    public void listen(String event, Map args) {
+        System.out.println()
+    }
+}
+
+public class Main {
+    
+    public static void main(String[] args) {
+        EventEmitter event = new EventEmitter();
+        try { int a = 1 / 0; }
+        catch(Exception e) { event.emit("hello", "err", e, "msg", "Hello World!"); }
+        // err argument indicates it is an error event
+    }
+}
+```
+
+```
+[hello] : {msg=Hello World!, err=java.lang.ArithmeticException: / by zero}
+java.lang.ArithmeticException: / by zero
+	at main.Main.main(Main.java:13)
+Java Result: -1
+```
+
 
 ## Reference
 
