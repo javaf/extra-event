@@ -48,7 +48,7 @@ follow the *reference*.
 
 ## Reference
 
-| class EventEmitter |  |
+| `class EventEmitter` |  |
 |----------|------------|
 | **add** | `("event", event-listener)` |
 | **emit** | `("event", "arg-name", arg-value, ...)` |
@@ -56,11 +56,11 @@ follow the *reference*.
 | **remove** | `()`, `("event")`, `("event", event-listener)` |
 | **EventEmitter** | `()` |
 
-| interface IEventListener |  |
+| `interface IEventListener` |  |
 |----------|------------|
 | **listen** | `("event", args-map)` |
 
-| class DefaultEventListener | `implements IEventListener`  |
+| `class DefaultEventListener` | `implements IEventListener`  |
 |----------|------------|
 | **listen** | `("event", args-map)` |
 
