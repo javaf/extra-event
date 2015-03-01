@@ -48,19 +48,19 @@ follow the *reference*.
 
 ## Reference
 
-| `class EventEmitter`         |                                                |
-|------------------------------|------------------------------------------------|
-| **EventEmitter**             | `()`                                           |
-| **add**                      | `("event", event-listener)`                    |
-| **emit**                     | `("event", "arg-name", arg-value, ...)`        |
-| **fallback**                 | `()`, `(event-listener)`                             |
-| **remove**                   | `()`, `("event")`, `("event", event-listener)` |
+| `class EventEmitter`         |                                          |
+|------------------------------|------------------------------------------|
+| **EventEmitter**             | `()`                                     |
+| **add**                      | `("event", listener)`                    |
+| **emit**                     | `("event", "argument", value, ...)`      |
+| **fallback**                 | `()`, `(listener)`                       |
+| **remove**                   | `()`, `("event")`, `("event", listener)` |
 
-| `interface IEventListener`   |                       |
-|------------------------------|-----------------------|
-| **listen**                   | `("event", args-map)` |
+| `interface IEventListener`   |                        |
+|------------------------------|------------------------|
+| **listen**                   | `("event", arguments)` |
 
-| `class DefaultEventListener` | `implements IEventListener` |
-|------------------------------|-----------------------------|
-| **listen**                   | `("event", args-map)`       |
+| `class DefaultEventListener` | `implements IEventListener`  |
+|------------------------------|------------------------------|
+| **listen**                   | `("event", arguments)`       |
 
