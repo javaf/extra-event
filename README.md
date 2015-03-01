@@ -44,6 +44,18 @@ follow the *reference*.
 
 ## Examples
 
+### Hello World!
+```java
+// required modules
++import org.event.*;
++
++public class Main {
++    
++    public static void main(String[] args) {
++        EventEmitter event = new EventEmitter();
++        event.emit("hello", "msg", "Hello World!");
++    }
++}
 
 
 ## Reference
