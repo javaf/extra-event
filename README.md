@@ -88,6 +88,7 @@ Java Result: -1
 
 ```java
 // required modules
+import java.util.*;
 import org.event.*;
 
 class HelloTeller implements IEventListener {
