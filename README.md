@@ -127,18 +127,18 @@ Bye event action
 
 ## Reference
 
-| `class EventEmitter` | `extends HashMap<String, Set<IEventListener>>` |
+| `class EventEmitter` | `extends HashMap<String, Set<IEventAbsorber>>` |
 |----------------------|------------------------------------------------|
 | **EventEmitter** <br/> `()`                                                                                                | create event emitter <br/>                                                                                               `EventEmitter event = new EventEmitter()` |
-| **add** <br/> `(event, listener)`                                                                                          | add listener to an event <br/>                                                                                   `event.add("write-done", writeDoneListener);` |
+| **add** <br/> `(event, absorber)`                                                                                          | add absorber to an event <br/>                                                                                   `event.add("write-done", writeDoneAbsorber);` |
 | **emit** <br/> `(event, arg, val, ...)`                                                                                    | emit an normal or error event <br/>                                                                                  `event.emit("write", "time", new Date(), "data", data);` <br/>                                              `event.emit("write", "err", e, "data", data);` |
-| **fallback** <br/> `()`, `(listener)`                                                                                      | get or set fallback listener (for events with no listeners) <br/>                                               `DefaultEventListener` is default fallback <br/>                                                                             `IEventListener listener = event.fallback();` <br/>                                                                          `event.fallback(myFallbackListener);` |
-| **remove** <br/> `()`, `(event)`, <br/> `(event, listener)`                                                                | remove all listeners / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneListener);` <br/>                                                            `event.remove("write");` |
+| **fallback** <br/> `()`, `(absorbers)`                                                                                      | get or set fallback absorber (for events with no absorbers) <br/>                                               `DefaultEventAbsorber` is default fallback <br/>                                                                             `IEventAbsorber absorber = event.fallback();` <br/>                                                                          `event.fallback(myFallbackAbsorber);` |
+| **remove** <br/> `()`, `(event)`, <br/> `(event, absorber)`                                                                | remove all absorbers / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneAbsorber);` <br/>                                                            `event.remove("write");` |
 
-| `interface IEventListener`   |                        |
+| `interface IEventAbsorber`   |                        |
 |------------------------------|------------------------|
-| **listen** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as listener <br/>                                                   one listener can be attached to multiple events, hence `event`|
+| **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as absorber <br/>                                                   one absorber can be attached to multiple events, hence `event`|
 
-| `class DefaultEventListener` | `implements IEventListener`  |
+| `class DefaultEventAbsorber` | `implements IEventAbsorber`  |
 |------------------------------|------------------------------|
-| **listen** <br/> `(event, args)`                                                                                           | called when an event has no other listener and fallback is unchanged |
+| **absorb** <br/> `(event, args)`                                                                                           | called when an event has no other absorber and fallback is unchanged |
