@@ -15,8 +15,6 @@ public class DefaultEventAbsorber implements IEventAbsorber {
     public void absorb(String event, Map args) {
         System.out.println("["+event+"] : "+args);
         if(!args.containsKey("err")) return;
-        Throwable err = (Throwable)args.get("err");
-        err.printStackTrace();
-        System.exit(-1);
+        EventException.exit((Throwable)args.get("err"));
     }
 }

@@ -3,13 +3,12 @@ package org.event;
 
 
 
-public class EventException {
+public class EventException extends Exception {
 
-    
-    // EventException (e)
+    // Exit (e)
     // - show stack trace and exit
     @SuppressWarnings("CallToPrintStackTrace")
-    public EventException(Throwable e) {
+    public static void exit(Throwable e) {
         e.printStackTrace();
         System.exit(-1);
     }
