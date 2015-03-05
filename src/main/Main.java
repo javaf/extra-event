@@ -11,13 +11,13 @@ import org.event.*;
 
 public class Main {
     
-    public static void print(String str) {
+    public void print(String str) {
         System.out.println(str);
     }
     
     public static void main(String[] args) throws Throwable {
         Method m = Main.class.getMethod("print", String.class);
         MethodHandle mh = MethodHandles.lookup().unreflect(m);
-        mh.invokeExact("abc");
+        mh.invokeExact(new Main(), "abc");
     }
 }
