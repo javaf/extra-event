@@ -18,15 +18,19 @@ public class EventAbsorber implements IEventAbsorber {
     
     // EventMethod (cls, mthd)
     // - create an event method (static)
-    public EventAbsorber(Class cls, String mthd) throws NoSuchMethodException, IllegalAccessException {
-        method = cls.getMethod(mthd, String.class, Map.class);
-        methodHandle = MethodHandles.lookup().unreflect(method);
+    @SuppressWarnings("UseSpecificCatch")
+    public EventAbsorber(Class cls, String mthd) {
+        try {
+            method = cls.getMethod(mthd, String.class, Map.class);
+            methodHandle = MethodHandles.lookup().unreflect(method);
+        }
+        catch(Exception e) { EventException.exit(e); }
     }
     
     
     // EventMethod (obj, mthd)
     // - create an event method (instance)
-    public EventAbsorber(Object obj, String mthd) throws NoSuchMethodException, IllegalAccessException {
+    public EventAbsorber(Object obj, String mthd) {
         this(obj.getClass(), mthd);
         object = obj;
     }
@@ -56,15 +60,11 @@ public class EventAbsorber implements IEventAbsorber {
     // Listen (event, args)
     // - accepts listen call
     @Override
-    @SuppressWarnings("CallToPrintStackTrace")
     public void absorb(String event, Map args) {
         try {
-            if(object == null) methodHandle.invokeExact(object, event, args);
+            if(object == null) methodHandle.invokeExact(event, args);
             else methodHandle.invokeExact(object, event, args);
         }
-        catch(Throwable e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
+        catch(Throwable e) { EventException.exit(e); }
     }
 }

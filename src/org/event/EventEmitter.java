@@ -26,27 +26,27 @@ public class EventEmitter extends HashMap<String, Set<IEventAbsorber>> {
     // EventEmitter ()
     // - create an event emitter
     public EventEmitter() {
-        fallback = new DefaultEventListener();
+        fallback = new DefaultEventAbsorber();
     }
     
     
     // Fallback ()
-    // - get fallback event listener
-    public IEventListener fallback() {
+    // - get fallback event absorber
+    public IEventAbsorber fallback() {
        return fallback; 
     }
     
     
     // Fallback (e)
-    // - set fallback event listener
-    public EventEmitter fallback(IEventListener e) {
+    // - set fallback event absorber
+    public EventEmitter fallback(IEventAbsorber e) {
         fallback = e;
         return this;
     }
     
     
     // Emit (event, args)
-    // - emit a event to all listeners
+    // - emit a event to all absorbers
     public EventEmitter emit(String event, Map args) {
         emit(fallback, event, args);
         return this;
@@ -54,40 +54,40 @@ public class EventEmitter extends HashMap<String, Set<IEventAbsorber>> {
     
     
     // Emit (e, event, args...)
-    // - emit a event to all listeners
+    // - emit a event to all absorbers
     public EventEmitter emit(String event, Object... args) {
         return emit(event, Coll.map(args));
     }
     
     
-    // Add (event, listener)
-    // - add a listener to an event
-    public EventEmitter add(String event, IEventListener listener) {
-        if(get(event) == null) put(event, new HashSet<IEventListener>());
-        get(event).add(listener);
+    // Add (event, absorber)
+    // - add an absorber to an event
+    public EventEmitter add(String event, IEventAbsorber absorber) {
+        if(get(event) == null) put(event, new HashSet<IEventAbsorber>());
+        get(event).add(absorber);
         return this;
     }
 
     
-    // Remove (event, listener)
-    // - remove a listener from an event
-    public EventEmitter remove(String event, IEventListener listener) {
-        Set<IEventListener> lstn = get(event);
-        if(lstn != null) lstn.remove(listener);
+    // Remove (event, absorber)
+    // - remove an absorber from an event
+    public EventEmitter remove(String event, IEventAbsorber absorber) {
+        Set<IEventAbsorber> absb = get(event);
+        if(absb != null) absb.remove(absorber);
         return this;
     }
     
     
-    // Remove (event, listener)
-    // - remove all listener of an event
+    // Remove (event)
+    // - remove all absorbers of an event
     public EventEmitter remove(String event) {
         super.remove(event);
         return this;
     }
     
     
-    // Remove (event, listener)
-    // - remove all event listeners
+    // Remove ()
+    // - remove all event absorbers
     public EventEmitter remove() {
         clear();
         return this;

@@ -11,7 +11,6 @@ public class DefaultEventAbsorber implements IEventAbsorber {
     // Absorb (event, args)
     // - print event details and exit on error
     @Override
-    @SuppressWarnings("CallToPrintStackTrace")
     public void absorb(String event, Map args) {
         System.out.println("["+event+"] : "+args);
         if(!args.containsKey("err")) return;
