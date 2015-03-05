@@ -63,7 +63,7 @@ public class EventAbsorber implements IEventAbsorber {
     public void absorb(String event, Map args) {
         try {
             if(object == null) methodHandle.invokeExact(event, args);
-            else methodHandle.invokeExact(object, event, args);
+            else methodHandle.invoke(object, event, args);
         }
         catch(Throwable e) { EventException.exit(e); }
     }
