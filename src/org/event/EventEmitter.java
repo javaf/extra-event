@@ -7,17 +7,16 @@ import java.util.*;
 
 
 
-public class EventEmitter {
+public class EventEmitter extends HashMap<String, Set<IEventListener>> {
     
     // data
-    Map<String, Set<IEventListener>> listeners;
     IEventListener fallback;
     
     
     // Emit (event, args)
     // - emit a event to all listeners with specified fallback
     void emit(IEventListener fb, String event, Map args) {
-        Set<IEventListener> lstn = listeners.get(event);
+        Set<IEventListener> lstn = get(event);
         if(lstn == null) { if(fb != null) fb.listen(event, args); return; }
         for(IEventListener e : lstn)
             e.listen(event, args);
@@ -27,7 +26,6 @@ public class EventEmitter {
     // EventEmitter ()
     // - create an event emitter
     public EventEmitter() {
-        listeners = new HashMap<>();
         fallback = new DefaultEventListener();
     }
     
@@ -65,16 +63,16 @@ public class EventEmitter {
     // Add (event, listener)
     // - add a listener to an event
     public EventEmitter add(String event, IEventListener listener) {
-        if(listeners.get(event) == null) listeners.put(event, new HashSet<IEventListener>());
-        listeners.get(event).add(listener);
+        if(get(event) == null) put(event, new HashSet<IEventListener>());
+        get(event).add(listener);
         return this;
     }
-    
+
     
     // Remove (event, listener)
     // - remove a listener from an event
     public EventEmitter remove(String event, IEventListener listener) {
-        Set<IEventListener> lstn = listeners.get(event);
+        Set<IEventListener> lstn = get(event);
         if(lstn != null) lstn.remove(listener);
         return this;
     }
@@ -83,7 +81,7 @@ public class EventEmitter {
     // Remove (event, listener)
     // - remove all listener of an event
     public EventEmitter remove(String event) {
-        listeners.remove(event);
+        super.remove(event);
         return this;
     }
     
@@ -91,7 +89,7 @@ public class EventEmitter {
     // Remove (event, listener)
     // - remove all event listeners
     public EventEmitter remove() {
-        listeners.clear();
+        clear();
         return this;
     }
 }
