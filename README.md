@@ -127,7 +127,7 @@ Bye event action
 
 ## Reference
 
-| `class EventEmitter` | `extends HashMap<String, Set<IeventListener>>` |
+| `class EventEmitter` | `extends HashMap<String, Set<IEventListener>>` |
 |----------------------|------------------------------------------------|
 | **EventEmitter** <br/> `()`                                                                                                | create event emitter <br/>                                                                                               `EventEmitter event = new EventEmitter()` |
 | **add** <br/> `(event, listener)`                                                                                          | add listener to an event <br/>                                                                                   `event.add("write-done", writeDoneListener);` |
