@@ -2,17 +2,22 @@
 package main;
 
 // required modules
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Method;
 import org.event.*;
 
 
 
 public class Main {
     
-    public static void main(String[] args) {
-        HelloTeller hello = new HelloTeller();
-        ByeTeller bye = new ByeTeller();
-        EventEmitter event = new EventEmitter();
-        event.add("action", hello).add("action", bye);
-        event.emit("action");
+    public static void print(String str) {
+        System.out.println(str);
+    }
+    
+    public static void main(String[] args) throws Throwable {
+        Method m = Main.class.getMethod("print", String.class);
+        MethodHandle mh = MethodHandles.lookup().unreflect(m);
+        mh.invokeExact("abc");
     }
 }
