@@ -13,10 +13,10 @@ What is `java-event-emitter` you ask? Wait, lets first read a short story.
 
 > *Woof, Woofoof!* **Sambhu** cries coughing out smoke from his mouth, or is it? *"I will be back
 > in a minute. Let there be pinpoint silence"*, **Sambhu** somehow speaks out. This is an `event`!
-> You now `emit` this `event` to **Harish**, who `listens` to this event. He jumps to action.
+> You now `emit` this `event` to **Harish**, who `absorbs` this event. He then jumps to action.
 > Rapidly tiptoeing he enters the class and in a minute he is beside you. Opens up a notebook with
 > some previously scribbled pages, and a pen suddenly pops into his hand. You, the `event emitter`,
-> and **Harish**, the `event listener` have to wait for a full five minutes until **Sambhu** is back.
+> and **Harish**, the `event absorber` have to wait for a full five minutes until **Sambhu** is back.
 
 > *Huh!* **Sambhu** is shocked, and suddenly he turns into a tiger with his paws open. Didn't i tell he has
 > his eyes and ears on everyone? *BAM! BAM!*
@@ -26,9 +26,9 @@ all the time. If you have ever heard of `interrupts`, they are essentially `hard
 which provide a great solution to monitoring something without repeated polling. `Software events`
 are similar, except that the triggering of the event is performed by software as well.
 
-`Emitting` an event is similar to *making a function call*, and `listening` is the act of
+`Emitting` an event is similar to *making a function call*, and `absorbing` is the act of
 *getting a function call*. How is it different from a function call then? Well, with the idea
-of events, there can be any number of *event listeners*, and as many *types of events* as you like,
+of events, there can be any number of *event absorbers*, and as many *types of events* as you like,
 and they can be added and removed at runtime. A more `dynamic form of function call`.
 
 
