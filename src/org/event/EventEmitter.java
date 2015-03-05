@@ -7,19 +7,19 @@ import java.util.*;
 
 
 
-public class EventEmitter extends HashMap<String, Set<IEventListener>> {
+public class EventEmitter extends HashMap<String, Set<IEventAbsorber>> {
     
     // data
-    IEventListener fallback;
+    IEventAbsorber fallback;
     
     
     // Emit (event, args)
-    // - emit a event to all listeners with specified fallback
-    void emit(IEventListener fb, String event, Map args) {
-        Set<IEventListener> lstn = get(event);
-        if(lstn == null) { if(fb != null) fb.listen(event, args); return; }
-        for(IEventListener e : lstn)
-            e.listen(event, args);
+    // - emit a event to all absorbers with specified fallback
+    void emit(IEventAbsorber fb, String event, Map args) {
+        Set<IEventAbsorber> lstn = get(event);
+        if(lstn == null) { if(fb != null) fb.absorb(event, args); return; }
+        for(IEventAbsorber e : lstn)
+            e.absorb(event, args);
     }
     
     
