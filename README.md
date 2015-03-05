@@ -28,8 +28,8 @@ are similar, except that the triggering of the event is performed by software as
 
 `Emitting` an event is similar to *making a function call*, and `listening` is the act of
 *getting a function call*. How is it different from a function call then? Well, with the idea
-of events, there can be any number of *event listeners*, and as many *types of events* as you like.
-A more `dynamic form of function call`.
+of events, there can be any number of *event listeners*, and as many *types of events* as you like,
+and they can be added and removed at runtime. A more `dynamic form of function call`.
 
 
 
