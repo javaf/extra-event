@@ -170,6 +170,10 @@ Bye event action
 |------------------------------|------------------------|
 | **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as absorber <br/>                                                   one absorber can be attached to multiple events, hence `event`|
 
+| `class EventAbsorber` | `implements IEventAbsorber`  |
+|-----------------------|------------------------------|
+| **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an event absorber from a static on instance method <br/>                                                            `event.add("event0", new EventAbsorber(MethodClass.class, "method"));` <br/>                                                 `event.add("event0", new EventAbsorber(MethodObject, "method"));` |
+
 | `class DefaultEventAbsorber` | `implements IEventAbsorber`  |
 |------------------------------|------------------------------|
 | **absorb** <br/> `(event, args)`                                                                                           | called when an event has no other absorber and fallback is unchanged |
