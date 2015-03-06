@@ -136,9 +136,15 @@ public class Main {
     	System.out.println("Hello event "+event);
     }
     
+    public void byeTeller(String event, Map args) {
+    	System.out.println("Bye event "+event);
+    }
+    
     public static void main(String[] args) {
+    	Main main = new Main();
         EventEmitter event = new EventEmitter();
         event.add("action", new EventAbsorber(Main.class, "helloTeller"));
+        event.add("action", new EventAbsorber(main, "helloTeller");
         event.emit("action");
     }
 }
