@@ -173,6 +173,10 @@ Bye event action
 | `class EventAbsorber` | `implements IEventAbsorber`  |
 |-----------------------|------------------------------|
 | **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an event absorber from a static on instance method <br/>                                                            `event.add("event0", new EventAbsorber(MethodClass.class, "method"));` <br/>                                                 `event.add("event0", new EventAbsorber(MethodObject, "method"));` |
+| **object** <br/> `()`                                                                                                      | get object associated with event absorber <br/>                                                                            `Object obj = eventAbsorber.object();` |
+| **method** <br/> `()`                                                                                                      | get method associated with event absorber <br/>                                                                            `Method mthd = eventAbsorber.method();` |
+| **methodHandle** <br/> `()`                                                                                                | get method handle associated with event absorber <br/>                                                                     `MethodHandle hMthd = eventAbsorber.methodHandle();` |
+| **absorb** <br/> `(event, args)`                                                                                           | absorbs an event and forwards it to method |
 
 | `class DefaultEventAbsorber` | `implements IEventAbsorber`  |
 |------------------------------|------------------------------|
