@@ -50,8 +50,8 @@ import org.event.*;
 public class Main {
     
     public static void main(String[] args) {
-        EventEmitter event = new EventEmitter();       // create event emitter
-        event.emit("hello", "msg", "Hello World!");    // DefaultEventListener listens
+        EventEmitter event = new EventEmitter();    // create event emitter
+        event.emit("hello", "msg", "Hello World!"); // DefaultEventAbsorber listens
     }
 }
 ```
