@@ -35,10 +35,9 @@ and they can be added and removed at runtime. A more `dynamic form of function c
 
 ## Usage
 
-Shall we get started? The interface of `java-event-emitter` is similar to that of `EventEmitter`
-in `Node.js`. Go through the [examples](https://github.com/wolfram77/java-event-emitter#examples), download the source code `src/org/data` and `src/org/event`,
-add it to your *project* and follow the [reference](https://github.com/wolfram77/java-event-emitter#reference).
-
+Shall we get started?  Go through the [examples](https://github.com/wolfram77/java-event-emitter#examples),
+download the source code `src/org/data` and `src/org/event`, add it to your *project* and follow the
+[reference](https://github.com/wolfram77/java-event-emitter#reference).
 
 
 ## Examples
@@ -84,14 +83,14 @@ java.lang.ArithmeticException: / by zero
 Java Result: -1
 ```
 
-### Event Listener
+### Event Absorber Class
 
 ```java
 // required modules
 import java.util.*;
 import org.event.*;
 
-class HelloTeller implements IEventListener {
+class HelloTeller implements IEventAbsorber {
     
     @Override
     public void listen(String event, Map args) {
@@ -99,7 +98,7 @@ class HelloTeller implements IEventListener {
     }
 }
 
-class ByeTeller implements IEventListener {
+class ByeTeller implements IEventAbsorber {
     
     @Override
     public void listen(String event, Map args) {
@@ -122,6 +121,31 @@ public class Main {
 ```
 Hello event action
 Bye event action
+```
+
+### Event Absorber Method
+
+```java
+// required modules
+import java.util.*;
+import org.event.*;
+
+public class Main {
+    
+    public static void helloTeller(String event, Map args) {
+    	System.out.println("Hello event "+event);
+    }
+    
+    public static void main(String[] args) {
+        EventEmitter event = new EventEmitter();
+        event.add("action", new EventAbsorber(Main.class, "helloTeller"));
+        event.emit("action");
+    }
+}
+```
+
+```
+Hello event action
 ```
 
 
