@@ -37,21 +37,21 @@ public class EventAbsorber implements IEventAbsorber {
     
     
     // Object ()
-    // - object associated with event absorber
+    // - get object associated with event absorber
     public Object object() {
         return object;
     }
     
     
     // Method ()
-    // - method associated with event absorber
+    // - get method associated with event absorber
     public Method method() {
         return method;
     }
     
     
     // MethodHandle ()
-    // - method handle associated with event absorber
+    // - get method handle associated with event absorber
     public MethodHandle methodHandle() {
         return methodHandle;
     }
