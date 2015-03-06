@@ -16,8 +16,8 @@ public class EventAbsorber implements IEventAbsorber {
     MethodHandle methodHandle;
     
     
-    // EventMethod (cls, mthd)
-    // - create an event method (static)
+    // EventAbsorber (cls, mthd)
+    // - create an event absorber (static)
     @SuppressWarnings("UseSpecificCatch")
     public EventAbsorber(Class cls, String mthd) {
         try {
@@ -28,8 +28,8 @@ public class EventAbsorber implements IEventAbsorber {
     }
     
     
-    // EventMethod (obj, mthd)
-    // - create an event method (instance)
+    // EventAbsorber (obj, mthd)
+    // - create an event absorber (instance)
     public EventAbsorber(Object obj, String mthd) {
         this(obj.getClass(), mthd);
         object = obj;
@@ -37,28 +37,28 @@ public class EventAbsorber implements IEventAbsorber {
     
     
     // Object ()
-    // - object associated with event method
+    // - object associated with event absorber
     public Object object() {
         return object;
     }
     
     
     // Method ()
-    // - method associated with event method
+    // - method associated with event absorber
     public Method method() {
         return method;
     }
     
     
     // MethodHandle ()
-    // - method handle associated with event method
+    // - method handle associated with event absorber
     public MethodHandle methodHandle() {
         return methodHandle;
     }
     
     
-    // Listen (event, args)
-    // - accepts listen call
+    // Absorb (event, args)
+    // - absorbs an event and forwards it to method
     @Override
     public void absorb(String event, Map args) {
         try {
