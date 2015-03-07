@@ -22,14 +22,14 @@ What is `java-event-emitter` you ask? Wait, lets first read a short story.
 > his eyes and ears on everyone? *BAM! BAM!*
 
 Okay, that was bad. But atleast you now know that we use events in our life. In fact we use it
-all the time. If you have ever heard of `interrupts`, they are essentially `hardware triggered events`,
-which provide a great solution to monitoring something without repeated polling. `Software events`
+all the time. If you have ever heard of *interrupts*, they are essentially *hardware triggered events*,
+which provide a great solution to monitoring something without repeated polling. *Software events*
 are similar, except that the triggering of the event is performed by software as well.
 
 `Emitting` an event is similar to *making a function call*, and `absorbing` is the act of
 *getting a function call*. How is it different from a function call then? Well, with the idea
 of events, there can be any number of *event absorbers*, and as many *types of events* as you like,
-and they can be added and removed at runtime. A more `dynamic form of function call`.
+and they can be added and removed at runtime. A more *dynamic form of function call*.
 <br/>
 
 
