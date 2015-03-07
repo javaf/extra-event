@@ -177,4 +177,4 @@ Bye event action
 
 | `class DefaultEventAbsorber` | `implements IEventAbsorber`  |
 |------------------------------|------------------------------|
-| **absorb** <br/> `(event, args)`                                                                                           | called when an event has no other absorber and fallback is unchanged |
+| **absorb** <br/> `(event, args)`                                                                                           | absorbs event with no absorbers |
