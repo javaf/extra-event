@@ -145,7 +145,7 @@ public class Main {
     	Main main = new Main();
         EventEmitter event = new EventEmitter();
         event.add("action", new EventAbsorber(Main.class, "helloTeller"));
-        event.add("action", new EventAbsorber(main, "helloTeller");
+        event.add("action", new EventAbsorber(main, "byeTeller");
         event.emit("action");
     }
 }
