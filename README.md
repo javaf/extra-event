@@ -30,16 +30,16 @@ are similar, except that the triggering of the event is performed by software as
 *getting a function call*. How is it different from a function call then? Well, with the idea
 of events, there can be any number of *event absorbers*, and as many *types of events* as you like,
 and they can be added and removed at runtime. A more *dynamic form of function call*.
-<br/>
 
+<br/>
 
 ## Usage
 
 Shall we get started?  Go through the [examples](https://github.com/wolfram77/java-event-emitter#examples),
 download the source code `src/org/data` and `src/org/event`, add it to your *project* and follow the
 [reference](https://github.com/wolfram77/java-event-emitter#reference).
-<br/>
 
+<br/>
 
 ## Examples
 
@@ -155,8 +155,8 @@ public class Main {
 Hello event action
 Bye event action
 ```
-<br/>
 
+<br/>
 
 ## Reference
 
