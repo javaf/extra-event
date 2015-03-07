@@ -168,14 +168,20 @@ Bye event action
 | **fallback** <br/> `()`, `(absorbers)`                                                                                      | get or set fallback absorber (for events with no absorbers) <br/>                                               `DefaultEventAbsorber` is default fallback <br/>                                                                             `IEventAbsorber absorber = event.fallback();` <br/>                                                                          `event.fallback(myFallbackAbsorber);` |
 | **remove** <br/> `()`, `(event)`, <br/> `(event, absorber)`                                                                | remove all absorbers / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneAbsorber);` <br/>                                                            `event.remove("write");` |
 
+<br/>
+
 | `interface IEventAbsorber`   |                        |
 |------------------------------|------------------------|
 | **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as absorber <br/>                                                   one absorber can be attached to multiple events, hence `event`|
+
+<br/>
 
 | `class EventAbsorber` | `implements IEventAbsorber`  |
 |-----------------------|------------------------------|
 | **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an event absorber from a static on instance method <br/>                                                            `event.add("event0", new EventAbsorber(MthdCls.class, "mthd"));` <br/>                                                 `event.add("event0", new EventAbsorber(MthdObj, "mthd"));` |
 | **absorb** <br/> `(event, args)`                                                                                           | absorbs an event and forwards it to method |
+
+<br/>
 
 | `class DefaultEventAbsorber` | `implements IEventAbsorber`  |
 |------------------------------|------------------------------|
