@@ -11,9 +11,8 @@ import java.lang.reflect.*;
 public class EventAbsorber implements IEventAbsorber {
     
     // data
-    Object object;
-    Method method;
-    MethodHandle methodHandle;
+    Object obj;
+    MethodHandle hMthd;
     
     
     // EventAbsorber (cls, mthd)
@@ -21,8 +20,8 @@ public class EventAbsorber implements IEventAbsorber {
     @SuppressWarnings("UseSpecificCatch")
     public EventAbsorber(Class cls, String mthd) {
         try {
-            method = cls.getMethod(mthd, String.class, Map.class);
-            methodHandle = MethodHandles.lookup().unreflect(method);
+            Method _mthd = cls.getMethod(mthd, String.class, Map.class);
+            hMthd = MethodHandles.lookup().unreflect(_mthd);
         }
         catch(Exception e) { EventException.exit(e); }
     }
@@ -32,28 +31,7 @@ public class EventAbsorber implements IEventAbsorber {
     // - create an event absorber (instance)
     public EventAbsorber(Object obj, String mthd) {
         this(obj.getClass(), mthd);
-        object = obj;
-    }
-    
-    
-    // Object ()
-    // - get object associated with event absorber
-    public Object object() {
-        return object;
-    }
-    
-    
-    // Method ()
-    // - get method associated with event absorber
-    public Method method() {
-        return method;
-    }
-    
-    
-    // MethodHandle ()
-    // - get method handle associated with event absorber
-    public MethodHandle methodHandle() {
-        return methodHandle;
+        this.obj = obj;
     }
     
     
@@ -62,8 +40,8 @@ public class EventAbsorber implements IEventAbsorber {
     @Override
     public void absorb(String event, Map args) {
         try {
-            if(object == null) methodHandle.invokeExact(event, args);
-            else methodHandle.invoke(object, event, args);
+            if(obj == null) hMthd.invokeExact(event, args);
+            else hMthd.invoke(obj, event, args);
         }
         catch(Throwable e) { EventException.exit(e); }
     }
