@@ -165,14 +165,14 @@ Bye event action
 | **EventEmitter** <br/> `()`                                                                                                | create event emitter <br/>                                                                                               `EventEmitter event = new EventEmitter()` |
 | **add** <br/> `(event, absorber)`                                                                                          | add absorber to an event <br/>                                                                                   `event.add("write-done", writeDoneAbsorber);` |
 | **emit** <br/> `(event, arg, val, ...)`                                                                                    | emit an normal or error event <br/>                                                                                  `event.emit("write", "time", new Date(), "data", data);` <br/>                                              `event.emit("write", "err", e, "data", data);` |
-| **fallback** <br/> `()`, `(absorbers)`                                                                                      | get or set fallback absorber (for events with no absorbers) <br/>                                               `DefaultEventAbsorber` is default fallback <br/>                                                                             `IEventAbsorber absorber = event.fallback();` <br/>                                                                          `event.fallback(myFallbackAbsorber);` |
+| **fallback** <br/> `()`, `(absorbers)`                                                                                      | get or set fallback absorber (for events with no absorbers) <br/>                                               *DefaultEventAbsorber* is default fallback <br/>                                                                             `IEventAbsorber absorber = event.fallback();` <br/>                                                                          `event.fallback(myFallbackAbsorber);` |
 | **remove** <br/> `()`, `(event)`, <br/> `(event, absorber)`                                                                | remove all absorbers / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneAbsorber);` <br/>                                                            `event.remove("write");` |
 
 <br/>
 
 | `interface IEventAbsorber`   |                        |
 |------------------------------|------------------------|
-| **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as absorber <br/>                                                   one absorber can be attached to multiple events, hence `event`|
+| **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as absorber <br/>                                                   one absorber can be attached to multiple events, hence *event*|
 
 <br/>
 
