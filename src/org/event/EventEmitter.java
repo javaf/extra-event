@@ -63,7 +63,7 @@ public class EventEmitter extends HashMap<String, Set<IEventAbsorber>> {
     // Add (event, absorber)
     // - add an absorber to an event
     public EventEmitter add(String event, IEventAbsorber absorber) {
-        if(get(event) == null) put(event, new HashSet<IEventAbsorber>());
+        if(get(event) == null) put(event, new HashSet<>());
         get(event).add(absorber);
         return this;
     }
