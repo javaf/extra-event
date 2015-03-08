@@ -16,9 +16,9 @@ public class EventEmitter extends HashMap<String, Set<IEventAbsorber>> {
     // Emit (event, args)
     // - emit a event to all absorbers with specified fallback
     void emit(IEventAbsorber fb, String event, Map args) {
-        Set<IEventAbsorber> lstn = get(event);
-        if(lstn == null) { if(fb != null) fb.absorb(event, args); return; }
-        for(IEventAbsorber e : lstn)
+        Set<IEventAbsorber> absb = get(event);
+        if(absb == null) { if(fb != null) fb.absorb(event, args); return; }
+        for(IEventAbsorber e : absb)
             e.absorb(event, args);
     }
     
@@ -57,6 +57,11 @@ public class EventEmitter extends HashMap<String, Set<IEventAbsorber>> {
     // - emit a event to all absorbers
     public EventEmitter emit(String event, Object... args) {
         return emit(event, Coll.map(args));
+    }
+    
+    
+    public Set<IEventAbsorber> put(String event, Set<IEventAbsorber> absorber) {
+        return null;
     }
     
     
