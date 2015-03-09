@@ -46,7 +46,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
             else on(event, new Eventer(obj, name));
         }
     }
-
+    
     
     // _InitEventSet (event)
     // - initialize event set before adding
@@ -103,11 +103,11 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     }
     
     
-    // On (emitter)
-    // - add eventers from emitter
-    public EventEmitter on(EventEmitter emitter) {
-        emitter.keySet().stream().forEach((event) -> {
-            on(event, emitter.get(event));
+    // On (map)
+    // - add eventers from map
+    public EventEmitter on(Map<String, Set<Eventable>> map) {
+        map.keySet().stream().forEach((event) -> {
+            on(event, map.get(event));
         });
         return this;
     }
@@ -132,8 +132,37 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     // NotOn (event, eventer)
     // - remove an eventer from an event
     public EventEmitter notOn(String event, Eventable eventer) {
-        Set<Eventable> absb = get(event);
-        if(absb != null) absb.remove(eventer);
+        Set<Eventable> e = get(event);
+        if(e != null) e.remove(eventer);
+        return this;
+    }
+    
+    
+    // NotOn (event, eventers)
+    // - remove eventers from an event
+    public EventEmitter notOn(String event, Collection<Eventable> eventers) {
+        Set<Eventable> e = get(event);
+        if(e != null) e.removeAll(eventers);
+        return this;
+    }
+    
+    
+    // NotOn (events, eventer)
+    // - remove eventer from events
+    public EventEmitter notOn(Collection<String> events, Eventable eventer) {
+        events.stream().forEach((event) -> {
+            notOn(event, eventer);
+        });
+        return this;
+    }
+    
+    
+    // NotOn (event, eventesr)
+    // - remove eventers from map
+    public EventEmitter notOn(Map<String, Set<Eventable>> map) {
+        map.keySet().stream().forEach((event) -> {
+            notOn(event, map.get(event));
+        });
         return this;
     }
     
