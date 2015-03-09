@@ -23,7 +23,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
             char c = str.charAt(i);
             if(c >= 'A' && c<='Z') {
                 if(i > 0) s.append('-');
-                s.append(c-'A'+'a');
+                s.append((char)(c-'A'+'a'));
             }
             else s.append(c);
         }
