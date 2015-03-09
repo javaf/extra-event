@@ -6,7 +6,7 @@ import java.util.*;
 
 
 
-public interface IEventer {
+public interface Eventable {
     
     // Absorb (event, args)
     // - absorb an event, args provide additional info
