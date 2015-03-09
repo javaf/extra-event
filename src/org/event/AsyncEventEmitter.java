@@ -18,6 +18,21 @@ public class AsyncEventEmitter extends EventEmitter implements Runnable {
     static ExecutorService threads = Executors.newCachedThreadPool();
 
     
+    // AsyncEventEmitter ()
+    // - create async event emitter
+    public AsyncEventEmitter() {
+        super();
+    }
+    
+    public AsyncEventEmitter(Class cls) {
+        super(cls);
+    }
+    
+    public AsyncEventEmitter(Object obj) {
+        super(obj);
+    }
+    
+    
     // Emit (event, args)
     // - emit an event asynchronously
     @Override
