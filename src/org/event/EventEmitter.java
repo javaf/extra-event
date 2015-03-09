@@ -77,7 +77,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     
     // Emit (event, args)
-    // - emit a event to all eventers
+    // - emit an event
     public EventEmitter emit(String event, Map args) {
         Set<Eventable> eventers = get(event);
         if(eventers == null) fallback.absorb(event, args);
@@ -89,7 +89,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     
     // Emit (event, args...)
-    // - emit a event to all eventers
+    // - emit an event
     public EventEmitter emit(String event, Object... args) {
         return emit(event, Coll.map(args));
     }
