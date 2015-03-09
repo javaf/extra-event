@@ -4,6 +4,7 @@ package org.event;
 // required modules
 import org.data.*;
 import java.util.*;
+import java.lang.reflect.*;
 import java.util.concurrent.*;
 
 
@@ -13,6 +14,39 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     // static data
     public static Eventable fallback = new DefEventer();
     
+    
+    // _ToHyphenCase (str)
+    // - convert a string to hyphen case
+    String _toHyphenCase(String str) {
+        StringBuilder s = new StringBuilder();
+        for(int i=0; i<str.length(); i++) {
+            char c = str.charAt(i);
+            if(c >= 'A' && c<='Z') {
+                if(i > 0) s.append('-');
+                s.append(c-'A'+'a');
+            }
+            else s.append(c);
+        }
+        return s.toString();
+    }
+    
+    
+    // _OnClass (obj, cls)
+    // - add static / instance methods of a class as eventers
+    void _onClass(Object obj, Class cls) {
+        boolean bestatic = obj==null;
+        for(Method m : cls.getMethods()) {
+            // need static or instance?
+            String name = m.getName();
+            boolean isstatic = Modifier.isStatic(m.getModifiers());
+            if(isstatic!=bestatic || !name.startsWith("on")) continue;
+            // save appropriately
+            String event = _toHyphenCase(name.substring(2));
+            if(bestatic) on(event, new Eventer(cls, name));
+            else on(event, new Eventer(obj, name));
+        }
+    }
+
     
     // _InitEventSet (event)
     // - initialize event set before adding
@@ -43,7 +77,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (event, eventer)
     // - add an eventer to an event
-    public EventEmitter on(String event, Eventer eventer) {
+    public EventEmitter on(String event, Eventable eventer) {
         _initEventSet(event);
         get(event).add(eventer);
         return this;
@@ -52,7 +86,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (event, eventers)
     // - add eventers to an event
-    public EventEmitter on(String event, Collection<Eventer> eventers) {
+    public EventEmitter on(String event, Collection<Eventable> eventers) {
         _initEventSet(event);
         get(event).addAll(eventers);
         return this;
@@ -61,13 +95,39 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (events, eventer)
     // - add eventer to events
-    public EventEmitter on(Collection<String> events, Eventer eventer) {
+    public EventEmitter on(Collection<String> events, Eventable eventer) {
         events.stream().forEach((event) -> {
             on(event, eventer);
         });
         return this;
     }
-
+    
+    
+    // On (emitter)
+    // - add eventers from emitter
+    public EventEmitter on(EventEmitter emitter) {
+        emitter.keySet().stream().forEach((event) -> {
+            on(event, emitter.get(event));
+        });
+        return this;
+    }
+    
+    
+    // On (cls)
+    // - add eventers from class
+    public EventEmitter on(Class cls) {
+        _onClass(null, cls);
+        return this;
+    }
+    
+    
+    // On (obj)
+    // - add eventers from object
+    public EventEmitter on(Object obj) {
+        _onClass(obj, obj.getClass());
+        return this;
+    }
+    
     
     // NotOn (event, eventer)
     // - remove an eventer from an event
