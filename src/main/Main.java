@@ -21,5 +21,6 @@ public class Main {
         event.on(Main.class);
         System.out.println(event);
         event.emit("mouse-click");
+        event.emit("key-press");
     }
 }
