@@ -33,7 +33,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // _OnClass (obj, cls)
     // - add static / instance methods of a class as eventers
-    void _onClass(Object obj, Class cls) {
+    private void _onClass(Object obj, Class cls) {
         boolean bestatic = obj==null;
         for(Method m : cls.getMethods()) {
             // need static or instance?
@@ -53,6 +53,26 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     void _initEventSet(String event) {
         if(get(event) != null) return;
         put(event, Collections.newSetFromMap(new ConcurrentHashMap<Eventable, Boolean>()));
+    }
+    
+    
+    // EventEmitter ()
+    // - create event emitter
+    public EventEmitter() {
+    }
+    
+    
+    // EventEmitter (cls)
+    // - create event emitter from class
+    public EventEmitter(Class cls) {
+        _onClass(null, cls);
+    }
+    
+    
+    // EventEmitter (obj)
+    // - create event emitter from object
+    public EventEmitter(Object obj) {
+        _onClass(obj, obj.getClass());
     }
     
     
@@ -109,22 +129,6 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
         map.keySet().stream().forEach((event) -> {
             on(event, map.get(event));
         });
-        return this;
-    }
-    
-    
-    // On (cls)
-    // - add eventers from class
-    public EventEmitter on(Class cls) {
-        _onClass(null, cls);
-        return this;
-    }
-    
-    
-    // On (obj)
-    // - add eventers from object
-    public EventEmitter on(Object obj) {
-        _onClass(obj, obj.getClass());
         return this;
     }
     

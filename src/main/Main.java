@@ -17,8 +17,7 @@ public class Main {
     }
     
     public static void main(String[] args) {
-        EventEmitter event = new EventEmitter();
-        event.on(Main.class);
+        EventEmitter event = new EventEmitter(Main.class);
         System.out.println(event);
         event.emit("mouse-click");
         event.emit("key-press");
