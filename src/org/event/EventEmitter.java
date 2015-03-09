@@ -31,9 +31,9 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     }
     
     
-    // _OnClass (obj, cls)
+    // _AddClass (obj, cls)
     // - add static / instance methods of a class as eventers
-    private void _onClass(Object obj, Class cls) {
+    private void _addClass(Object obj, Class cls) {
         boolean bestatic = obj==null;
         for(Method m : cls.getMethods()) {
             // need static or instance?
@@ -42,8 +42,8 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
             if(!name.startsWith("on") || ((!isstatic) && bestatic)) continue;
             // save appropriately
             String event = _toHyphenCase(name.substring(2));
-            if(bestatic) on(event, new Eventer(cls, name));
-            else on(event, new Eventer(obj, name));
+            if(bestatic) add(event, new Eventer(cls, name));
+            else add(event, new Eventer(obj, name));
         }
     }
     
@@ -65,14 +65,14 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     // EventEmitter (cls)
     // - create event emitter from class
     public EventEmitter(Class cls) {
-        _onClass(null, cls);
+        _addClass(null, cls);
     }
     
     
     // EventEmitter (obj)
     // - create event emitter from object
     public EventEmitter(Object obj) {
-        _onClass(obj, obj.getClass());
+        _addClass(obj, obj.getClass());
     }
     
     
@@ -97,7 +97,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (event, eventer)
     // - add an eventer to an event
-    public EventEmitter on(String event, Eventable eventer) {
+    public EventEmitter add(String event, Eventable eventer) {
         _initEventSet(event);
         get(event).add(eventer);
         return this;
@@ -106,7 +106,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (event, eventers)
     // - add eventers to an event
-    public EventEmitter on(String event, Collection<Eventable> eventers) {
+    public EventEmitter add(String event, Collection<Eventable> eventers) {
         _initEventSet(event);
         get(event).addAll(eventers);
         return this;
@@ -115,9 +115,9 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (events, eventer)
     // - add eventer to events
-    public EventEmitter on(Collection<String> events, Eventable eventer) {
+    public EventEmitter add(Collection<String> events, Eventable eventer) {
         events.stream().forEach((event) -> {
-            on(event, eventer);
+            add(event, eventer);
         });
         return this;
     }
@@ -125,9 +125,9 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // On (map)
     // - add eventers from map
-    public EventEmitter on(Map<String, Set<Eventable>> map) {
+    public EventEmitter add(Map<String, Set<Eventable>> map) {
         map.keySet().stream().forEach((event) -> {
-            on(event, map.get(event));
+            add(event, map.get(event));
         });
         return this;
     }
@@ -135,7 +135,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // NotOn (event, eventer)
     // - remove an eventer from an event
-    public EventEmitter notOn(String event, Eventable eventer) {
+    public EventEmitter remove(String event, Eventable eventer) {
         Set<Eventable> e = get(event);
         if(e != null) e.remove(eventer);
         return this;
@@ -144,7 +144,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // NotOn (event, eventers)
     // - remove eventers from an event
-    public EventEmitter notOn(String event, Collection<Eventable> eventers) {
+    public EventEmitter remove(String event, Collection<Eventable> eventers) {
         Set<Eventable> e = get(event);
         if(e != null) e.removeAll(eventers);
         return this;
@@ -153,9 +153,9 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // NotOn (events, eventer)
     // - remove eventer from events
-    public EventEmitter notOn(Collection<String> events, Eventable eventer) {
+    public EventEmitter remove(Collection<String> events, Eventable eventer) {
         events.stream().forEach((event) -> {
-            notOn(event, eventer);
+            remove(event, eventer);
         });
         return this;
     }
@@ -163,9 +163,9 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // NotOn (event, eventesr)
     // - remove eventers from map
-    public EventEmitter notOn(Map<String, Set<Eventable>> map) {
+    public EventEmitter remove(Map<String, Set<Eventable>> map) {
         map.keySet().stream().forEach((event) -> {
-            notOn(event, map.get(event));
+            remove(event, map.get(event));
         });
         return this;
     }
@@ -173,15 +173,15 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // NotOn (event)
     // - remove all eventers of an event
-    public EventEmitter notOn(String event) {
-        remove(event);
+    public EventEmitter remove(String event) {
+        super.remove(event);
         return this;
     }
     
     
     // notOn ()
     // - remove all eventers
-    public EventEmitter notOn() {
+    public EventEmitter remove() {
         clear();
         return this;
     }
