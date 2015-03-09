@@ -39,7 +39,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
             // need static or instance?
             String name = m.getName();
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(isstatic!=bestatic || !name.startsWith("on")) continue;
+            if(!name.startsWith("on") || ((!isstatic) && bestatic)) continue;
             // save appropriately
             String event = _toHyphenCase(name.substring(2));
             if(bestatic) on(event, new Eventer(cls, name));
