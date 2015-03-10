@@ -170,8 +170,8 @@ Bye event action
 
 <br/>
 
-| *<Eventable>* |                        |
-|---------------|------------------------|
+| **(Eventable)** |                        |
+|-----------------|------------------------|
 | **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as eventer <br/>                                                   one eventer can be attached to multiple events, hence *event*|
 
 <br/>
