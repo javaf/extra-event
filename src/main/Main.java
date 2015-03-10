@@ -17,7 +17,7 @@ public class Main {
     
     public static void main(String[] args) {
         int N = 1000000;
-        EventEmitter event = new EventEmitter(Main.class);
+        Stimuli event = new Stimuli(Main.class);
         System.out.println(event);
         long t0 = System.nanoTime();
         for(int i=0; i<N; i++)

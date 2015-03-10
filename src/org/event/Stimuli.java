@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 
 
-public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
+public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // static data
     static Reactable fallback = new DefReaction();
@@ -70,29 +70,29 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     }
     
     
-    // EventEmitter ()
+    // Stimuli ()
     // - create event emitter
-    public EventEmitter() {
+    public Stimuli() {
     }
     
     
-    // EventEmitter (cls)
+    // Stimuli (cls)
     // - create event emitter from class
-    public EventEmitter(Class cls) {
+    public Stimuli(Class cls) {
         _onClass(null, cls);
     }
     
     
-    // EventEmitter (obj)
+    // Stimuli (obj)
     // - create event emitter from object
-    public EventEmitter(Object obj) {
+    public Stimuli(Object obj) {
         _onClass(obj, obj.getClass());
     }
     
     
     // Emit (event, args)
     // - emit an event
-    public EventEmitter emit(String event, Map args) {
+    public Stimuli emit(String event, Map args) {
         Set<Reactable> eventers = get(event);
         if(eventers == null) fallback.on(event, args);
         else eventers.stream().forEach((e) -> {
@@ -104,14 +104,14 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Emit (event, args...)
     // - emit an event
-    public EventEmitter emit(String event, Object... args) {
+    public Stimuli emit(String event, Object... args) {
         return emit(event, Coll.map(args));
     }
     
     
     // On (event, eventer)
     // - add an eventer to an event
-    public EventEmitter on(String event, Reactable eventer) {
+    public Stimuli on(String event, Reactable eventer) {
         _initEventSet(event);
         get(event).add(eventer);
         return this;
@@ -120,7 +120,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // On (event, eventers)
     // - add eventers to an event
-    public EventEmitter on(String event, Collection<Reactable> eventers) {
+    public Stimuli on(String event, Collection<Reactable> eventers) {
         _initEventSet(event);
         get(event).addAll(eventers);
         return this;
@@ -129,7 +129,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // On (events, eventer)
     // - add eventer to events
-    public EventEmitter add(Collection<String> events, Reactable eventer) {
+    public Stimuli add(Collection<String> events, Reactable eventer) {
         events.stream().forEach((event) -> {
             on(event, eventer);
         });
@@ -139,7 +139,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // On (map)
     // - add eventers from map
-    public EventEmitter on(Map<String, Set<Reactable>> map) {
+    public Stimuli on(Map<String, Set<Reactable>> map) {
         map.keySet().stream().forEach((event) -> {
             on(event, map.get(event));
         });
@@ -149,7 +149,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Off (event, eventer)
     // - remove an eventer from an event
-    public EventEmitter off(String event, Reactable eventer) {
+    public Stimuli off(String event, Reactable eventer) {
         Set<Reactable> e = get(event);
         if(e != null) e.remove(eventer);
         return this;
@@ -158,7 +158,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Off (event, eventers)
     // - remove eventers from an event
-    public EventEmitter off(String event, Collection<Reactable> eventers) {
+    public Stimuli off(String event, Collection<Reactable> eventers) {
         Set<Reactable> e = get(event);
         if(e != null) e.removeAll(eventers);
         return this;
@@ -167,7 +167,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Off (events, eventer)
     // - remove eventer from events
-    public EventEmitter off(Collection<String> events, Reactable eventer) {
+    public Stimuli off(Collection<String> events, Reactable eventer) {
         events.stream().forEach((event) -> {
             off(event, eventer);
         });
@@ -177,7 +177,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Off (event, eventesr)
     // - remove eventers from map
-    public EventEmitter off(Map<String, Set<Reactable>> map) {
+    public Stimuli off(Map<String, Set<Reactable>> map) {
         map.keySet().stream().forEach((event) -> {
             off(event, map.get(event));
         });
@@ -187,7 +187,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Off (event)
     // - remove all eventers of an event
-    public EventEmitter off(String event) {
+    public Stimuli off(String event) {
         remove(event);
         return this;
     }
@@ -195,7 +195,7 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // Off ()
     // - remove all eventers
-    public EventEmitter off() {
+    public Stimuli off() {
         clear();
         return this;
     }
