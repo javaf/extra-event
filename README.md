@@ -52,7 +52,7 @@ public class Main {
     
     public static void main(String[] args) {
         EventEmitter event = new EventEmitter();    // create event emitter
-        event.emit("hello", "msg", "Hello World!"); // DefaultEventAbsorber listens
+        event.emit("hello", "msg", "Hello World!"); // DefEventer listens
     }
 }
 ```
@@ -91,18 +91,18 @@ Java Result: -1
 import java.util.*;
 import org.event.*;
 
-class HelloTeller implements IEventAbsorber {
+class HelloTeller implements Eventable {
     
     @Override
-    public void listen(String event, Map args) {
+    public void absorb(String event, Map args) {
         System.out.println("Hello event "+event);
     }
 }
 
-class ByeTeller implements IEventAbsorber {
+class ByeTeller implements Eventable {
     
     @Override
-    public void listen(String event, Map args) {
+    public void absorb(String event, Map args) {
         System.out.println("Bye event "+event);
     }
 }
@@ -144,8 +144,8 @@ public class Main {
     public static void main(String[] args) {
     	Main main = new Main();
         EventEmitter event = new EventEmitter();
-        event.add("action", new EventAbsorber(Main.class, "helloTeller"));
-        event.add("action", new EventAbsorber(main, "byeTeller");
+        event.add("action", new Eventer(Main.class, "helloTeller"));
+        event.add("action", new Eventer(main, "byeTeller");
         event.emit("action");
     }
 }
@@ -160,29 +160,28 @@ Bye event action
 
 ## Reference
 
-| `class EventEmitter` | `extends HashMap<String, Set<IEventAbsorber>>` |
-|----------------------|------------------------------------------------|
+| *EventEmitter* | `Map<String, Set<IEventAbsorber>>` |
+|----------------|------------------------------------|
 | **EventEmitter** <br/> `()`                                                                                                | create event emitter <br/>                                                                                               `EventEmitter event = new EventEmitter()` |
-| **add** <br/> `(event, absorber)`                                                                                          | add absorber to an event <br/>                                                                                   `event.add("write-done", writeDoneAbsorber);` |
+| **add** <br/> `(event, absorber)`                                                                                          | add eventer to an event <br/>                                                                                   `event.add("write-done", writeDoneEventer);` |
 | **emit** <br/> `(event, args)` <br/> `(event, arg, val, ...)`                                                              | emit an normal or error event <br/>                                                                                        `event.emit("write", "time", new Date(), "data", data);` <br/>                                                               `event.emit("write", "err", e, "data", data);` |
-| **fallback** <br/> `()`, `(absorbers)`                                                                                     | get or set fallback absorber (for events with no absorbers) <br/>                                               *DefaultEventAbsorber* is default fallback <br/>                                                                             `IEventAbsorber absorber = event.fallback();` <br/>                                                                          `event.fallback(myFallbackAbsorber);` |
-| **remove** <br/> `()`, `(event)`, <br/> `(event, absorber)`                                                                | remove all absorbers / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneAbsorber);` <br/>                                                            `event.remove("write");` |
+| **fallback** <br/> `()`, `(absorbers)`                                                                                     | get or set fallback eventer (for events with no eventers) <br/>                                                            *DefEventer* is default fallback <br/>                                                                                       `Eventable eventer = event.fallback();` <br/>                                                                          `event.fallback(myFallbackEventer);` |
+| **remove** <br/> `()`, `(event)`, <br/> `(event, eventer)`                                                                 | remove all eventers / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneEventer);` <br/>                                                            `event.remove("write");` |
 
 <br/>
 
-| `interface IEventAbsorber`   |                        |
-|------------------------------|------------------------|
-| **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as absorber <br/>                                                   one absorber can be attached to multiple events, hence *event*|
+| *<Eventable>* |                        |
+|---------------|------------------------|
+| **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as eventer <br/>                                                   one eventer can be attached to multiple events, hence *event*|
 
 <br/>
 
-| `class EventAbsorber` | `implements IEventAbsorber`  |
-|-----------------------|------------------------------|
-| **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an event absorber from a static on instance method <br/>                                                            `event.add("event0", new EventAbsorber(MthdCls.class, "mthd"));` <br/>                                                 `event.add("event0", new EventAbsorber(MthdObj, "mthd"));` |
-| **absorb** <br/> `(event, args)`                                                                                           | absorbs an event and forwards it to method |
+| *Eventer* | `<Eventable>`  |
+|-----------|----------------|
+| **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an eventer from a static on instance method <br/>                                                            `event.add("event0", new Eventer(MthdCls.class, "mthd"));` <br/>                                                 `event.add("event0", new Eventer(MthdObj, "mthd"));` |
 
 <br/>
 
-| `class DefaultEventAbsorber` | `implements IEventAbsorber`  |
+| `class DefEventer` | `<Eventable>`  |
 |------------------------------|------------------------------|
 | **absorb** <br/> `(event, args)`                                                                                           | absorbs events with no absorbers |
