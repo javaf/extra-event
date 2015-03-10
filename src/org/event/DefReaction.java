@@ -6,13 +6,20 @@ import java.util.*;
 
 
 
+/**
+ * Default reaction for stimulus with no other specified reaction
+ * @author wolfram77
+ */
 public class DefReaction implements Reacts {
 
-    // On (event, args)
-    // - print event details and exit on error
+    /**
+     * Print stimulus details and exit on error
+     * @param stimulus name of stimulus
+     * @param args additional arguments
+     */
     @Override
-    public void on(String event, Map args) {
-        System.out.println("["+event+"] : "+args);
+    public void on(String stimulus, Map args) {
+        System.out.println("["+stimulus+"] : "+args);
         if(!args.containsKey("err")) return;
         new EventException((Throwable)args.get("err")).exit();
     }
