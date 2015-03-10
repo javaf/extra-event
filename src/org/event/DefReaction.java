@@ -21,6 +21,6 @@ public class DefReaction implements Reacts {
     public void on(String stimulus, Map args) {
         System.out.println("["+stimulus+"] : "+args);
         if(!args.containsKey("err")) return;
-        new EventException((Throwable)args.get("err")).exit();
+        new StimuliException((Throwable)args.get("err")).exit();
     }
 }

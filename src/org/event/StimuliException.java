@@ -3,17 +3,17 @@ package org.event;
 
 
 
-public class EventException extends Exception {
+public class StimuliException extends Exception {
 
-    // EventException ()
+    // StimuliException ()
     // - create event exception
-    public EventException() {
+    public StimuliException() {
     }
     
     
-    // EventException (e)
+    // StimuliException (e)
     // - create event exception with given cause
-    public EventException(Throwable e) {
+    public StimuliException(Throwable e) {
         super(e);
     }
     

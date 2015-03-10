@@ -23,7 +23,7 @@ public class Reaction implements Reacts {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             this.mthd = MethodHandles.lookup().unreflect(m);
         }
-        catch(Exception e) { new EventException(e).exit(); }
+        catch(Exception e) { new StimuliException(e).exit(); }
     }
     
     
@@ -44,6 +44,6 @@ public class Reaction implements Reacts {
             else if(obj == null) mthd.invokeExact(event, args);
             else mthd.invoke(obj, event, args);
         }
-        catch(Throwable e) { new EventException(e).exit(); }
+        catch(Throwable e) { new StimuliException(e).exit(); }
     }
 }
