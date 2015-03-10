@@ -8,7 +8,7 @@ import java.lang.reflect.*;
 
 
 
-public class Reaction implements Reacts {
+public class Reaction implements Reactable {
     
     // data
     Object obj;
@@ -40,7 +40,7 @@ public class Reaction implements Reacts {
     @Override
     public void on(String event, Map args) {
         try {
-            if(mthd == null) ((Reacts)obj).on(event, args);
+            if(mthd == null) ((Reactable)obj).on(event, args);
             else if(obj == null) mthd.invokeExact(event, args);
             else mthd.invoke(obj, event, args);
         }

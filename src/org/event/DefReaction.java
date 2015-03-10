@@ -10,7 +10,7 @@ import java.util.*;
  * Default reaction for stimulus with no other specified reaction
  * @author wolfram77
  */
-public class DefReaction implements Reacts {
+public class DefReaction implements Reactable {
 
     /**
      * Print stimulus details and exit on error

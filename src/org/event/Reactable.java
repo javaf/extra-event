@@ -7,10 +7,10 @@ import java.util.*;
 
 
 /**
- * Describes an interface that can react on a stimulus
+ * Interface that can reacted on a stimulus
  * @author wolfram77
  */
-public interface Reacts {
+public interface Reactable {
     
     /**
      * Reacts on a stimulus
