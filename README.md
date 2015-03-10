@@ -160,8 +160,8 @@ Bye event action
 
 ## Reference
 
-| *EventEmitter* | `Map<String, Set<IEventAbsorber>>` |
-|----------------|------------------------------------|
+| **EventEmitter** | `Map<String, Set<IEventAbsorber>>` |
+|------------------|------------------------------------|
 | **EventEmitter** <br/> `()`, `(cls)`, `(obj)`                                                                              | create event emitter, optionally from a class or object <br/>                                                              `EventEmitter event = new EventEmitter();` <br/>                                                                             `EventEmitter event = new EventEmitter(NetHandler.class);` <br/>                                                             `EventEmitter event = new EventEmitter(netHandlerObj);` |
 | **add** <br/> `(event, eventer)`, <br/> `(event, eventers)`, <br/> `(events, eventer)`, <br/> `(map)`                      | add eventers to an event <br/>                                                                                   `event.add("write-done", writeDoneEventer);` |
 | **remove** <br/> `(event, eventer)`, <br/> `(event, eventers)`, <br/> `(events, eventer)`, <br/> `(map)`, `(event)`, `()`  | remove all eventers / all of specific event / specific <br/>                                                      `event.remove("write", writeDoneEventer);` <br/>                                                            `event.remove("write");` |
@@ -176,12 +176,12 @@ Bye event action
 
 <br/>
 
-| *Eventer* | `<Eventable>`  |
-|-----------|----------------|
+| **Eventer** | `(Eventable)`  |
+|-------------|----------------|
 | **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an eventer from a static on instance method <br/>                                                            `event.add("event0", new Eventer(MthdCls.class, "mthd"));` <br/>                                                 `event.add("event0", new Eventer(MthdObj, "mthd"));` |
 
 <br/>
 
-| `class DefEventer` | `<Eventable>`  |
-|------------------------------|------------------------------|
+| **DefEventer** | `(Eventable)`  |
+|----------------|----------------|
 | **absorb** <br/> `(event, args)`                                                                                           | absorbs events with no absorbers |
