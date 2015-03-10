@@ -8,10 +8,10 @@ import java.util.*;
 
 public class DefEventer implements Eventable {
 
-    // Absorb (event, args)
+    // On (event, args)
     // - print event details and exit on error
     @Override
-    public void absorb(String event, Map args) {
+    public void on(String event, Map args) {
         System.out.println("["+event+"] : "+args);
         if(!args.containsKey("err")) return;
         new EventException((Throwable)args.get("err")).exit();

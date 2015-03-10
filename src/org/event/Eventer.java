@@ -36,11 +36,12 @@ public class Eventer implements Eventable {
     
     
     // On (event, args)
-    // - absorbs an event and forwards it to method
+    // - listens to an event and forwards it to method
     @Override
     public void on(String event, Map args) {
         try {
-            if(obj == null) mthd.invokeExact(event, args);
+            if(mthd == null) ((Eventable)obj).on(event, args);
+            else if(obj == null) mthd.invokeExact(event, args);
             else mthd.invoke(obj, event, args);
         }
         catch(Throwable e) { new EventException(e).exit(); }
