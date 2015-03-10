@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     
     // static data
-    public static Eventable fallback = new DefEventer();
+    static Eventable fallback = new DefEventer();
     
     
     // _ToHyphenCase (str)
@@ -53,6 +53,20 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Eventable>> {
     void _initEventSet(String event) {
         if(get(event) != null) return;
         put(event, Collections.newSetFromMap(new ConcurrentHashMap<Eventable, Boolean>()));
+    }
+    
+    
+    // Fallback ()
+    // - get fallback eventer
+    public static Eventable fallback() {
+        return fallback;
+    }
+    
+    
+    // Fallback (eventer)
+    // - set fallback eventer
+    public static void fallback(Eventable eventer) {
+        fallback = eventer;
     }
     
     
