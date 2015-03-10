@@ -3,7 +3,7 @@ package org.event;
 
 
 
-public class StimuliException extends Exception {
+public class StimuliException extends RuntimeException {
 
     // StimuliException ()
     // - create event exception
