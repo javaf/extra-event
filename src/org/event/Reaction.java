@@ -8,7 +8,7 @@ import java.lang.reflect.*;
 
 
 
-public class Reaction implements Reactable {
+public class Reaction implements Reactable, Runnable {
     
     // data
     Object obj;
@@ -78,5 +78,10 @@ public class Reaction implements Reactable {
             else mthd.invoke(obj, event, args);
         }
         catch(Throwable e) { new StimuliException(e).exit(); }
+    }
+    
+    @Override
+    public void run() {
+        
     }
 }
