@@ -41,7 +41,7 @@ public class Reaction implements Reactable {
     
     // Reaction (obj)
     // - create an eventer (reactable)
-    public Reaction(Object obj) {
+    public Reaction(Reactable obj) {
         this.obj = obj;
     }
     
