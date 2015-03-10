@@ -35,10 +35,10 @@ public class Eventer implements Eventable {
     }
     
     
-    // Absorb (event, args)
+    // On (event, args)
     // - absorbs an event and forwards it to method
     @Override
-    public void absorb(String event, Map args) {
+    public void on(String event, Map args) {
         try {
             if(obj == null) mthd.invokeExact(event, args);
             else mthd.invoke(obj, event, args);
