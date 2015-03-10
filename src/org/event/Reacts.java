@@ -15,8 +15,8 @@ import java.lang.annotation.*;
 public @interface Reacts {
     
     /**
-     * Reaction speed: "fast" or "slow"
-     * @return reaction speed
+     * Speed of reaction ("fast" or "slow")
+     * @return speed of reaction
      */
     public String speed() default "fast";
 }

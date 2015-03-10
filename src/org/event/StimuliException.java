@@ -4,7 +4,7 @@ package org.event;
 
 
 /**
- * Stimuli specific unchecked exception
+ * {@linkplain Stimuli} specific unchecked exception
  * @author wolfram77
  */
 public class StimuliException extends RuntimeException {
