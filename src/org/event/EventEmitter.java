@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 public class EventEmitter extends ConcurrentHashMap<String, Set<Reacts>> {
     
     // static data
-    static Reacts fallback = new DefEventer();
+    static Reacts fallback = new DefReaction();
     
     
     // _ToHyphenCase (str)
