@@ -74,80 +74,117 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     }
     
     
-    // Emit (event, args)
-    // - emit an event
+    /**
+     * Indicate a stimulus (emit event)
+     * @param stimulus name of stimulus
+     * @param args additional arguments
+     */
     void _is(String stimulus, Map args) {
-        Set<Reactable> eventers = get(stimulus);
-        if(eventers == null) fallback.on(stimulus, args);
-        else eventers.stream().forEach((e) -> {
+        Set<Reactable> reactions = get(stimulus);
+        if(reactions == null) fallback.on(stimulus, args);
+        else reactions.stream().forEach((e) -> {
             e.on(stimulus, args);
         });
     }
     
     
-    // Fallback ()
-    // - get fallback eventer
+    /**
+     * Set fallback reaction, that is called when a stimulus no other reaction
+     * @param fallback fallback reaction
+     */
+    public static void fallback(Reactable fallback) {
+        Stimuli.fallback = fallback;
+    }
+    
+    
+    /**
+     * Get fallback reaction
+     * @return fallback reaction
+     */
     public static Reactable fallback() {
         return fallback;
     }
     
     
-    // Fallback (eventer)
-    // - set fallback eventer
-    public static void fallback(Reactable eventer) {
-        fallback = eventer;
-    }
-    
-    
-    // Stimuli ()
-    // - create event emitter
+    /**
+     * Create {@linkplain Stimuli}
+     */
     public Stimuli() {
     }
     
     
-    // Stimuli (cls)
-    // - create event emitter from class
+    /**
+     * Create {@linkplain Stimuli} from class
+     * @param cls class containing reaction methods
+     */
     public Stimuli(Class cls) {
         _onClass(null, cls);
     }
     
     
-    // Stimuli (obj)
-    // - create event emitter from object
+    /**
+     * Create {@linkplain Stimuli} from object
+     * @param obj object containing reaction methods
+     */
     public Stimuli(Object obj) {
         _onClass(obj, obj.getClass());
     }
     
+    
+    /**
+     * Tell stimuli speed ("fast" or "slow")
+     * @param speed stimuli speed
+     * @return {@linkplain Stimuli}
+     */
     public Stimuli speed(String speed) {
         stimulus = speed.equals("fast")? "" : null;
         return this;
     }
     
+    
+    /**
+     * Get stimuli speed ("fast" or "slow")
+     * @return stimuli speed
+     */
     public String speed() {
         return stimulus != null? "fast" : "slow";
     }
 
     
+    
+    
+    /**
+     * DONT CALL THIS!
+     * Indicate a stimulus asynchronously (emit event)
+     */
     @Override
     public void run() {
         _is(stimulus, args);
     }
     
     
-    // Emit (event, args...)
-    // - emit an event
-    public Stimuli emit(String event, Map args) {
-        if(stimulus == null) { _is(event, args); return this; }
-        stimulus = event;
+    /**
+     * Indicate a stimulus (emit event)
+     * @param stimulus name of stimulus
+     * @param args additional arguments
+     * @return stimuli
+     */
+    public Stimuli is(String stimulus, Map args) {
+        if(this.stimulus == null) { _is(stimulus, args); return this; }
+        this.stimulus = stimulus;
         this.args = args;
         return this;
     }
     
     
-    // Emit (event, args...)
-    // - emit an event
-    public Stimuli emit(String event, Object... args) {
-        return emit(event, Coll.map(args));
+    /**
+     * Indicate a stimulus (emit event)
+     * @param stimulus name of stimulus
+     * @param args additional arguments
+     * @return stimuli
+     */
+    public Stimuli is(String stimulus, Object... args) {
+        return is(stimulus, Coll.map(args));
     }
     
     
