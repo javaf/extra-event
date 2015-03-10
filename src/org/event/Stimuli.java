@@ -188,92 +188,129 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     }
     
     
-    // On (event, eventer)
-    // - add an eventer to an event
-    public Stimuli on(String event, Reactable eventer) {
-        _initStimulusSet(event);
-        get(event).add(eventer);
+    /**
+     * Add a reaction on a stimulus
+     * @param stimulus name of stimulus
+     * @param reaction reaction
+     * @return stimuli
+     */
+    public Stimuli on(String stimulus, Reactable reaction) {
+        _initStimulusSet(stimulus);
+        get(stimulus).add(reaction);
         return this;
     }
     
     
-    // On (event, eventers)
-    // - add eventers to an event
-    public Stimuli on(String event, Collection<Reactable> eventers) {
-        _initStimulusSet(event);
-        get(event).addAll(eventers);
+    /**
+     * Add some reactions on a stimulus
+     * @param stimulus name of stimulus
+     * @param reactions collection of reactions
+     * @return stimuli
+     */
+    public Stimuli on(String stimulus, Collection<Reactable> reactions) {
+        _initStimulusSet(stimulus);
+        get(stimulus).addAll(reactions);
         return this;
     }
     
     
-    // On (events, eventer)
-    // - add eventer to events
-    public Stimuli add(Collection<String> events, Reactable eventer) {
-        events.stream().forEach((event) -> {
-            on(event, eventer);
+    /**
+     * Add a reaction on some stimuli
+     * @param stimuli collection of stimulus
+     * @param reaction reaction
+     * @return stimuli
+     */
+    public Stimuli on(Collection<String> stimuli, Reactable reaction) {
+        stimuli.stream().forEach((stim) -> {
+            on(stim, reaction);
         });
         return this;
     }
     
     
-    // On (map)
-    // - add eventers from map
+    /**
+     * Add some reactions on some stimuli
+     * @param map stimuli with associated reactions
+     * @return stimuli
+     */
     public Stimuli on(Map<String, Set<Reactable>> map) {
-        map.keySet().stream().forEach((event) -> {
-            on(event, map.get(event));
+        map.keySet().stream().forEach((stim) -> {
+            on(stim, map.get(stim));
         });
         return this;
     }
     
     
-    // Off (event, eventer)
-    // - remove an eventer from an event
-    public Stimuli off(String event, Reactable eventer) {
-        Set<Reactable> e = get(event);
-        if(e != null) e.remove(eventer);
+    /**
+     * Remove a reaction from a stimulus
+     * @param stimulus name of stimulus
+     * @param reaction reaction
+     * @return stimuli
+     */
+    public Stimuli off(String stimulus, Reactable reaction) {
+        Set<Reactable> s = get(stimulus);
+        if(s != null) s.remove(reaction);
         return this;
     }
     
     
-    // Off (event, eventers)
-    // - remove eventers from an event
-    public Stimuli off(String event, Collection<Reactable> eventers) {
-        Set<Reactable> e = get(event);
-        if(e != null) e.removeAll(eventers);
+    /**
+     * Remove some reactions from a stimulus
+     * @param stimulus name of stimulus
+     * @param reactions collections of reactions
+     * @return stimuli
+     */
+    public Stimuli off(String stimulus, Collection<Reactable> reactions) {
+        Set<Reactable> e = get(stimulus);
+        if(e != null) e.removeAll(reactions);
         return this;
     }
     
     
     // Off (events, eventer)
     // - remove eventer from events
-    public Stimuli off(Collection<String> events, Reactable eventer) {
-        events.stream().forEach((event) -> {
-            off(event, eventer);
+    /**
+     * Remove a reaction from some stimuli
+     * @param stimuli collection of stimulus
+     * @param reaction reaction
+     * @return stimuli
+     */
+    public Stimuli off(Collection<String> stimuli, Reactable reaction) {
+        stimuli.stream().forEach((stim) -> {
+            off(stim, reaction);
         });
         return this;
     }
     
     
-    // Off (event, eventesr)
-    // - remove eventers from map
+    /**
+     * Remove some reactions from some stimuli
+     * @param map stimuli associated with reactions
+     * @return stimuli
+     */
     public Stimuli off(Map<String, Set<Reactable>> map) {
-        map.keySet().stream().forEach((event) -> {
-            off(event, map.get(event));
+        map.keySet().stream().forEach((stim) -> {
+            off(stim, map.get(stim));
         });
         return this;
     }
     
     
-    // Off (event)
-    // - remove all eventers of an event
-    public Stimuli off(String event) {
-        remove(event);
+    /**
+     * Remove all reactions from a stimulus
+     * @param stimulus name of stimulus
+     * @return stimuli
+     */
+    public Stimuli off(String stimulus) {
+        remove(stimulus);
         return this;
     }
     
     
-    // Off ()
-    // - remove all eventers
+    /**
+     * Remove all reactions from all stimuli
+     * @return stimuli
+     */
     public Stimuli off() {
         clear();
         return this;
