@@ -8,17 +8,17 @@ import java.lang.reflect.*;
 
 
 
-public class Eventer implements Reacts {
+public class Reaction implements Reacts {
     
     // data
     Object obj;
     MethodHandle mthd;
     
     
-    // Eventer (cls, mthd)
+    // Reaction (cls, mthd)
     // - create an eventer (static)
     @SuppressWarnings("UseSpecificCatch")
-    public Eventer(Class cls, String mthd) {
+    public Reaction(Class cls, String mthd) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             this.mthd = MethodHandles.lookup().unreflect(m);
@@ -27,9 +27,9 @@ public class Eventer implements Reacts {
     }
     
     
-    // Eventer (obj, mthd)
+    // Reaction (obj, mthd)
     // - create an eventer (instance)
-    public Eventer(Object obj, String mthd) {
+    public Reaction(Object obj, String mthd) {
         this(obj.getClass(), mthd);
         this.obj = obj;
     }

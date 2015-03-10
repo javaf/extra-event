@@ -42,8 +42,8 @@ public class EventEmitter extends ConcurrentHashMap<String, Set<Reacts>> {
             if(!mthd.startsWith("on") || ((!isstatic) && bestatic)) continue;
             // save appropriately
             String event = _toHyphenCase(mthd.substring(2));
-            if(bestatic) on(event, new Eventer(cls, mthd));
-            else on(event, new Eventer(obj, mthd));
+            if(bestatic) on(event, new Reaction(cls, mthd));
+            else on(event, new Reaction(obj, mthd));
         }
     }
     
