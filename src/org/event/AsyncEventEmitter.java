@@ -23,11 +23,17 @@ public class AsyncEventEmitter extends EventEmitter implements Runnable {
     public AsyncEventEmitter() {
         super();
     }
+
     
+    // AsyncEventEmitter ()
+    // - create async event emitter from class
     public AsyncEventEmitter(Class cls) {
         super(cls);
     }
+
     
+    // AsyncEventEmitter ()
+    // - create async event emitter from object
     public AsyncEventEmitter(Object obj) {
         super(obj);
     }
