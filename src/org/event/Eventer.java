@@ -8,7 +8,7 @@ import java.lang.reflect.*;
 
 
 
-public class Eventer implements Eventable {
+public class Eventer implements Reacts {
     
     // data
     Object obj;
@@ -40,7 +40,7 @@ public class Eventer implements Eventable {
     @Override
     public void on(String event, Map args) {
         try {
-            if(mthd == null) ((Eventable)obj).on(event, args);
+            if(mthd == null) ((Reacts)obj).on(event, args);
             else if(obj == null) mthd.invokeExact(event, args);
             else mthd.invoke(obj, event, args);
         }

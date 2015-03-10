@@ -6,7 +6,7 @@ import java.util.*;
 
 
 
-public class DefEventer implements Eventable {
+public class DefEventer implements Reacts {
 
     // On (event, args)
     // - print event details and exit on error
