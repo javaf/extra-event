@@ -13,24 +13,32 @@ public class Reaction implements Reactable {
     // data
     Object obj;
     MethodHandle mthd;
+    String stimulus;
+    Map args;
     
+    
+    private void _new(Class cls, String mthd, boolean bestatic) {
+        try {
+            Method m = cls.getMethod(mthd, String.class, Map.class);
+            boolean isstatic = Modifier.isStatic(m.getModifiers());
+            if(!isstatic && bestatic) throw new Exception("Method ["+m.getName()+"] is not static");
+            if(m.isAnnotationPresent(Reacts.class) && m.getAnnotation(Reacts.class).speed().equals("slow")) stimulus = "";
+            this.mthd = MethodHandles.lookup().unreflect(m);
+        }
+        catch(Exception e) { throw new StimuliException(e); }
+    }
     
     // Reaction (cls, mthd)
     // - create an eventer (static)
-    @SuppressWarnings("UseSpecificCatch")
     public Reaction(Class cls, String mthd) {
-        try {
-            Method m = cls.getMethod(mthd, String.class, Map.class);
-            this.mthd = MethodHandles.lookup().unreflect(m);
-        }
-        catch(Exception e) { new StimuliException(e).exit(); }
+        _new(cls, mthd, true);
     }
     
     
     // Reaction (obj, mthd)
     // - create an eventer (instance)
     public Reaction(Object obj, String mthd) {
-        this(obj.getClass(), mthd);
+        _new(obj.getClass(), mthd, false);
         this.obj = obj;
     }
     
