@@ -27,6 +27,23 @@ public class Reaction implements Reactable {
         }
         catch(Exception e) { throw new StimuliException(e); }
     }
+
+    // On (event, args)
+    // - listens to an event and forwards it to method
+    public void _on(String event, Map args) {
+        try {
+            if(mthd == null) ((Reactable)obj).on(event, args);
+            else if(obj == null) mthd.invokeExact(event, args);
+            else mthd.invoke(obj, event, args);
+        }
+        catch(Throwable e) { new StimuliException(e).exit(); }
+    }
+    
+    // Reaction (obj)
+    // - create an eventer (reactable)
+    public Reaction(Object obj) {
+        this.obj = obj;
+    }
     
     // Reaction (cls, mthd)
     // - create an eventer (static)
