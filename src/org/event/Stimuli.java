@@ -60,6 +60,17 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
     }
     
     
+    // Emit (event, args)
+    // - emit an event
+    void _emit(String event, Map args) {
+        Set<Reactable> eventers = get(event);
+        if(eventers == null) fallback.on(event, args);
+        else eventers.stream().forEach((e) -> {
+            e.on(event, args);
+        });
+    }
+    
+    
     // Fallback ()
     // - get fallback eventer
     public static Reactable fallback() {
@@ -102,14 +113,10 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
         return stimulus != null? "fast" : "slow";
     }
     
-    // Emit (event, args)
+    
+    // Emit (event, args...)
     // - emit an event
     public Stimuli emit(String event, Map args) {
-        Set<Reactable> eventers = get(event);
-        if(eventers == null) fallback.on(event, args);
-        else eventers.stream().forEach((e) -> {
-            e.on(event, args);
-        });
         return this;
     }
     
