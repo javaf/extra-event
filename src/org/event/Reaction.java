@@ -5,6 +5,7 @@ package org.event;
 import java.util.*;
 import java.lang.invoke.*;
 import java.lang.reflect.*;
+import java.util.concurrent.*;
 
 
 
@@ -16,6 +17,8 @@ public class Reaction implements Reactable, Runnable {
     String stimulus;
     Map args;
     
+    // static data
+    static ExecutorService threads = Executors.newCachedThreadPool();
     
     private void _new(Class cls, String mthd, boolean bestatic) {
         try {
@@ -36,7 +39,7 @@ public class Reaction implements Reactable, Runnable {
             else if(obj == null) mthd.invokeExact(event, args);
             else mthd.invoke(obj, event, args);
         }
-        catch(Throwable e) { new StimuliException(e).exit(); }
+        catch(Throwable e) { throw new StimuliException(e); }
     }
     
     // Reaction (obj)
@@ -72,16 +75,14 @@ public class Reaction implements Reactable, Runnable {
     // - listens to an event and forwards it to method
     @Override
     public void on(String event, Map args) {
-        try {
-            if(mthd == null) ((Reactable)obj).on(event, args);
-            else if(obj == null) mthd.invokeExact(event, args);
-            else mthd.invoke(obj, event, args);
-        }
-        catch(Throwable e) { new StimuliException(e).exit(); }
+        if(stimulus == null) { _on(event, args); return; }
+        stimulus = event;
+        this.args = args;
+        threads.submit(this);
     }
     
     @Override
     public void run() {
-        
+        _on(stimulus, args);
     }
 }
