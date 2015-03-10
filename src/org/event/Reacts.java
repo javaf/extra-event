@@ -7,16 +7,16 @@ import java.lang.annotation.*;
 
 
 /**
- * React annotation for specifying reaction mode
+ * Reacts annotation for specifying reaction
  * @author wolfram77
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface React {
+public @interface Reacts {
     
     /**
-     * Reaction mode: "sync" or "async"
-     * @return reaction mode
+     * Reaction speed: "fast" or "slow"
+     * @return reaction speed
      */
-    public String mode() default "sync";
+    public String speed() default "fast";
 }
