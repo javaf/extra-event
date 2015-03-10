@@ -8,7 +8,7 @@ import java.util.*;
 
 public interface Eventable {
     
-    // Absorb (event, args)
-    // - absorb an event, args provide additional info
-    void absorb(String event, Map args);
+    // On (event, args)
+    // - listen to an event, args provide additional info
+    void on(String event, Map args);
 }
