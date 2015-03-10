@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 
 
 
-public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
+public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implements Runnable {
     
     // data
     String stimulus;
@@ -17,6 +17,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // static data
     static Reactable fallback = new DefReaction();
+    static ExecutorService threads = Executors.newCachedThreadPool();
     
     
     // _ToHyphenCase (str)
@@ -117,6 +118,9 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
     // Emit (event, args...)
     // - emit an event
     public Stimuli emit(String event, Map args) {
+        if(stimulus == null) { _emit(event, args); return this; }
+        stimulus = event;
+        this.args = args;
         return this;
     }
     
@@ -217,5 +221,10 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
     public Stimuli off() {
         clear();
         return this;
+    }
+    
+    @Override
+    public void run() {
+        _emit(stimulus, args);
     }
 }
