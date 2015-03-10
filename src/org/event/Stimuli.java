@@ -43,8 +43,11 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     }
     
     
-    // _OnClass (obj, cls)
-    // - add static / instance methods of a class as eventers
+    /**
+     * Add static / instance reaction methods of a class
+     * @param obj object containing methods (null if static)
+     * @param cls class containing methods
+     */
     private void _onClass(Object obj, Class cls) {
         boolean bestatic = obj==null;
         for(Method m : cls.getMethods()) {
@@ -53,29 +56,31 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(!mthd.startsWith("on") || (!isstatic && bestatic)) continue;
             // save appropriately
-            String event = _toHyphenCase(mthd.substring(2));
+            String stim = _toHyphenCase(mthd.substring(2));
             Reaction reaction = bestatic? new Reaction(cls, mthd) : new Reaction(obj, mthd);
             if(m.isAnnotationPresent(Reacts.class)) reaction.speed(m.getAnnotation(Reacts.class).speed());
-            on(event, reaction);
+            on(stim, reaction);
         }
     }
     
     
-    // _InitEventSet (event)
-    // - initialize event set before adding
-    void _initEventSet(String event) {
-        if(get(event) != null) return;
-        put(event, Collections.newSetFromMap(new ConcurrentHashMap<Reactable, Boolean>()));
+    /**
+     * Initialize stimulus set before adding
+     * @param stimulus name of stimulus
+     */
+    void _initStimulusSet(String stimulus) {
+        if(get(stimulus) != null) return;
+        put(stimulus, Collections.newSetFromMap(new ConcurrentHashMap<Reactable, Boolean>()));
     }
     
     
     // Emit (event, args)
     // - emit an event
-    void _emit(String event, Map args) {
-        Set<Reactable> eventers = get(event);
-        if(eventers == null) fallback.on(event, args);
+    void _is(String stimulus, Map args) {
+        Set<Reactable> eventers = get(stimulus);
+        if(eventers == null) fallback.on(stimulus, args);
         else eventers.stream().forEach((e) -> {
-            e.on(event, args);
+            e.on(stimulus, args);
         });
     }
     
@@ -121,12 +126,18 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     public String speed() {
         return stimulus != null? "fast" : "slow";
     }
+
+    
+    @Override
+    public void run() {
+        _is(stimulus, args);
+    }
     
     
     // Emit (event, args...)
     // - emit an event
     public Stimuli emit(String event, Map args) {
-        if(stimulus == null) { _emit(event, args); return this; }
+        if(stimulus == null) { _is(event, args); return this; }
         stimulus = event;
         this.args = args;
         return this;
@@ -143,7 +154,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     // On (event, eventer)
     // - add an eventer to an event
     public Stimuli on(String event, Reactable eventer) {
-        _initEventSet(event);
+        _initStimulusSet(event);
         get(event).add(eventer);
         return this;
     }
@@ -152,7 +163,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     // On (event, eventers)
     // - add eventers to an event
     public Stimuli on(String event, Collection<Reactable> eventers) {
-        _initEventSet(event);
+        _initStimulusSet(event);
         get(event).addAll(eventers);
         return this;
     }
@@ -229,10 +240,5 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     public Stimuli off() {
         clear();
         return this;
-    }
-    
-    @Override
-    public void run() {
-        _emit(stimulus, args);
     }
 }
