@@ -51,11 +51,12 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
             // need static or instance?
             String mthd = m.getName();
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(!mthd.startsWith("on") || ((!isstatic) && bestatic)) continue;
+            if(!mthd.startsWith("on") || (!isstatic && bestatic)) continue;
             // save appropriately
             String event = _toHyphenCase(mthd.substring(2));
-            if(bestatic) on(event, new Reaction(cls, mthd));
-            else on(event, new Reaction(obj, mthd));
+            Reaction reaction = bestatic? new Reaction(cls, mthd) : new Reaction(obj, mthd);
+            if(m.isAnnotationPresent(Reacts.class)) reaction.speed(m.getAnnotation(Reacts.class).speed());
+            on(event, reaction);
         }
     }
     
