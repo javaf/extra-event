@@ -11,6 +11,10 @@ import java.util.concurrent.*;
 
 public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
     
+    // data
+    String stimulus;
+    Map args;
+    
     // static data
     static Reactable fallback = new DefReaction();
     
@@ -89,6 +93,14 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> {
         _onClass(obj, obj.getClass());
     }
     
+    public Stimuli speed(String speed) {
+        stimulus = speed.equals("fast")? "" : null;
+        return this;
+    }
+    
+    public String speed() {
+        return stimulus != null? "fast" : "slow";
+    }
     
     // Emit (event, args)
     // - emit an event
