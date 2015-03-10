@@ -3,23 +3,31 @@ package org.event;
 
 
 
+/**
+ * Stimuli specific unchecked exception
+ * @author wolfram77
+ */
 public class StimuliException extends RuntimeException {
 
-    // StimuliException ()
-    // - create event exception
+    /**
+     * Create stimuli exception
+     */
     public StimuliException() {
     }
     
     
-    // StimuliException (e)
-    // - create event exception with given cause
-    public StimuliException(Throwable e) {
-        super(e);
+    /**
+     * Create stimuli exception with given cause
+     * @param cause cause of exception
+     */
+    public StimuliException(Throwable cause) {
+        super(cause);
     }
     
     
-    // Exit (e)
-    // - show stack trace and exit
+    /**
+     * Show stack trace and exit
+     */
     @SuppressWarnings("CallToPrintStackTrace")
     public void exit() {
         printStackTrace();
