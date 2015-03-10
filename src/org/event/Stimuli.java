@@ -9,6 +9,10 @@ import java.util.concurrent.*;
 
 
 
+/**
+ * Represents a set of stimulus with associated reactions
+ * @author wolfram77
+ */
 public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implements Runnable {
     
     // data
@@ -20,8 +24,11 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     static ExecutorService threads = Executors.newCachedThreadPool();
     
     
-    // _ToHyphenCase (str)
-    // - convert a string to hyphen case
+    /**
+     * Convert a string from camel case to hyphen case
+     * @param str camel case string
+     * @return hyphen case string
+     */
     String _toHyphenCase(String str) {
         StringBuilder s = new StringBuilder();
         for(int i=0; i<str.length(); i++) {
