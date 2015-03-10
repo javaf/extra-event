@@ -42,6 +42,14 @@ public class Reaction implements Reactable {
         this.obj = obj;
     }
     
+    public Reaction speed(String speed) {
+        stimulus = speed.equals("slow")? "" : null;
+        return this;
+    }
+    
+    public String speed() {
+        return stimulus != null? "slow" : "fast";
+    }
     
     // On (event, args)
     // - listens to an event and forwards it to method
