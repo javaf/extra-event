@@ -60,6 +60,17 @@ public class Reaction implements Reactable, Runnable {
 
     
     /**
+     * <h3>Create a copy of another {@linkplain Reaction}</h3>
+     * @param reaction {@linkplain Reaction} to copy
+     */
+    public Reaction(Reaction reaction) {
+        obj = reaction.obj;
+        mthd = reaction.mthd;
+        stimulus = reaction.stimulus;
+    }
+
+    
+    /**
      * <h3>Create a {@linkplain Reaction} from an object implementing {@linkplain Reactable}</h3>
      * @param reactable object implementing {@linkplain Reactable}
      */
