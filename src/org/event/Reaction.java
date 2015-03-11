@@ -92,7 +92,7 @@ public class Reaction implements Reactable, Runnable {
     /**
      * <h3>Tell reaction-method's speed ("fast" or "slow")</h3>
      * @param speed reaction-method's speed
-     * @return {@linkplain Reaction} for continuation
+     * @return {@linkplain Reaction} for chaining
      */
     public Reaction speed(String speed) {
         stimulus = speed.equals("slow")? "" : null;

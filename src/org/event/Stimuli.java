@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 
 
 /**
- * Represents a set of stimulus with associated reactions
+ * <h3>Represents a set of stimulus with associated {@linkplain Reaction}s</h3>
  * @author wolfram77
  */
 public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implements Runnable {
@@ -25,7 +25,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Convert a string from camel case to hyphen case
+     * <h3>Convert a string from camel case to hyphen case</h3>
      * @param str camel case string
      * @return hyphen case string
      */
@@ -44,9 +44,9 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Add static / instance reaction methods of a class
-     * @param obj object containing methods (null if static)
-     * @param cls class containing methods
+     * <h3>Add static / instance reaction-methods of a class</h3>
+     * @param obj object containing reaction-methods (null if static)
+     * @param cls class containing reaction-methods
      */
     private void _onClass(Object obj, Class cls) {
         boolean bestatic = obj==null;
@@ -65,17 +65,17 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Initialize stimulus set before adding
+     * <h3>Initialize {@linkplain Reactable} set of stimulus</h3>
      * @param stimulus name of stimulus
      */
-    void _initStimulusSet(String stimulus) {
+    void _initReactableSet(String stimulus) {
         if(get(stimulus) != null) return;
         put(stimulus, Collections.newSetFromMap(new ConcurrentHashMap<Reactable, Boolean>()));
     }
     
     
     /**
-     * Indicate a stimulus (emit event)
+     * <h3>Indicate a stimulus, causing {@linkplain Reaction}s to happen</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -89,7 +89,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Set fallback reaction, that is called when a stimulus no other reaction
+     * <h3>Set fallback {@linkplain Reaction}, that is called when a stimulus no other {@linkplain Reaction}</h3>
      * @param fallback fallback reaction
      */
     public static void fallback(Reactable fallback) {
@@ -98,7 +98,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Get fallback reaction
+     * <h3>Get fallback {@linkplain Reaction}</h3>
      * @return fallback reaction
      */
     public static Reactable fallback() {
@@ -107,15 +107,15 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Create {@linkplain Stimuli}
+     * <h3>Create a {@linkplain Stimuli} that stores a set of stimulus associated with {@linkplain Reaction}s</h3>
      */
     public Stimuli() {
     }
     
     
     /**
-     * Create {@linkplain Stimuli} from class
-     * @param cls class containing reaction methods
+     * <h3>Create a {@linkplain Stimuli} from class</h3>
+     * @param cls class containing reaction-methods
      */
     public Stimuli(Class cls) {
         _onClass(null, cls);
@@ -123,8 +123,8 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Create {@linkplain Stimuli} from object
-     * @param obj object containing reaction methods
+     * <h3>Create a {@linkplain Stimuli} from object</h3>
+     * @param obj object containing reaction-methods
      */
     public Stimuli(Object obj) {
         _onClass(obj, obj.getClass());
@@ -132,9 +132,9 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Tell stimuli speed ("fast" or "slow")
+     * <h3>Tell stimuli speed ("fast" or "slow")</h3>
      * @param speed stimuli speed
-     * @return {@linkplain Stimuli}
+     * @return {@linkplain Stimuli} for chaining
      */
     public Stimuli speed(String speed) {
         stimulus = speed.equals("fast")? "" : null;
@@ -143,7 +143,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Get stimuli speed ("fast" or "slow")
+     * <h3>Get stimuli speed ("fast" or "slow")</h3>
      * @return stimuli speed
      */
     public String speed() {
@@ -154,8 +154,8 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
+     * <h3>Indicate a stimulus asynchronously</h3>
      * DONT CALL THIS!
-     * Indicate a stimulus asynchronously (emit event)
      */
     @Override
     public void run() {
@@ -164,7 +164,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Indicate a stimulus (emit event)
+     * <h3>Indicate a stimulus, causing {@linkplain Reaction}s to trigger</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return stimuli
@@ -178,10 +178,10 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Indicate a stimulus (emit event)
+     * <h3>Indicate a stimulus, causing {@linkplain Reaction}s to trigger</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
-     * @return stimuli
+     * @return {@linkplain Stimuli} for chaining
      */
     public Stimuli is(String stimulus, Object... args) {
         return is(stimulus, Coll.map(args));
@@ -189,13 +189,13 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * Add a reaction on a stimulus
+     * <h3>Set a {@linkplain Reaction} to trigger on a stimulus</h3>
      * @param stimulus name of stimulus
      * @param reaction reaction
-     * @return stimuli
+     * @return {@linkplain Stimuli} for chaining
      */
     public Stimuli on(String stimulus, Reactable reaction) {
-        _initStimulusSet(stimulus);
+        _initReactableSet(stimulus);
         get(stimulus).add(reaction);
         return this;
     }
@@ -208,7 +208,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
      * @return stimuli
      */
     public Stimuli on(String stimulus, Collection<Reactable> reactions) {
-        _initStimulusSet(stimulus);
+        _initReactableSet(stimulus);
         get(stimulus).addAll(reactions);
         return this;
     }
