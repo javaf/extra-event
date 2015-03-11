@@ -4,21 +4,30 @@ package org.event;
 
 
 /**
- * {@linkplain Stimuli} specific unchecked exception
+ * <h3>Unchecked exception for {@linkplain Stimuli}</h3>
  * @author wolfram77
  */
 public class StimuliException extends RuntimeException {
 
     /**
-     * Create stimuli exception
+     * <h3>Create an empty {@linkplain StimuliException}</h3>
      */
     public StimuliException() {
+    }
+
+    
+    /**
+     * <h3>Create a {@linkplain StimuliException} with specified message</h3>
+     * @param msg expection message
+     */
+    public StimuliException(String msg) {
+        super(msg);
     }
     
     
     /**
-     * Create stimuli exception with given cause
-     * @param cause cause of exception
+     * <h3>Create a {@linkplain StimuliException} with specified cause</h3>
+     * @param cause exception cause
      */
     public StimuliException(Throwable cause) {
         super(cause);
@@ -26,7 +35,7 @@ public class StimuliException extends RuntimeException {
     
     
     /**
-     * Show stack trace and exit
+     * <h3>Show stack trace and exit</h3>
      */
     @SuppressWarnings("CallToPrintStackTrace")
     public void exit() {
