@@ -17,11 +17,11 @@ public class Main {
     
     public static void main(String[] args) {
         int N = 1000000;
-        Stimuli event = new Stimuli(Main.class);
-        System.out.println(event);
+        Stimuli stimuli = new Stimuli(Main.class);
+        System.out.println(stimuli);
         long t0 = System.nanoTime();
         for(int i=0; i<N; i++)
-            event.emit("mouse-click");
+            stimuli.is("mouse-click");
         long t1 = System.nanoTime();
         for(int i=0; i<N; i++)
             onMouseClick(null, null);

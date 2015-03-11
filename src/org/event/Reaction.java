@@ -115,7 +115,7 @@ public class Reaction implements Reactable, Runnable {
      */
     @Override
     public void on(String stimulus, Map args) {
-        if(stimulus == null) { _on(stimulus, args); return; }
+        if(this.stimulus == null) { _on(stimulus, args); return; }
         this.stimulus = stimulus;
         this.args = args;
         threads.submit(this);
