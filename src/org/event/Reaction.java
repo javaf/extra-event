@@ -10,8 +10,8 @@ import java.util.concurrent.*;
 
 
 /**
- * Reaction to a stimulus <br/>
- * Encapsulates a reaction-method or reactable object
+ * <h3>Reaction to a stimulus</h3>
+ * Encapsulates a reaction-method or {@linkplain Reactable} object
  * @author wolfram77
  */
 public class Reaction implements Reactable, Runnable {
@@ -27,9 +27,9 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * Creates a new reaction from a method
-     * @param cls class of method
-     * @param mthd name of method
+     * <h3>Create a new {@linkplain Reaction} from a method</h3>
+     * @param cls class of reaction-method
+     * @param mthd name of reaction-method
      * @param bestatic should method be static?
      */
     private void _new(Class cls, String mthd, boolean bestatic) {
@@ -45,7 +45,7 @@ public class Reaction implements Reactable, Runnable {
 
 
     /**
-     * Calls a fast reaction method
+     * <h3>Call a fast reaction-method</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -60,7 +60,7 @@ public class Reaction implements Reactable, Runnable {
 
     
     /**
-     * Create a reaction from an object implementing {@linkplain Reactable}
+     * <h3>Create a {@linkplain Reaction} from an object implementing {@linkplain Reactable}</h3>
      * @param reactable object implementing {@linkplain Reactable}
      */
     public Reaction(Reactable reactable) {
@@ -69,9 +69,9 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * Create a reaction from a static method
-     * @param cls class containing method
-     * @param mthd name of method
+     * <h3>Create a {@linkplain Reaction} from a static reaction-method</h3>
+     * @param cls class containing reaction-method
+     * @param mthd name of reaction-method
      */
     public Reaction(Class cls, String mthd) {
         _new(cls, mthd, true);
@@ -79,9 +79,9 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * Create a reaction from an instance method
-     * @param obj object containing method
-     * @param mthd name of method
+     * <h3>Create a {@linkplain Reaction} from an instance reaction-method</h3>
+     * @param obj object containing reaction-method
+     * @param mthd name of reaction-method
      */
     public Reaction(Object obj, String mthd) {
         _new(obj.getClass(), mthd, false);
@@ -90,9 +90,9 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * Tell reaction method's speed ("fast" or "slow")
-     * @param speed reaction method's speed
-     * @return {@linkplain Reaction}
+     * <h3>Tell reaction-method's speed ("fast" or "slow")</h3>
+     * @param speed reaction-method's speed
+     * @return {@linkplain Reaction} for continuation
      */
     public Reaction speed(String speed) {
         stimulus = speed.equals("slow")? "" : null;
@@ -101,8 +101,8 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * Get reaction method's speed ("fast" or "slow")
-     * @return reaction method's speed
+     * <h3>Get reaction-method's speed ("fast" or "slow")</h3>
+     * @return reaction-method's speed
      */
     public String speed() {
         return stimulus != null? "slow" : "fast";
@@ -110,7 +110,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * Calls the reaction method
+     * <h3>Invoke the reaction-method</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -124,8 +124,8 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
+     * <h3>Invoke reaction-method asynchronously</h3>
      * DONT CALL THIS!
-     * Calls reaction method asynchronously
      */
     @Override
     public void run() {
