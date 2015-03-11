@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 
 
 /**
- * Reacts annotation for specifying reaction
+ * Annotation to specify {@linkplain Reaction} method speed
  * @author wolfram77
  */
 @Retention(RetentionPolicy.RUNTIME)
