@@ -7,13 +7,13 @@ import java.util.*;
 
 
 /**
- * Default reaction for stimulus with no other specified reaction
+ * <h3>Default reaction for stimulus with no other specified reaction</h3>
  * @author wolfram77
  */
 public class DefReaction implements Reactable {
 
     /**
-     * Print stimulus details and exit on error
+     * <h3>Print stimulus details and exit if error</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
