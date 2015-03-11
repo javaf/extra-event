@@ -160,7 +160,7 @@ Bye event action
 
 ## Reference
 
-| **EventEmitter** | `Map<String, Set<IEventAbsorber>>` |
+| **Stimuli** | `Map<String, Set<IEventAbsorber>>` |
 |------------------|------------------------------------|
 | **EventEmitter** <br/> `()`, `(cls)`, `(obj)`                                                                              | create event emitter, opt. from a class or object <br/>                                                                    `EventEmitter event = new EventEmitter();` <br/>                                                                             `EventEmitter event = new EventEmitter(NetHandler.class);` <br/>                                                             `EventEmitter event = new EventEmitter(netHandlerObj);` |
 | **add** <br/> `(event, eventer)`, <br/> `(event, eventers)`, <br/> `(events, eventer)`, <br/> `(map)`                      | add eventers to events <br/>                                                                                   `event.add("write-done", writeDoneEventer);` |
