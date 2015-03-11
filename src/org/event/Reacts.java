@@ -7,8 +7,9 @@ import java.lang.annotation.*;
 
 
 /**
- * Annotation to specify {@linkplain Reaction} method speed <br/>
- * Reacts("fast") is optional, Reacts("slow") is required
+ * <h3>Annotation to specify reaction-method speed</h3>
+ * Reacts("fast") is optional <br/>
+ * Reacts("slow") is required
  * @author wolfram77
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -16,7 +17,7 @@ import java.lang.annotation.*;
 public @interface Reacts {
     
     /**
-     * Speed of {@linkplain Reaction} method ("fast" or "slow")
+     * <h3>Speed of reaction-method ("fast" or "slow")</h3>
      * @return speed of {@linkplain Reaction} method
      */
     public String speed() default "fast";

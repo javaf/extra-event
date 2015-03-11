@@ -7,7 +7,7 @@ import java.util.*;
 
 
 /**
- * Interface that can reacted on a stimulus
+ * Interface that can be reacted on a stimulus
  * @author wolfram77
  */
 public interface Reactable {

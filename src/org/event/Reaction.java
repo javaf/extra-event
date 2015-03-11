@@ -10,7 +10,8 @@ import java.util.concurrent.*;
 
 
 /**
- * Reaction to a stimulus
+ * Reaction to a stimulus <br/>
+ * Encapsulates a reaction-method or reactable object
  * @author wolfram77
  */
 public class Reaction implements Reactable, Runnable {
