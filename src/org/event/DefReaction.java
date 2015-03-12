@@ -7,7 +7,7 @@ import java.util.*;
 
 
 /**
- * <h3>Default reaction for stimulus with no other specified reaction</h3>
+ * <h3>Default reaction for stimulus with no reaction</h3>
  * @author wolfram77
  */
 public class DefReaction implements Reactable {
