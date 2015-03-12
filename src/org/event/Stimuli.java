@@ -89,7 +89,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * <h3>Set fallback {@linkplain Reaction}, that is called when a stimulus no other {@linkplain Reaction}</h3>
+     * <h3>Set fallback {@linkplain Reaction} (for stimulus with no {@linkplain Reaction})</h3>
      * @param fallback fallback reaction
      */
     public static void fallback(Reactable fallback) {
@@ -98,7 +98,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * <h3>Get fallback {@linkplain Reaction}</h3>
+     * <h3>Get fallback {@linkplain Reaction} (for stimulus with no {@linkplain Reaction})</h3>
      * @return fallback reaction
      */
     public static Reactable fallback() {
