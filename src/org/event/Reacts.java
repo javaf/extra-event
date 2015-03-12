@@ -20,5 +20,5 @@ public @interface Reacts {
      * <h3>Speed of reaction-method ("fast" or "slow")</h3>
      * @return speed of reaction-method
      */
-    public String speed() default "fast";
+    String value() default "fast";
 }

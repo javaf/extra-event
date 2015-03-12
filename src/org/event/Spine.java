@@ -59,7 +59,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
             // save appropriately
             String stim = _toHyphenCase(mthd.substring(2));
             Reaction reaction = bestatic? new Reaction(cls, mthd) : new Reaction(obj, mthd);
-            if(m.isAnnotationPresent(Reacts.class)) reaction.speed(m.getAnnotation(Reacts.class).speed());
+            if(m.isAnnotationPresent(Reacts.class)) reaction.speed(m.getAnnotation(Reacts.class).value());
             on(stim, reaction);
         }
     }

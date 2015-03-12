@@ -9,6 +9,7 @@ import org.event.*;
 
 public class Main {
     
+    @Reacts("slow")
     public static void onMouseClick(String event, Map args) {
     }
     
