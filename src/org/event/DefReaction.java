@@ -15,14 +15,13 @@ import java.util.*;
 public class DefReaction implements Reactable {
 
     /**
-     * <h3>Print stimulus details and exit if error</h3>
+     * <h3>Print stimulus details and throw any error</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
     @Override
     public void on(String stimulus, Map args) {
         System.out.println("["+stimulus+"] : "+args);
-        if(!args.containsKey("err")) return;
-        new SpineException((Throwable)args.get("err")).exit();
+        if(args.containsKey("err")) throw new SpineException((Throwable)args.get("err"));
     }
 }
