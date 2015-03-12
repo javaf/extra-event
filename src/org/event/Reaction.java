@@ -27,7 +27,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Create a new {@linkplain Reaction} from a method</h3>
+     * <h3>Create a new reaction from a reaction-method</h3>
      * @param cls class of reaction-method
      * @param mthd name of reaction-method
      * @param bestatic should method be static?
@@ -45,7 +45,7 @@ public class Reaction implements Reactable, Runnable {
 
 
     /**
-     * <h3>Call a fast reaction-method</h3>
+     * <h3>Invoke a fast reaction-method</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -60,8 +60,8 @@ public class Reaction implements Reactable, Runnable {
 
     
     /**
-     * <h3>Create a copy of another {@linkplain Reaction}</h3>
-     * @param reaction {@linkplain Reaction} to copy
+     * <h3>Create a copy of another reaction</h3>
+     * @param reaction reaction to copy
      */
     public Reaction(Reaction reaction) {
         obj = reaction.obj;
@@ -71,7 +71,7 @@ public class Reaction implements Reactable, Runnable {
 
     
     /**
-     * <h3>Create a {@linkplain Reaction} from an object implementing {@linkplain Reactable}</h3>
+     * <h3>Create a reaction from an object implementing {@linkplain Reactable}</h3>
      * @param reactable object implementing {@linkplain Reactable}
      */
     public Reaction(Reactable reactable) {
@@ -80,7 +80,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Create a {@linkplain Reaction} from a static reaction-method</h3>
+     * <h3>Create a reaction from a static reaction-method</h3>
      * @param cls class containing reaction-method
      * @param mthd name of reaction-method
      */
@@ -90,7 +90,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Create a {@linkplain Reaction} from an instance reaction-method</h3>
+     * <h3>Create a reaction from an instance reaction-method</h3>
      * @param obj object containing reaction-method
      * @param mthd name of reaction-method
      */
