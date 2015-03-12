@@ -10,7 +10,8 @@ import java.util.concurrent.*;
 
 
 /**
- * <h3>Represents a set of stimulus with associated {@linkplain Reaction}s</h3>
+ * <h3>Represents stimuli with associated reactions</h3>
+ * When a stimulus occurs, appropriate reactions are triggered
  * @author wolfram77
  */
 public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements Runnable {
@@ -68,14 +69,14 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
      * <h3>Initialize {@linkplain Reactable} set of stimulus</h3>
      * @param stimulus name of stimulus
      */
-    void _initReactableSet(String stimulus) {
+    void _initStimulus(String stimulus) {
         if(get(stimulus) != null) return;
         put(stimulus, Collections.newSetFromMap(new ConcurrentHashMap<Reactable, Boolean>()));
     }
     
     
     /**
-     * <h3>Indicate a stimulus, causing {@linkplain Reaction}s to happen</h3>
+     * <h3>Indicate a stimulus, causing reactions to trigger</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -89,7 +90,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set fallback {@linkplain Reaction} (for stimulus with no {@linkplain Reaction})</h3>
+     * <h3>Set fallback reaction, for stimulus with no reaction</h3>
      * @param fallback fallback reaction
      */
     public static void fallback(Reactable fallback) {
@@ -98,7 +99,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Get fallback {@linkplain Reaction} (for stimulus with no {@linkplain Reaction})</h3>
+     * <h3>Get fallback reaction, for stimulus with no reaction</h3>
      * @return fallback reaction
      */
     public static Reactable fallback() {
@@ -107,14 +108,17 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Create a {@linkplain Stimuli} that stores a set of stimulus associated with {@linkplain Reaction}s</h3>
+     * <h3>Create an empty spine</h3>
+     * Associate reactions to stimuli with {@code on(...)}
      */
     public Spine() {
     }
     
     
     /**
-     * <h3>Create a {@linkplain Stimuli} from class</h3>
+     * <h3>Create a spine from class</h3>
+     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus <br/>
+     * Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods
      * @param cls class containing reaction-methods
      */
     public Spine(Class cls) {
@@ -123,7 +127,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Create a {@linkplain Stimuli} from object</h3>
+     * <h3>Create a spine from object</h3>
+     * {@code on<stimulus>()} methods are associated {@code <stimulus>} stimulus <br/>
+     * Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods
      * @param obj object containing reaction-methods
      */
     public Spine(Object obj) {
@@ -132,25 +138,27 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Tell {@link Spine} speed ("fast" or "slow")</h3>
-     * @param speed{@link Spine} speed
-     * @return {@link Spine} for chaining
+     * <h3>Tell spine speed ("fast" or "slow")</h3>
+     * A fast spine triggers reactions synchronously <br/>
+     * A slow spine triggers reactions asynchronously
+     * @param speed speed of spine
+     * @return spine for chaining
      */
     public Spine speed(String speed) {
-        stimulus = speed.equals("fast")? "" : null;
+        stimulus = speed.equals("slow")? "" : null;
         return this;
     }
     
     
     /**
-     * <h3>Get {@link Spine} speed ("fast" or "slow")</h3>
-     * @return {@link Spine} speed
+     * <h3>Get spine speed ("fast" or "slow")</h3>
+     * A fast spine triggers reactions synchronously <br/>
+     * A slow spine triggers reactions asynchronously
+     * @return speed of spine
      */
     public String speed() {
-        return stimulus != null? "fast" : "slow";
+        return stimulus != null? "slow" : "fast";
     }
-
-    
     
     
     /**
@@ -164,10 +172,10 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Indicate a stimulus, causing {@linkplain Reaction}s to trigger</h3>
+     * <h3>Indicate a stimulus, causing reactions to trigger</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
-     * @return {@link Spine} for chaining
+     * @return spine for chaining
      */
     public Spine is(String stimulus, Map args) {
         if(this.stimulus == null) { _is(stimulus, args); return this; }
@@ -178,10 +186,10 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Indicate a stimulus, causing {@linkplain Reaction}s to trigger</h3>
+     * <h3>Indicate a stimulus, causing reactions to trigger</h3>
      * @param stimulus name of stimulus
      * @param args additional arguments
-     * @return {@link Spine} for chaining
+     * @return spine for chaining
      */
     public Spine is(String stimulus, Object... args) {
         return is(stimulus, Coll.map(args));
@@ -189,36 +197,36 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set a {@linkplain Reaction} to trigger on a stimulus</h3>
+     * <h3>Set a reaction to trigger on a stimulus</h3>
      * @param stimulus name of stimulus
-     * @param reaction {@linkplain Reaction} to trigger
-     * @return {@link Spine} for chaining
+     * @param reaction reaction to trigger
+     * @return spine for chaining
      */
     public Spine on(String stimulus, Reactable reaction) {
-        _initReactableSet(stimulus);
+        _initStimulus(stimulus);
         get(stimulus).add(reaction);
         return this;
     }
     
     
     /**
-     * <h3>Set {@linkplain Reaction}s to trigger on a stimulus</h3>
+     * <h3>Set reactions to trigger on a stimulus</h3>
      * @param stimulus name of stimulus
-     * @param reactions collection of {@linkplain Reaction}s
-     * @return {@link Spine} for chaining
+     * @param reactions reactions to trigger
+     * @return spine for chaining
      */
     public Spine on(String stimulus, Collection<Reactable> reactions) {
-        _initReactableSet(stimulus);
+        _initStimulus(stimulus);
         get(stimulus).addAll(reactions);
         return this;
     }
     
     
     /**
-     * <h3>Set a {@linkplain Reaction} to trigger on multiple stimulus</h3>
-     * @param stimuli collection of stimulus
-     * @param reaction {@linkplain Reaction} to trigger
-     * @return {@link Spine} for chaining
+     * <h3>Set a reaction to trigger on stimuli</h3>
+     * @param stimuli names of stimuli
+     * @param reaction reaction to trigger
+     * @return spine for chaining
      */
     public Spine on(Collection<String> stimuli, Reactable reaction) {
         stimuli.stream().forEach((stim) -> {
@@ -229,23 +237,23 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set associated {@linkplain Reaction}s to trigger on multiple stimulus</h3>
-     * @param map stimuli with associated {@linkplain Reaction}s
-     * @return {@link Spine} for chaining
+     * <h3>Set associated reactions to trigger on stimuli</h3>
+     * @param assoc stimuli with associated reactions to trigger
+     * @return spine for chaining
      */
-    public Spine on(Map<String, Set<Reactable>> map) {
-        map.keySet().stream().forEach((stim) -> {
-            on(stim, map.get(stim));
+    public Spine on(Map<String, Set<Reactable>> assoc) {
+        assoc.keySet().stream().forEach((stim) -> {
+            on(stim, assoc.get(stim));
         });
         return this;
     }
     
     
     /**
-     * <h3>Turn off a {@linkplain Reaction} for a stimulus</h3>
+     * <h3>Turn off a reaction for a stimulus</h3>
      * @param stimulus name of stimulus
-     * @param reaction {@linkplain Reaction} to turn off
-     * @return {@link Spine} for chaining
+     * @param reaction reaction to turn off
+     * @return spine for chaining
      */
     public Spine off(String stimulus, Reactable reaction) {
         Set<Reactable> s = get(stimulus);
@@ -255,10 +263,10 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off {@linkplain Reaction}s for a stimulus</h3>
+     * <h3>Turn off reactions for a stimulus</h3>
      * @param stimulus name of stimulus
-     * @param reactions collection of {@linkplain Reaction}s
-     * @return {@link Spine} for chaining
+     * @param reactions reactions to turn off
+     * @return spine for chaining
      */
     public Spine off(String stimulus, Collection<Reactable> reactions) {
         Set<Reactable> e = get(stimulus);
@@ -268,10 +276,10 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off a {@linkplain Reaction} for multiple stimulus</h3>
-     * @param stimuli collection of stimulus
-     * @param reaction {@linkplain Reaction} to turn off
-     * @return {@link Spine} for chaining
+     * <h3>Turn off a reaction for stimuli</h3>
+     * @param stimuli names of stimuli
+     * @param reaction reaction to turn off
+     * @return spine for chaining
      */
     public Spine off(Collection<String> stimuli, Reactable reaction) {
         stimuli.stream().forEach((stim) -> {
@@ -282,9 +290,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off associated {@linkplain Reaction}s for multiple stimulus</h3>
-     * @param map stimuli associated with {@linkplain Reaction}s
-     * @return {@link Spine} for chaining
+     * <h3>Turn off associated reactions for stimuli</h3>
+     * @param map stimuli with associated reactions to turn off
+     * @return spine for chaining
      */
     public Spine off(Map<String, Set<Reactable>> map) {
         map.keySet().stream().forEach((stim) -> {
@@ -295,9 +303,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off all {@linkplain Reaction}s for a stimulus</h3>
+     * <h3>Turn off all reactions for a stimulus</h3>
      * @param stimulus name of stimulus
-     * @return {@link Spine} for chaining
+     * @return spine for chaining
      */
     public Spine off(String stimulus) {
         remove(stimulus);
@@ -306,8 +314,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off all {@linkplain Reaction}s for all stimuli</h3>
-     * @return {@link Spine} for chaining
+     * <h3>Turn off all reactions for all stimuli</h3>
+     * @return spine for chaining
      */
     public Spine off() {
         clear();

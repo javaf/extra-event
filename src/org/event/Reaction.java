@@ -102,6 +102,8 @@ public class Reaction implements Reactable, Runnable {
     
     /**
      * <h3>Tell reaction-method's speed ("fast" or "slow")</h3>
+     * A fast reaction-method is invoked synchronously <br/>
+     * A slow reaction-method is invoked asynchronously
      * @param speed reaction-method's speed
      * @return {@linkplain Reaction} for chaining
      */
@@ -113,6 +115,8 @@ public class Reaction implements Reactable, Runnable {
     
     /**
      * <h3>Get reaction-method's speed ("fast" or "slow")</h3>
+     * A fast reaction-method is invoked synchronously <br/>
+     * A slow reaction-method is invoked asynchronously
      * @return reaction-method's speed
      */
     public String speed() {
