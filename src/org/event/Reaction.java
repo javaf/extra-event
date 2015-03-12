@@ -40,7 +40,7 @@ public class Reaction implements Reactable, Runnable {
             if(m.isAnnotationPresent(Reacts.class) && m.getAnnotation(Reacts.class).speed().equals("slow")) stimulus = "";
             this.mthd = MethodHandles.lookup().unreflect(m);
         }
-        catch(Exception e) { throw new SpineException(e); }
+        catch(Exception e) { new SpineException(e).exit(); }
     }
 
 
