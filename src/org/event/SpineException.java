@@ -4,20 +4,20 @@ package org.event;
 
 
 /**
- * <h3>Unchecked exception for {@linkplain Stimuli}</h3>
+ * <h3>Unchecked exception for {@linkplain Spine}</h3>
  * @author wolfram77
  */
 public class SpineException extends RuntimeException {
 
     /**
-     * <h3>Create an empty {@linkplain StimuliException}</h3>
+     * <h3>Create an empty spine exception</h3>
      */
     public SpineException() {
     }
 
     
     /**
-     * <h3>Create a {@linkplain StimuliException} with specified message</h3>
+     * <h3>Create a spine exception with specified message</h3>
      * @param msg expection message
      */
     public SpineException(String msg) {
@@ -26,7 +26,7 @@ public class SpineException extends RuntimeException {
     
     
     /**
-     * <h3>Create a {@linkplain StimuliException} with specified cause</h3>
+     * <h3>Create a spine exception with specified cause</h3>
      * @param cause exception cause
      */
     public SpineException(Throwable cause) {
