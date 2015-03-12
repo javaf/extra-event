@@ -162,26 +162,26 @@ Bye event action
 
 | **Stimuli** | `Map<String, Set<Reactable>>` |
 |-------------|-------------------------------|
-| **Stimuli** <br/> `()`, `(cls)`, `(obj)` |                                                                                 create multiple stimulus with associated reactions <br/>                                                                     it can be empty, with reactions from class, or from an object <br/>                                                          `Stimuli stimuli = new Stimuli();` <br/>                                                                                     `Stimuli stimuli = new Stimuli(NetHandler.class);` <br/>                                                                     `Stimuli stimuli = new Stimuli(netHandlerObj);` |
-| **add** <br/> `(event, eventer)`, <br/> `(event, eventers)`, <br/> `(events, eventer)`, <br/> `(map)`                      | add eventers to events <br/>                                                                                   `event.add("write-done", writeDoneEventer);` |
-| **remove** <br/> `(event, eventer)`, <br/> `(event, eventers)`, <br/>                                                      `(events, eventer)`, <br/> `(map)`, `(event)`, <br/> `()`                                                                    | remove eventers from events <br/>                                                                                          `event.remove("write", writeDoneEventer);` <br/>                                                                             `event.remove("write");` |
-| **emit** <br/> `(event, args)` <br/> `(event, args...)`                                                                    | emit normal / error event <br/>                                                                                        `event.emit("write", "time", new Date(), "data", data);` <br/>                                                               `event.emit("write", "err", e, "data", data);` |
+| **Stimuli** <br/>                                                                                                          `()`, `(cls)`, `(obj)` |                                                                                                     create multiple stimulus with associated reactions <br/>                                                                     it can be empty, with reactions from class, or from an object <br/>                                                          `Stimuli stimuli = new Stimuli();` <br/>                                                                                     `Stimuli stimuli = new Stimuli(NetHandler.class);` <br/>                                                                     `Stimuli stimuli = new Stimuli(netHandlerObj);` |
+| **on** <br/>                                                                                                               `(stimulus, reaction)`, <br/> `(stimulus, reactions)`, <br/> `(stimuli, reaction)`, <br/> `(map)` |                          set reactions to trigger on multiple stimulus <br/>                                                                          `stimuli.on("write-done", writeDoneReaction);` <br/>                                                                         `stimuli.on(multipleDone, doneReaction);` <br/>                                                                              `stimuli.on("done", doneReactions);` <br/>                                                                                   `stimuli.on(anotherStimuli);` |
+| **off** <br/>                                                                                                              `(stimulus, reaction)`, <br/> `(stimulus, reactions)`, <br/> `(stimuli, reaction)`, <br/> `(map)` |                           turn off reactions for multiple stimulus <br/>                                                                             `stimuli.off("write", writeDoneEventer);` <br/>                                                                              `stimuli.off("write");` |
+| **is** <br/>                                                                                                               `(event, args)` <br/> `(event, args...)` |                                                                                   indicate a stimulus, causing reactions to trigger <br/>                                                                      `stimuli.is("write", "time", new Date(), "data", data);` <br/>                                                             `stimuli.is("write", "err", e, "data", data);` |
 | *fallback* <br/> `()`, `(fallback)`                                                                                       | get / set fallback reaction (for stimulus with no reactions) <br/>                                                           `Reactable fallback = stimuli.fallback();` <br/>                                                                             `stimuli.fallback(myFallbackReaction);` |
 
 <br/>
 
-| **(Eventable)** |                        |
+| **(Reactable)** |                        |
 |-----------------|------------------------|
-| **absorb** <br/> `(event, args)`                                                                                           | called when object implementing this interface is set as eventer <br/>                                                   one eventer can be attached to multiple events, hence *event*|
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         called when object implementing this interface is set as reaction <br/>                                                      one reaction can be attached to multiple stimulus, hence *stimulus* |
 
 <br/>
 
-| **Eventer** | `(Eventable)`  |
-|-------------|----------------|
-| **EventAbsorber** <br/> `(cls, mthd)`, <br/> `(obj, mthd)`                                                                 | create an eventer from a static on instance method <br/>                                                            `event.add("event0", new Eventer(MthdCls.class, "mthd"));` <br/>                                                 `event.add("event0", new Eventer(MthdObj, "mthd"));` |
+| **Reaction** | `(Reactable)`  |
+|--------------|----------------|
+| **Reaction** <br/>                                                                                                         `(reaction)`, `(reactable)`, `(cls, mthd)`, <br/> `(obj, mthd)` |                                                            create a reaction from another reaction, reactable object, or static / instance method <br/>                                 `Reaction done = new Reaction(MthdCls.class, "mthd");` <br/>                                                                 `Reaction done = new Reaction(MthdObj, "mthd");` |
 
 <br/>
 
-| **DefEventer** | `(Eventable)`  |
-|----------------|----------------|
-| **absorb** <br/> `(event, args)`                                                                                           | absorbs events with no absorbers |
+| **DefReaction** | `(Reactable)`  |
+|-----------------|----------------|
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         reacts on stimulus with no reactions |
