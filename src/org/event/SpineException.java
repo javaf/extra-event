@@ -7,12 +7,12 @@ package org.event;
  * <h3>Unchecked exception for {@linkplain Stimuli}</h3>
  * @author wolfram77
  */
-public class StimuliException extends RuntimeException {
+public class SpineException extends RuntimeException {
 
     /**
      * <h3>Create an empty {@linkplain StimuliException}</h3>
      */
-    public StimuliException() {
+    public SpineException() {
     }
 
     
@@ -20,7 +20,7 @@ public class StimuliException extends RuntimeException {
      * <h3>Create a {@linkplain StimuliException} with specified message</h3>
      * @param msg expection message
      */
-    public StimuliException(String msg) {
+    public SpineException(String msg) {
         super(msg);
     }
     
@@ -29,7 +29,7 @@ public class StimuliException extends RuntimeException {
      * <h3>Create a {@linkplain StimuliException} with specified cause</h3>
      * @param cause exception cause
      */
-    public StimuliException(Throwable cause) {
+    public SpineException(Throwable cause) {
         super(cause);
     }
     

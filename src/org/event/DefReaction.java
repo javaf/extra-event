@@ -23,6 +23,6 @@ public class DefReaction implements Reactable {
     public void on(String stimulus, Map args) {
         System.out.println("["+stimulus+"] : "+args);
         if(!args.containsKey("err")) return;
-        new StimuliException((Throwable)args.get("err")).exit();
+        new SpineException((Throwable)args.get("err")).exit();
     }
 }
