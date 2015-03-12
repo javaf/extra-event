@@ -17,7 +17,7 @@ public class Main {
     
     public static void main(String[] args) {
         int N = 1000000;
-        Stimuli stimuli = new Stimuli(Main.class);
+        Spine stimuli = new Spine(Main.class);
         System.out.println(stimuli);
         long t0 = System.nanoTime();
         for(int i=0; i<N; i++)
