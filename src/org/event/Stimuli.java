@@ -215,7 +215,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * <h3>Set a {@linkplain Reaction} to trigger on multiple stimuli</h3>
+     * <h3>Set a {@linkplain Reaction} to trigger on multiple stimulus</h3>
      * @param stimuli collection of stimulus
      * @param reaction {@linkplain Reaction} to trigger
      * @return {@linkplain Stimuli} for chaining
@@ -229,7 +229,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * <h3>Set associated {@linkplain Reaction}s to trigger on multiple stimuli</h3>
+     * <h3>Set associated {@linkplain Reaction}s to trigger on multiple stimulus</h3>
      * @param map stimuli with associated {@linkplain Reaction}s
      * @return {@linkplain Stimuli} for chaining
      */
@@ -268,7 +268,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * <h3>Turn off a {@linkplain Reaction} for multiple stimuli</h3>
+     * <h3>Turn off a {@linkplain Reaction} for multiple stimulus</h3>
      * @param stimuli collection of stimulus
      * @param reaction {@linkplain Reaction} to turn off
      * @return {@linkplain Stimuli} for chaining
@@ -282,7 +282,7 @@ public class Stimuli extends ConcurrentHashMap<String, Set<Reactable>> implement
     
     
     /**
-     * <h3>Turn off associated {@linkplain Reaction}s for multiple stimuli</h3>
+     * <h3>Turn off associated {@linkplain Reaction}s for multiple stimulus</h3>
      * @param map stimuli associated with {@linkplain Reaction}s
      * @return {@linkplain Stimuli} for chaining
      */
