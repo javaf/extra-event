@@ -207,11 +207,16 @@ public class Main {
     public static void main(String[] args) {
     	Introducer introducer = new Introducer();
     	// only static reaction methods are triggered
-        Spine spine = new Spine(Introducer.class);
-        spine.is("hello").is("bye");
+        Spine spine1 = new Spine(Introducer.class);
+        spine1.is("hello").is("bye");
+        System.out.println();
         // both static and instance methods are triggered
-        spine = new Spine(introducer);
-        spine.is("hello").is("bye");
+        Spine spine2 = new Spine(introducer);
+        spine2.is("hello").is("bye");
+        System.out.println();
+        // import spine1 to spine2 (or any Map<String, Reactable>)
+        spine2.on(spine1);
+        spine2.is("hello").is("bye");
     }
 }
 ```
@@ -219,6 +224,12 @@ public class Main {
 ```
 Lets get to work
 [bye] : {}
+
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
+
+Lets get to work
 Lets get to work
 Name: anonymous
 Nice to meet you anonymous
