@@ -1,25 +1,25 @@
 # java-spine
 
-What is `java-spine` you ask? Wait, lets first read a short story.
+What is `java-spine` you ask? Let us understand it.
 
-> Imagine that you are in the middle chemistry class, jotting down notes on **Radicals** from the
-> blackboard. The master is endlessly scribbling symbols of elements, of various valencies, with
-> an indicated charge quantity on top. **Harish**, your benchmate is yet to enter the class!
+> Today is Diwali. You waited a long time for this, didn't you? The dark night is lit up with
+> numerous lights. People have gathered around showers of sparkles oozing from the ground. In
+> the far reaches of the world, beyond your sight, you can hear chained explosions being triggered
+> at random intervals. Darkness is neither spared in the dome skies, as sprays of light spin
+> around with joy.
 
-> He is waiting for **Sambhu**, the master, to somehow get distracted, so he can find a way to sneak
-> into the class and have his attendence marked. But, that is utterly impossible. **Sambhu** is a
-> very alert man. He has his eyes and ears on everyone. So, **Harish** is waiting at the other end of
-> the building, else **Sambhu** might see him.
+> Ah! Your crackers are cracked to dryness, ready for their annhilation. But, you are a new
+> kid to this business, and this is the first time you are taking charge. Your mother just
+> laid down the last of deeps' (tear-drop shaped clay candles). Next minute, a sparkler is
+> in your hand. You make sure no one is watchine, because you want to do it on your own.
+> After all, you want to treated like a big boy in your house.
 
-> *Woof, Woofoof!* **Sambhu** cries coughing out smoke from his mouth, or is it? *"I will be back
-> in a minute. Let there be pinpoint silence"*, **Sambhu** somehow speaks out. This is an `event`!
-> You now `emit` this `event` to **Harish**, who `absorbs` this event. He then jumps to action.
-> Rapidly tiptoeing he enters the class and in a minute he is beside you. Opens up a notebook with
-> some previously scribbled pages, and a pen suddenly pops into his hand. You, the `event emitter`,
-> and **Harish**, the `event absorber` have to wait for a full five minutes until **Sambhu** is back.
+> Flame of a deep heats the sparkler. Nothing. You wait. The wait seems for ever, but it never
+> starts to sparkle, but then... Ouch! A pulse rushes down your spine, and without a thought
+> the ignited sparkler goes flying off your hand. Now you are in your conscious mode, and start
+> to think what just happened. Then you realize you should cool it off with a block of ice,
+> or else you might have a bad burn on your hand, and you just lost your best day of this year.
 
-> *Huh!* **Sambhu** is shocked, and suddenly he turns into a tiger with his paws open. Didn't i tell he has
-> his eyes and ears on everyone? *BAM! BAM!*
 
 Okay, that was bad. But atleast you now know that we use events in our life. In fact we use it
 all the time. If you have ever heard of *interrupts*, they are essentially *hardware triggered events*,
