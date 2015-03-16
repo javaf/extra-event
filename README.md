@@ -323,40 +323,6 @@ When a stimulus occurs, appropriate reactions are triggered
 
 <br/>
 
-### SpineException
-
-Unchecked exception for spine *(internal)*
-
-| **SpineException** | `RuntimeException` |
-|--------------------|--------------------|
-| **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - empty, with specified message or cause |
-| **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit |
-
-<br/>
-
-### @Reacts
-
-Annotation to specify reaction-method speed *(internal)* <br/>
-Use `@Reacts("fast")` for fast reaction-methods (optional) <br/>
-Use `@Reacts("slow")` for slow reaction methods (required)
-
-| **(@Reacts)** |     |
-|---------------|-----|
-| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction-method |
-
-<br/>
-
-### (Reactable)
-
-Interface that can react on a stimulus <br/>
-Create a class implementing this interface to be able to react to a stimulus
-
-| **(Reactable)** |      |
-|-----------------|------|
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         react on a stimulus, can be attached to multiple stimulus |
-
-<br/>
-
 ### Reaction
 
 Reaction to a stimulus <br/>
@@ -379,3 +345,37 @@ is unchanged, then this reaction occurs
 | **DefReaction** | `(Reactable)`  |
 |-----------------|----------------|
 | **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         Print stimulus details and throw any error |
+
+<br/>
+
+### (Reactable)
+
+Interface that can react on a stimulus <br/>
+Create a class implementing this interface to be able to react to a stimulus
+
+| **(Reactable)** |      |
+|-----------------|------|
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         react on a stimulus, can be attached to multiple stimulus |
+
+<br/>
+
+### @Reacts
+
+Annotation to specify reaction-method speed *(internal)* <br/>
+Use `@Reacts("fast")` for fast reaction-methods (optional) <br/>
+Use `@Reacts("slow")` for slow reaction methods (required)
+
+| **(@Reacts)** |     |
+|---------------|-----|
+| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction-method |
+
+<br/>
+
+### SpineException
+
+Unchecked exception for spine *(internal)*
+
+| **SpineException** | `RuntimeException` |
+|--------------------|--------------------|
+| **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - empty, with specified message or cause |
+| **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit |
