@@ -165,7 +165,8 @@ public class Main {
     	Main main = new Main();
         Spine spine = new Spine();
         spine.on("hello", new Reaction(Main.class, "helloReactor"));
-        spine.on("bye", new Reaction(main, "byeReactor");
+        // speed of reaction method can be set manually as well
+        spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
         spine.is("hello");
         spine.is("bye");
     }
