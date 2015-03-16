@@ -48,7 +48,7 @@ method. It is also possible to inherit stimulus-reaction associations from anoth
 
 You can get started by going through the [examples](https://github.com/wolfram77/java-event-emitter#examples)
 first. That can help get a lot of things clear. I would suggest you try them out as well. To use this library,
-download the source code at `src/org`, add it to your *project*. The  [reference](https://github.com/wolfram77/java-event-emitter#reference) will help you know it all.
+download the source code as a Zip and copy the `src/org` folder in it and add it to your *project*. The  [reference](https://github.com/wolfram77/java-event-emitter#reference) will help you know it all.
 
 <br/>
 
