@@ -145,7 +145,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
      * @return spine for chaining
      */
     public Spine speed(String speed) {
-        stimulus = speed.equals("slow")? "" : null;
+        stimulus = speed.equalsIgnoreCase("slow")? "" : null;
         return this;
     }
     
