@@ -95,44 +95,50 @@ java.lang.RuntimeException: Got a Sprain
 Java Result: -1
 ```
 
-### Event Absorber Class
+### Reactable Class
 
 ```java
 // required modules
 import java.util.*;
 import org.event.*;
 
-class HelloTeller implements Eventable {
+class HelloReactor implements Reactable {
     
     @Override
-    public void absorb(String event, Map args) {
-        System.out.println("Hello event "+event);
+    public void on(String stimulus, Map args) {
+        System.out.println("Lets get to work");
     }
 }
 
-class ByeTeller implements Eventable {
+class ByeReactor implements Reactable {
     
     @Override
-    public void absorb(String event, Map args) {
-        System.out.println("Bye event "+event);
+    @Reacts("slow")
+    public void on(String stimulus, Map args) {
+        System.out.print("Name: ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next();
+        System.out.println("Nice to meet you "+name);
     }
 }
 
 public class Main {
     
     public static void main(String[] args) {
-        HelloTeller hello = new HelloTeller();
-        ByeTeller bye = new ByteTeller();
-        EventEmitter event = new EventEmitter();
-        event.add("action", hello).add("action", bye);
-        event.emit("action");
+        HelloReactor helloReaction = new HelloReactor();
+        // annotations only work in Reaction objects
+        Reaction byeReaction = new Reaction(new ByteTeller());
+        Spine spine = new Spine();
+        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.is("hello").is("bye");
     }
 }
 ```
 
 ```
-Hello event action
-Bye event action
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
 ```
 
 ### Event Absorber Method
