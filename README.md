@@ -180,6 +180,50 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
+### Class of Reaction Methods
+
+```java
+// required modules
+import java.util.*;
+import org.event.*;
+
+class Introducer {
+
+    public static void onHello(String stimulus, Map args) {
+    	System.out.println("Lets get to work");
+    }
+    
+    @Reacts("slow")
+    public void onBye(String stimulus, Map args) {
+        System.out.print("Name: ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next();
+        System.out.println("Nice to meet you "+name);
+    }
+}
+
+public class Main {
+    
+    public static void main(String[] args) {
+    	Introducer introducer = new Introducer();
+    	// only static reaction methods are triggered
+        Spine spine = new Spine(Introducer.class);
+        spine.is("hello").is("bye");
+        // both static and instance methods are triggered
+        spine = new Spine(introducer);
+        spine.is("hello").is("bye");
+    }
+}
+```
+
+```
+Lets get to work
+[bye] : {}
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
+```
+
 <br/>
 
 ## Reference
