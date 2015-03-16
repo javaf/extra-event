@@ -359,17 +359,21 @@ Create a class implementing this interface to be able to react to a stimulus
 
 ### Reaction
 
+Reaction to a stimulus <br/>
+Encapsulates a reaction-method or `Reactable` object
 
-| **Reaction** | `(Reactable)`  |
-|--------------|----------------|
-| **Reaction** <br/>                                                                                                         `(reaction)`, `(reactable)`, `(cls, mthd)`, <br/> `(obj, mthd)` |                                                            create a reaction that can be invoked on a stimulus <br/>                                                                    `Reaction done = new Reaction(MthdCls.class, "mthd");` <br/>                                                                 `Reaction done = new Reaction(MthdObj, "mthd");` |
+| **Reaction** | `(Reactable)` |
+|--------------|---------------|
+| **Reaction** <br/>                                                                                                         `(reaction)`, `(reactable)`, <br/> `(cls, mthd)`, `(obj, mthd)` |                                                            create a reaction that can be invoked on a stimulus <br/>                                                                    `Reaction done = new Reaction(anotherReaction);` <br/>                                                                       `Reaction done = new Reaction(reactableObj);` <br/>                                                                          `Reaction done = new Reaction(MthdCls.class, "mthd");` <br/>                                                                 `Reaction done = new Reaction(MthdObj, "mthd");` |
+| **speed** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction <br/>                                                                                            `String speed = reaction.speed();` <br/>                                                                                     `reaction.speed("slow");` |
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         invoke reaction-method |
 
 <br/>
 
 ### DefReaction
 
 Default reaction for stimulus with no reaction <br/>
-If a stimulus has no associated reactions, and the fallback reaction
+If a stimulus has no associated reactions, and the fallback reaction <br/>
 is unchanged, then this reaction occurs
 
 | **DefReaction** | `(Reactable)`  |
