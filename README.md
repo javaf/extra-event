@@ -165,8 +165,10 @@ public class Main {
     public static void main(String[] args) {
     	Main main = new Main();
         Spine spine = new Spine();
+        // static reaction method
         spine.on("hello", new Reaction(Main.class, "helloReactor"));
-        // speed of reaction method can be set manually as well
+        // instance reaction method 
+        // speed can be indicated manually as well
         spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
         spine.is("hello");
         spine.is("bye");
