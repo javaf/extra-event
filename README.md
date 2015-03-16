@@ -336,12 +336,12 @@ Unchecked exception for spine *(internal)*
 
 ### @Reacts
 
-Annotation to specify reaction-method speed *(internal)*
-Use `@Reacts("fast")` for fast reaction-methods (optional)
+Annotation to specify reaction-method speed *(internal)* <br/>
+Use `@Reacts("fast")` for fast reaction-methods (optional) <br/>
 Use `@Reacts("slow")` for slow reaction methods (required)
 
-| **(@Reacts)** | |
-|---------------|-|
+| **(@Reacts)** |     |
+|---------------|-----|
 | **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction-method |
 
 <br/>
