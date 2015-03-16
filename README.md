@@ -307,7 +307,7 @@ Nice to meet you anonymous
 
 ## Reference
 
-### `class Spine`
+### Spine
 
 Represents stimuli with associated reactions <br/>
 When a stimulus occurs, appropriate reactions are triggered
@@ -323,7 +323,7 @@ When a stimulus occurs, appropriate reactions are triggered
 
 <br/>
 
-### `class SpineException`
+### SpineException
 
 Unchecked exception for spine *(internal)*
 
@@ -331,6 +331,18 @@ Unchecked exception for spine *(internal)*
 |--------------------|--------------------|
 | **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - empty, with specified message or cause |
 | **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit |
+
+<br/>
+
+### @Reacts
+
+Annotation to specify reaction-method speed *(internal)*
+Use `@Reacts("fast")` for fast reaction-methods (optional)
+Use `@Reacts("slow")` for slow reaction methods (required)
+
+| **(@Reacts)** | |
+|---------------|-|
+| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction-method |
 
 <br/>
 
