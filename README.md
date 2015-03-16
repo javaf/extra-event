@@ -346,6 +346,11 @@ Use `@Reacts("slow")` for slow reaction methods (required)
 
 <br/>
 
+### (Reactable)
+
+Interface that can react on a stimulus <br/>
+Create a class implementing this interface to be able to react to a stimulus
+
 | **(Reactable)** |                        |
 |-----------------|------------------------|
 | **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         called when object implementing this interface is set as reaction <br/>                                                      one reaction can be attached to multiple stimulus, hence *stimulus* |
