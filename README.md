@@ -318,6 +318,13 @@ Nice to meet you anonymous
 
 <br/>
 
+| **SpineException** | `RuntimeException` |
+|--------------------|--------------------|
+| **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - unchecked exception for spine <br/>                                                                 empty, with specified message or specified cause *(internal)* |
+| **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit *(internal)* |
+
+<br/>
+
 | **(Reactable)** |                        |
 |-----------------|------------------------|
 | **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         called when object implementing this interface is set as reaction <br/>                                                      one reaction can be attached to multiple stimulus, hence *stimulus* |
