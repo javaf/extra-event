@@ -238,6 +238,61 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
+### Event Loop
+
+```java
+// required modules
+import java.util.*;
+import org.event.*;
+
+class Introducer {
+
+    public static void onHello(String stimulus, Map args) {
+    	System.out.println("Lets get to work");
+    }
+    
+    @Reacts("slow")
+    public void onBye(String stimulus, Map args) {
+        System.out.print("Name: ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next();
+        System.out.println("Nice to meet you "+name);
+    }
+}
+
+public class Main {
+    
+    public static void main(String[] args) {
+    	Introducer introducer = new Introducer();
+    	// only static reaction methods are triggered
+        Spine spine1 = new Spine(Introducer.class);
+        spine1.is("hello").is("bye");
+        System.out.println();
+        // both static and instance methods are triggered
+        Spine spine2 = new Spine(introducer);
+        spine2.is("hello").is("bye");
+        System.out.println();
+        // import spine1 to spine2 (or any Map<String, Reactable>)
+        spine2.on(spine1);
+        spine2.is("hello").is("bye");
+    }
+}
+```
+
+```
+Lets get to work
+[bye] : {}
+
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
+
+Lets get to work
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
+```
+
 <br/>
 
 ## Reference
