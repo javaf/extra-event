@@ -339,8 +339,8 @@ Encapsulates a reaction-method or `Reactable` object
 ### DefReaction
 
 Default reaction for stimulus with no reaction <br/>
-<small>If a stimulus has no associated reactions, and the fallback reaction <br/>
-is unchanged, then this reaction occurs</small>
+If a stimulus has no associated reactions, and the fallback reaction <br/>
+is unchanged, then this reaction occurs
 
 | **DefReaction** | `(Reactable)`  |
 |-----------------|----------------|
