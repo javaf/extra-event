@@ -20,6 +20,10 @@ What is `java-spine` you ask? Here is a short-story to hlep understand.
 > to think what just happened. Then you realize you should cool it off with a block of ice,
 > or else you might have a bad burn on your hand, and you just lost your best day of this year.
 
+> Okay, now think of this. The sparkler which suddenly ignited was a stimulus that was immediately
+> processed by your sinal cord as a threat and an instant reaction was made to happen without your
+> conscious thinking. However, the stimulus also triggered a slow (conscious) response to cool your
+> burn in the hand with a piece of ice from the freezer.
 
 Okay, that was bad. But atleast you now know that we use events in our life. In fact we use it
 all the time. If you have ever heard of *interrupts*, they are essentially *hardware triggered events*,
