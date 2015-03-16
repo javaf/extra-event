@@ -325,6 +325,8 @@ When a stimulus occurs, appropriate reactions are triggered
 
 ### SpineException `(internal)`
 
+Unchecked exception for spine
+
 | **SpineException** | `RuntimeException` |
 |--------------------|--------------------|
 | **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - empty, with specified message or cause |
