@@ -11,7 +11,7 @@ What is `java-spine` you ask? Here is a short-story to hlep understand.
 > Ah! Your crackers are cracked to dryness, ready for their annhilation. But, you are a new
 > kid to this business, and this is the first time you are taking charge. Your mother just
 > laid down the last of deeps' (tear-drop shaped clay candles). Next minute, a sparkler is
-> in your hand. You make sure no one is watchine, because you want to do it on your own.
+> in your hand. You make sure no one is watching, because you want to do it on your own.
 > After all, you want to treated like a big boy in your house.
 
 > Flame of a deep heats the sparkler. Nothing. You wait. The wait seems for ever, but it never
@@ -21,27 +21,34 @@ What is `java-spine` you ask? Here is a short-story to hlep understand.
 > or else you might have a bad burn on your hand, and you just lost your best day of this year.
 
 > Okay, now think of this. The sparkler which suddenly ignited was a stimulus that was immediately
-> processed by your sinal cord as a threat and an instant reaction was made to happen without your
+> processed by your spinal cord as a threat and an instant reaction was made to happen without your
 > conscious thinking. However, the stimulus also triggered a slow (conscious) response to cool your
 > burn in the hand with a piece of ice from the freezer.
 
-Okay, that was bad. But atleast you now know that we use events in our life. In fact we use it
-all the time. If you have ever heard of *interrupts*, they are essentially *hardware triggered events*,
-which provide a great solution to monitoring something without repeated polling. *Software events*
-are similar, except that the triggering of the event is performed by software as well.
+`java-spine` is a minimal stimulus-response (event) library for Java. It provides a subscribe-publish
+communication mechanism, and can be used in case of a event loop as well. Here, an event is considered
+as a stimulus, and an event handler as the reaction. The `Spine` controls the activation of reactions
+with respect to a stimulus.
 
-`Emitting` an event is similar to *making a function call*, and `absorbing` is the act of
-*getting a function call*. How is it different from a function call then? Well, with the idea
-of events, there can be any number of *event absorbers*, and as many *types of events* as you like,
-and they can be added and removed at runtime. A more *dynamic form of function call*.
+Here, reactions are categorized as fast or slow. Fast reactions are executed sychronously (because they
+are fast), and slow reactions are executed asynchrounously. In the exact same way, a spine is categorized
+as fast or slow. Fast spine invokes all its reactions synchronously (because it is fast), and a slow spine
+invokes all its reactions asynchronously. Fast or slow indicate the speed of something.
+
+Reactions can be objects of classes that implement the `Reactable` interface, or independent static / instance
+methods of any class. An annotations `@Reacts("slow")` can be used to indicate slow reaction methods, and
+`@Reacts("fast")` can be used to indicate fast reaction methods (this one is optional). It is also possible
+to create a spine from an entire class, in which case functions names as `on<stimulus>` will be registered
+as reactions for `<stimulus>` stimulus. Again, annotaations can be used to indicate the speed of each reaction
+method. It is also possible to inherit stimulus-reaction associations from another spine.
 
 <br/>
 
 ## Usage
 
-Shall we get started?  Go through the [examples](https://github.com/wolfram77/java-event-emitter#examples),
-download the source code `src/org/data` and `src/org/event`, add it to your *project* and follow the
-[reference](https://github.com/wolfram77/java-event-emitter#reference).
+You can get started by going through the [examples](https://github.com/wolfram77/java-event-emitter#examples)
+first. That can help get a lot of things clear. I would suggest you try them out as well. To use this library,
+download the source code at `src/org`, add it to your *project*. The  [reference](https://github.com/wolfram77/java-event-emitter#reference) will help you know it all.
 
 <br/>
 
