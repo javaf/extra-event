@@ -323,10 +323,12 @@ When a stimulus occurs, appropriate reactions are triggered
 
 <br/>
 
+### SpineException `(internal)`
+
 | **SpineException** | `RuntimeException` |
 |--------------------|--------------------|
-| **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - unchecked exception for spine <br/>                                                                 empty, with specified message or specified cause *(internal)* |
-| **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit *(internal)* |
+| **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - empty, with specified message or cause |
+| **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit |
 
 <br/>
 
