@@ -351,11 +351,14 @@ Use `@Reacts("slow")` for slow reaction methods (required)
 Interface that can react on a stimulus <br/>
 Create a class implementing this interface to be able to react to a stimulus
 
-| **(Reactable)** |                        |
-|-----------------|------------------------|
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         called when object implementing this interface is set as reaction <br/>                                                      one reaction can be attached to multiple stimulus, hence *stimulus* |
+| **(Reactable)** |      |
+|-----------------|------|
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         react on a stimulus, can be attached to multiple stimulus |
 
 <br/>
+
+### Reaction
+
 
 | **Reaction** | `(Reactable)`  |
 |--------------|----------------|
@@ -363,6 +366,12 @@ Create a class implementing this interface to be able to react to a stimulus
 
 <br/>
 
+### DefReaction
+
+Default reaction for stimulus with no reaction <br/>
+If a stimulus has no associated reactions, and the fallback reaction
+is unchanged, then this reaction occurs
+
 | **DefReaction** | `(Reactable)`  |
 |-----------------|----------------|
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         reacts on stimulus with no reactions |
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         Print stimulus details and throw any error |
