@@ -37,7 +37,7 @@ public class Reaction implements Reactable, Runnable {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(!isstatic && bestatic) throw new Exception("Method ["+m.getName()+"] is not static");
-            if(m.isAnnotationPresent(Reacts.class) && m.getAnnotation(Reacts.class).value().equals("slow")) stimulus = "";
+            if(m.isAnnotationPresent(Reacts.class) && m.getAnnotation(Reacts.class).value().equalsIgnoreCase("slow")) stimulus = "";
             this.mthd = MethodHandles.lookup().unreflect(m);
         }
         catch(Exception e) { new SpineException(e).exit(); }
@@ -108,7 +108,7 @@ public class Reaction implements Reactable, Runnable {
      * @return {@linkplain Reaction} for chaining
      */
     public Reaction speed(String speed) {
-        stimulus = speed.equals("slow")? "" : null;
+        stimulus = speed.equalsIgnoreCase("slow")? "" : null;
         return this;
     }
     
