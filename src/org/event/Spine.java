@@ -55,7 +55,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
             // need static or instance?
             String mthd = m.getName();
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(!mthd.startsWith("on") || (!isstatic && bestatic)) continue;
+            if(!mthd.startsWith("on") || mthd.length()<=2 || (!isstatic && bestatic)) continue;
             // save appropriately
             String stim = _toHyphenCase(mthd.substring(2));
             Reaction reaction = bestatic? new Reaction(cls, mthd) : new Reaction(obj, mthd);
