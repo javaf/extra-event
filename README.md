@@ -141,7 +141,7 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
-### Event Absorber Method
+### Reaction Method
 
 ```java
 // required modules
@@ -150,27 +150,32 @@ import org.event.*;
 
 public class Main {
     
-    public static void helloTeller(String event, Map args) {
-    	System.out.println("Hello event "+event);
+    public static void helloReactor(String stimulus, Map args) {
+    	System.out.println("Lets get to work");
     }
     
-    public void byeTeller(String event, Map args) {
-    	System.out.println("Bye event "+event);
+    public void byeReactor(String stimulus, Map args) {
+        System.out.print("Name: ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next();
+        System.out.println("Nice to meet you "+name);
     }
     
     public static void main(String[] args) {
     	Main main = new Main();
-        EventEmitter event = new EventEmitter();
-        event.add("action", new Eventer(Main.class, "helloTeller"));
-        event.add("action", new Eventer(main, "byeTeller");
-        event.emit("action");
+        Spine spine = new Spine();
+        spine.on("hello", new Reaction(Main.class, "helloReactor"));
+        spine.on("bye", new Reaction(main, "byeReactor");
+        spine.is("hello");
+        spine.is("bye");
     }
 }
 ```
 
 ```
-Hello event action
-Bye event action
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
 ```
 
 <br/>
