@@ -307,7 +307,7 @@ Nice to meet you anonymous
 
 ## Reference
 
-### Spine
+### `class Spine`
 
 Represents stimuli with associated reactions <br/>
 When a stimulus occurs, appropriate reactions are triggered
@@ -323,9 +323,9 @@ When a stimulus occurs, appropriate reactions are triggered
 
 <br/>
 
-### SpineException `(internal)`
+### `class SpineException`
 
-Unchecked exception for spine
+Unchecked exception for spine *(internal)*
 
 | **SpineException** | `RuntimeException` |
 |--------------------|--------------------|
