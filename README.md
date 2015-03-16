@@ -54,7 +54,7 @@ download the source code as a Zip and copy the `src/org` folder in it and add it
 
 ## Examples
 
-### Ouch!
+### Standard Stimulus
 ```java
 // required modules
 import org.event.*;
