@@ -54,7 +54,7 @@ download the source code as a Zip and copy the `src/org` folder in it and add it
 
 ## Examples
 
-### Hello World!
+### Ouch!
 ```java
 // required modules
 import org.event.*;
@@ -62,13 +62,13 @@ import org.event.*;
 public class Main {
     
     public static void main(String[] args) {
-        EventEmitter event = new EventEmitter();    // create event emitter
-        event.emit("hello", "msg", "Hello World!"); // DefEventer listens
+        Spine spine = new Spine();
+        spine.is("hot-object", "msg", "Ouch!"); // trigger default reaction
     }
 }
 ```
 ```
-[hello] : {msg=Hello World!}
+[hot-object] : {msg=Ouch!}
 ```
 
 ### Error Event
