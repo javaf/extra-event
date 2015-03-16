@@ -332,15 +332,15 @@ Encapsulates a reaction-method or `Reactable` object
 |--------------|---------------|
 | **Reaction** <br/>                                                                                                         `(reaction)`, `(reactable)`, <br/> `(cls, mthd)`, `(obj, mthd)` |                                                            create a reaction that can be invoked on a stimulus <br/>                                                                    `Reaction done = new Reaction(anotherReaction);` <br/>                                                                       `Reaction done = new Reaction(reactableObj);` <br/>                                                                          `Reaction done = new Reaction(MthdCls.class, "mthd");` <br/>                                                                 `Reaction done = new Reaction(MthdObj, "mthd");` |
 | **speed** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction <br/>                                                                                            `String speed = reaction.speed();` <br/>                                                                                     `reaction.speed("slow");` |
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         invoke reaction-method |
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         invoke reaction-method *(internal)* |
 
 <br/>
 
 ### DefReaction
 
 Default reaction for stimulus with no reaction <br/>
-If a stimulus has no associated reactions, and the fallback reaction <br/>
-is unchanged, then this reaction occurs
+<small>If a stimulus has no associated reactions, and the fallback reaction <br/>
+is unchanged, then this reaction occurs</small>
 
 | **DefReaction** | `(Reactable)`  |
 |-----------------|----------------|
