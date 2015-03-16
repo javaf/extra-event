@@ -71,7 +71,7 @@ public class Main {
 [hot-object] : {msg=Ouch!}
 ```
 
-### Error Event
+### Error Stimulus
 
 ```java
 // required modules
@@ -80,17 +80,17 @@ import org.event.*;
 public class Main {
     
     public static void main(String[] args) {
-        EventEmitter event = new EventEmitter();
-        try { int a = 1 / 0; }
-        catch(Exception e) { event.emit("hello", "err", e, "msg", "Hello World!"); }
-        // err argument indicates it is an error event
+        Spine spine = new Spine();
+        try { throw new RuntimeException("Got a Sprain"); }
+        catch(Exception e) { event.emit("injury", "err", e, "msg", "Cant go to school"); }
+        // err argument indicates it is an error stimulus
     }
 }
 ```
 
 ```
-[hello] : {msg=Hello World!, err=java.lang.ArithmeticException: / by zero}
-java.lang.ArithmeticException: / by zero
+[injury] : {msg=Cant go to school, err=java.lang.RuntimeException: Got a Sprain}
+java.lang.RuntimeException: Got a Sprain
 	at main.Main.main(Main.java:13)
 Java Result: -1
 ```
