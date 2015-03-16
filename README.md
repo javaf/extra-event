@@ -242,11 +242,20 @@ Nice to meet you anonymous
 
 ```java
 // required modules
+import java.util.concurrent.*;
 import java.util.*;
 import org.event.*;
 
-class Introducer {
+class Introducer extends Thread implements Reactable {
 
+    public Spine spine;
+    BlockingQueue<Object[]> events;
+
+    public Introducer() {
+    	spine = new Spine(this);
+    	events = new BlockingQueue<>();
+    }
+    
     public static void onHello(String stimulus, Map args) {
     	System.out.println("Lets get to work");
     }
@@ -258,36 +267,37 @@ class Introducer {
         String name = in.next();
         System.out.println("Nice to meet you "+name);
     }
+    
+    @Override
+    public void run() {
+    	while(true) {
+    	    Object[] o = events.take();
+    	    spine.is((String)o[0], (Map)o[1]);
+    	}
+    }
+    
+    @Override
+    public void on(String stimulus, Map args) {
+        events.put(new Object[]{stimulus, args});
+    }
 }
 
 public class Main {
     
     public static void main(String[] args) {
     	Introducer introducer = new Introducer();
-    	// only static reaction methods are triggered
-        Spine spine1 = new Spine(Introducer.class);
-        spine1.is("hello").is("bye");
-        System.out.println();
-        // both static and instance methods are triggered
-        Spine spine2 = new Spine(introducer);
-        spine2.is("hello").is("bye");
-        System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reactable>)
-        spine2.on(spine1);
-        spine2.is("hello").is("bye");
+    	introducer.start();
+        Spine spine = new Spine();
+        // all stimuli in Introducer is handled by Introducer.on
+        spine.on(introducer.spine.keySet(), introducer);
+        // hello and bye reaction methods run in introducer thread
+        // blocking queue stores the stimuli until they are processed
+        spine.is("hello").is("bye");
     }
 }
 ```
 
 ```
-Lets get to work
-[bye] : {}
-
-Lets get to work
-Name: anonymous
-Nice to meet you anonymous
-
-Lets get to work
 Lets get to work
 Name: anonymous
 Nice to meet you anonymous
