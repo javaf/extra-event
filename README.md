@@ -222,17 +222,18 @@ Nice to meet you anonymous
 ### Class of Reaction Methods
 
 ```java
+[[Introducer.java]]
+package main;
+
 // required modules
 import java.util.*;
-import org.event.*;
 
-class Introducer {
+public class Introducer {
 
     public static void onHello(String stimulus, Map args) {
-    	System.out.println("Lets get to work");
+        System.out.println("Lets get to work");
     }
-    
-    @Reacts("slow")
+
     public void onBye(String stimulus, Map args) {
         System.out.print("Name: ");
         Scanner in = new Scanner(System.in);
@@ -241,11 +242,18 @@ class Introducer {
     }
 }
 
+
+[[Main.java]]
+package main;
+
+// required modules
+import org.event.*;
+
 public class Main {
-    
+
     public static void main(String[] args) {
-    	Introducer introducer = new Introducer();
-    	// only static reaction methods are triggered
+        Introducer introducer = new Introducer();
+        // only static reaction methods are triggered
         Spine spine1 = new Spine(Introducer.class);
         spine1.is("hello").is("bye");
         System.out.println();
