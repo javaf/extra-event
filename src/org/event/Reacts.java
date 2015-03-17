@@ -8,8 +8,8 @@ import java.lang.annotation.*;
 
 /**
  * <h3>Annotation to specify reaction-method speed</h3>
- * Use {@code @Reacts("fast")} for fast reaction-method (optional)<br/>
- * Use {@code @Reacts("slow")} for slow reaction-method (required)
+ * <div>Use {@code @Reacts("fast")} for fast reaction-method (optional)</div>
+ * <div>Use {@code @Reacts("slow")} for slow reaction-method (required)</div>
  * @author wolfram77
  */
 @Retention(RetentionPolicy.RUNTIME)

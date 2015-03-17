@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 
 /**
  * <h3>Reaction to a stimulus</h3>
- * Encapsulates a reaction-method or {@linkplain Reactable} object
+ * <div>Encapsulates a reaction-method or {@linkplain Reactable} object</div>
  * @author wolfram77
  */
 public class Reaction implements Reactable, Runnable {
@@ -104,8 +104,8 @@ public class Reaction implements Reactable, Runnable {
     
     /**
      * <h3>Tell reaction-method's speed ("fast" or "slow")</h3>
-     * A fast reaction-method is invoked synchronously <br/>
-     * A slow reaction-method is invoked asynchronously
+     * <div>A fast reaction-method is invoked synchronously</div>
+     * <div>A slow reaction-method is invoked asynchronously</div>
      * @param speed reaction-method's speed
      * @return {@linkplain Reaction} for chaining
      */
@@ -117,8 +117,8 @@ public class Reaction implements Reactable, Runnable {
     
     /**
      * <h3>Get reaction-method's speed ("fast" or "slow")</h3>
-     * A fast reaction-method is invoked synchronously <br/>
-     * A slow reaction-method is invoked asynchronously
+     * <div>A fast reaction-method is invoked synchronously</div>
+     * <div>A slow reaction-method is invoked asynchronously</div>
      * @return reaction-method's speed
      */
     public String speed() {
@@ -142,7 +142,7 @@ public class Reaction implements Reactable, Runnable {
     
     /**
      * <h3>Invoke reaction-method asynchronously</h3>
-     * DONT CALL THIS!
+     * <div>DONT CALL THIS!</div>
      */
     @Override
     public void run() {

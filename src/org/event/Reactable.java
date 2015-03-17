@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * <h3>Interface that can react on a stimulus</h3>
- * Create a class implementing this interface to be able to react to a stimulus
+ * <div>Classes implementing this interface are able to react to stimuli</div>
  * @author wolfram77
  */
 public interface Reactable {

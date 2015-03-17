@@ -8,8 +8,8 @@ import java.util.*;
 
 /**
  * <h3>Default reaction for stimulus with no reaction</h3>
- * If a stimulus has no associated reactions, and the fallback reaction
- * is unchanged, then this reaction occurs
+ * <div>Triggers on a stimulus with no reactions</div>
+ * <div>(when fallback reaction is unchanged)</div>
  * @author wolfram77
  */
 public class DefReaction implements Reactable {

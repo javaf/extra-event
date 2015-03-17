@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 
 /**
  * <h3>Represents stimuli with associated reactions</h3>
- * When a stimulus occurs, appropriate reactions are triggered
+ * <div>When a stimulus occurs, appropriate reactions are triggered</div>
  * @author wolfram77
  */
 public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements Runnable {
@@ -125,7 +125,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     /**
      * <h3>Create an empty spine</h3>
-     * Associate reactions to stimuli with {@code on(...)}
+     * <div>Associate reactions to stimuli with {@code on(...)}</div>
      */
     public Spine() {
     }
@@ -133,8 +133,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     /**
      * <h3>Create a spine from class</h3>
-     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus <br/>
-     * Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods
+     * <div>{@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus</div>
+     * <div>Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods</div>
      * @param cls class containing reaction-methods
      */
     public Spine(Class cls) {
@@ -144,8 +144,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     /**
      * <h3>Create a spine from object</h3>
-     * {@code on<stimulus>()} methods are associated {@code <stimulus>} stimulus <br/>
-     * Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods
+     * <div>{@code on<stimulus>()} methods are associated {@code <stimulus>} stimulus</div>
+     * <div>Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods</div>
      * @param obj object containing reaction-methods
      */
     public Spine(Object obj) {
@@ -155,8 +155,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     /**
      * <h3>Tell spine speed ("fast" or "slow")</h3>
-     * A fast spine triggers reactions synchronously <br/>
-     * A slow spine triggers reactions asynchronously
+     * <div>A fast spine triggers reactions synchronously</div>
+     * <div>A slow spine triggers reactions asynchronously</div>
      * @param speed speed of spine
      * @return spine for chaining
      */
@@ -168,8 +168,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     /**
      * <h3>Get spine speed ("fast" or "slow")</h3>
-     * A fast spine triggers reactions synchronously <br/>
-     * A slow spine triggers reactions asynchronously
+     * <div>A fast spine triggers reactions synchronously</div>
+     * <div>A slow spine triggers reactions asynchronously</div>
      * @return speed of spine
      */
     public String speed() {
@@ -179,7 +179,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     /**
      * <h3>Indicate a stimulus asynchronously</h3>
-     * DONT CALL THIS!
+     * <div>DONT CALL THIS!</div>
      */
     @Override
     public void run() {
