@@ -23,7 +23,7 @@ public class Reaction implements Reactable, Runnable {
     Map args;
     
     // static data
-    static ExecutorService threads = Executors.newCachedThreadPool();
+    static ExecutorService threads = Spine.threads;
     
     
     /**
