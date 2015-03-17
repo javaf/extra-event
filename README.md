@@ -56,6 +56,9 @@ download the source code as a Zip and copy the `src/org` folder in it and add it
 
 ### Standard Stimulus
 ```java
+[[Main.java]]
+package main;
+
 // required modules
 import org.event.*;
 
@@ -75,6 +78,9 @@ public class Main {
 ### Error Stimulus
 
 ```java
+[[Main.java]]
+package main;
+
 // required modules
 import org.event.*;
 
@@ -105,20 +111,31 @@ Java Result: 1
 ### Reactable Class
 
 ```java
+[[HelloReactor.java]]
+package main;
+
 // required modules
 import java.util.*;
 import org.event.*;
 
-class HelloReactor implements Reactable {
-    
+public class HelloReactor implements Reactable {
+
     @Override
     public void on(String stimulus, Map args) {
         System.out.println("Lets get to work");
     }
 }
 
-class ByeReactor implements Reactable {
-    
+
+[[ByeReactor.java]]
+package main;
+
+// required modules
+import java.util.*;
+import org.event.*;
+
+public class ByeReactor implements Reactable {
+
     @Override
     @Reacts("slow")
     public void on(String stimulus, Map args) {
@@ -129,8 +146,15 @@ class ByeReactor implements Reactable {
     }
 }
 
+
+[[Main.java]]
+package main;
+
+// required modules
+import org.event.*;
+
 public class Main {
-    
+
     public static void main(String[] args) {
         HelloReactor helloReaction = new HelloReactor();
         // annotations only work in Reaction objects
@@ -139,6 +163,7 @@ public class Main {
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
         spine.is("hello").is("bye");
+        // process will terminate after all reactions (slow)
     }
 }
 ```
