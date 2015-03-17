@@ -32,15 +32,16 @@ public class Reaction implements Reactable, Runnable {
      * @param mthd name of reaction-method
      * @param bestatic should method be static?
      */
-    private void _new(Class cls, String mthd, boolean bestatic) {
+    private MethodHandle _new(Class cls, String mthd, boolean bestatic) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(!isstatic && bestatic) throw new Exception("Method ["+m.getName()+"] is not static");
             if(m.isAnnotationPresent(Reacts.class) && m.getAnnotation(Reacts.class).value().equalsIgnoreCase("slow")) stimulus = "";
-            this.mthd = MethodHandles.lookup().unreflect(m);
+            return MethodHandles.lookup().unreflect(m);
         }
         catch(Exception e) { new SpineException(e).exit(); }
+        return null;
     }
 
 
@@ -76,6 +77,7 @@ public class Reaction implements Reactable, Runnable {
      */
     public Reaction(Reactable reactable) {
         obj = reactable;
+        _new(reactable.getClass(), "on", false);
     }
     
     
@@ -85,7 +87,7 @@ public class Reaction implements Reactable, Runnable {
      * @param mthd name of reaction-method
      */
     public Reaction(Class cls, String mthd) {
-        _new(cls, mthd, true);
+        this.mthd = _new(cls, mthd, true);
     }
     
     
@@ -95,7 +97,7 @@ public class Reaction implements Reactable, Runnable {
      * @param mthd name of reaction-method
      */
     public Reaction(Object obj, String mthd) {
-        _new(obj.getClass(), mthd, false);
+        this.mthd = _new(obj.getClass(), mthd, false);
         this.obj = obj;
     }
     

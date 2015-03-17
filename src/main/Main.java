@@ -5,28 +5,35 @@ package main;
 import java.util.*;
 import org.event.*;
 
-public class Main {
+class HelloReactor implements Reactable {
 
-    public static void helloReactor(String stimulus, Map args) {
+    @Override
+    public void on(String stimulus, Map args) {
         System.out.println("Lets get to work");
     }
+}
 
-    public void byeReactor(String stimulus, Map args) {
+class ByeReactor implements Reactable {
+
+    @Override
+    @Reacts("slow")
+    public void on(String stimulus, Map args) {
         System.out.print("Name: ");
         Scanner in = new Scanner(System.in);
         String name = in.next();
         System.out.println("Nice to meet you "+name);
     }
+}
+
+public class Main {
 
     public static void main(String[] args) {
-        Main main = new Main();
+        HelloReactor helloReaction = new HelloReactor();
+        // annotations only work in Reaction objects
+        Reaction byeReaction = new Reaction(new ByeReactor());
         Spine spine = new Spine();
-        // static reaction method
-        spine.on("hello", new Reaction(Main.class, "helloReactor"));
-        // instance reaction method 
-        // speed can be indicated manually as well
-        spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
-        spine.is("hello");
-        spine.is("bye");
+        // chaining method calls is supported
+        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.is("hello").is("bye");
     }
 }
