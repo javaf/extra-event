@@ -91,9 +91,15 @@ public class Main {
 
 ```
 [injury] : {msg=Cant go to school, err=java.lang.RuntimeException: Got a Sprain}
-java.lang.RuntimeException: Got a Sprain
-	at main.Main.main(Main.java:13)
-Java Result: -1
+Exception in thread "main" org.event.SpineException: java.lang.RuntimeException: Got a Sprain
+	at org.event.DefReaction.on(DefReaction.java:25)
+	at org.event.Spine._is(Spine.java:85)
+	at org.event.Spine.is(Spine.java:181)
+	at org.event.Spine.is(Spine.java:195)
+	at main.Main.main(Main.java:12)
+Caused by: java.lang.RuntimeException: Got a Sprain
+	at main.Main.main(Main.java:11)
+Java Result: 1
 ```
 
 ### Reactable Class
