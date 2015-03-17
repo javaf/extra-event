@@ -28,5 +28,7 @@ public class Main {
         spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
         spine.is("hello");
         spine.is("bye");
+        // slow reactions trigger asynchronously
+        System.out.println("done");
     }
 }
