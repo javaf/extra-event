@@ -77,7 +77,6 @@ public class Reaction implements Reactable, Runnable {
      */
     public Reaction(Reactable reactable) {
         obj = reactable;
-        _new(reactable.getClass(), "on", false);
     }
     
     
