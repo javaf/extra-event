@@ -5,25 +5,7 @@ package main;
 import java.util.*;
 import org.event.*;
 
-class HelloReactor implements Reactable {
 
-    @Override
-    public void on(String stimulus, Map args) {
-        System.out.println("Lets get to work");
-    }
-}
-
-class ByeReactor implements Reactable {
-
-    @Override
-    @Reacts("slow")
-    public void on(String stimulus, Map args) {
-        System.out.print("Name: ");
-        Scanner in = new Scanner(System.in);
-        String name = in.next();
-        System.out.println("Nice to meet you "+name);
-    }
-}
 
 public class Main {
 
