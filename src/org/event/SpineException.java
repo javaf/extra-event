@@ -4,20 +4,20 @@ package org.event;
 
 
 /**
- * <h3>Unchecked exception for {@linkplain Spine}</h3>
+ * <b>Unchecked exception for {@linkplain Spine}</b>
  * @author wolfram77
  */
 public class SpineException extends RuntimeException {
 
     /**
-     * <h3>Create an empty spine exception</h3>
+     * <b>Create an empty spine exception</b>
      */
     public SpineException() {
     }
 
     
     /**
-     * <h3>Create a spine exception with specified message</h3>
+     * <b>Create a spine exception with specified message</b>
      * @param msg exception message
      */
     public SpineException(String msg) {
@@ -26,7 +26,7 @@ public class SpineException extends RuntimeException {
     
     
     /**
-     * <h3>Create a spine exception with specified cause</h3>
+     * <b>Create a spine exception with specified cause</b>
      * @param cause exception cause
      */
     public SpineException(Throwable cause) {
@@ -35,7 +35,7 @@ public class SpineException extends RuntimeException {
     
     
     /**
-     * <h3>Show stack trace and exit</h3>
+     * <b>Show stack trace and exit</b>
      */
     @SuppressWarnings("CallToPrintStackTrace")
     public void exit() {

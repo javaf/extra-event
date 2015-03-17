@@ -7,7 +7,7 @@ import java.util.*;
 
 
 /**
- * <h3>Default reaction for stimulus with no reaction</h3>
+ * <b>Default reaction for stimulus with no reaction</b>
  * <div>Triggers on a stimulus with no reactions</div>
  * <div>(when fallback reaction is unchanged)</div>
  * @author wolfram77
@@ -15,7 +15,7 @@ import java.util.*;
 public class DefReaction implements Reactable {
 
     /**
-     * <h3>Print stimulus details and throw any error</h3>
+     * <b>Print stimulus details and throw any error</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */

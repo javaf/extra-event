@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 
 
 /**
- * <h3>Represents stimuli with associated reactions</h3>
+ * <b>Represents stimuli with associated reactions</b>
  * <div>When a stimulus occurs, appropriate reactions are triggered</div>
  * @author wolfram77
  */
@@ -42,7 +42,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Convert a string from camel case to hyphen case</h3>
+     * <b>Convert a string from camel case to hyphen case</b>
      * @param str camel case string
      * @return hyphen case string
      */
@@ -61,7 +61,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Add static / instance reaction-methods of a class</h3>
+     * <b>Add static / instance reaction-methods of a class</b>
      * @param obj object containing reaction-methods (null if static)
      * @param cls class containing reaction-methods
      */
@@ -82,7 +82,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Initialize {@linkplain Reactable} set of stimulus</h3>
+     * <b>Initialize {@linkplain Reactable} set of stimulus</b>
      * @param stimulus name of stimulus
      */
     void _initStimulus(String stimulus) {
@@ -92,7 +92,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Indicate a stimulus, causing reactions to trigger</h3>
+     * <b>Indicate a stimulus, causing reactions to trigger</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -106,7 +106,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set fallback reaction, for stimulus with no reaction</h3>
+     * <b>Set fallback reaction, for stimulus with no reaction</b>
      * @param fallback fallback reaction
      */
     public static void fallback(Reactable fallback) {
@@ -115,7 +115,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Get fallback reaction, for stimulus with no reaction</h3>
+     * <b>Get fallback reaction, for stimulus with no reaction</b>
      * @return fallback reaction
      */
     public static Reactable fallback() {
@@ -124,7 +124,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Create an empty spine</h3>
+     * <b>Create an empty spine</b>
      * <div>Associate reactions to stimuli with {@code on(...)}</div>
      */
     public Spine() {
@@ -132,7 +132,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Create a spine from class</h3>
+     * <b>Create a spine from class</b>
      * <div>{@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus</div>
      * <div>Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods</div>
      * @param cls class containing reaction-methods
@@ -143,7 +143,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Create a spine from object</h3>
+     * <b>Create a spine from object</b>
      * <div>{@code on<stimulus>()} methods are associated {@code <stimulus>} stimulus</div>
      * <div>Use {@code @Reacts("slow")} annotation to indicate slow reaction-methods</div>
      * @param obj object containing reaction-methods
@@ -154,7 +154,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Tell spine speed ("fast" or "slow")</h3>
+     * <b>Tell spine speed ("fast" or "slow")</b>
      * <div>A fast spine triggers reactions synchronously</div>
      * <div>A slow spine triggers reactions asynchronously</div>
      * @param speed speed of spine
@@ -167,7 +167,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Get spine speed ("fast" or "slow")</h3>
+     * <b>Get spine speed ("fast" or "slow")</b>
      * <div>A fast spine triggers reactions synchronously</div>
      * <div>A slow spine triggers reactions asynchronously</div>
      * @return speed of spine
@@ -178,7 +178,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Indicate a stimulus asynchronously</h3>
+     * <b>Indicate a stimulus asynchronously</b>
      * <div>DONT CALL THIS!</div>
      */
     @Override
@@ -188,7 +188,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Indicate a stimulus, causing reactions to trigger</h3>
+     * <b>Indicate a stimulus, causing reactions to trigger</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return spine for chaining
@@ -202,7 +202,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Indicate a stimulus, causing reactions to trigger</h3>
+     * <b>Indicate a stimulus, causing reactions to trigger</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return spine for chaining
@@ -213,7 +213,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set a reaction to trigger on a stimulus</h3>
+     * <b>Set a reaction to trigger on a stimulus</b>
      * @param stimulus name of stimulus
      * @param reaction reaction to trigger
      * @return spine for chaining
@@ -226,7 +226,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set reactions to trigger on a stimulus</h3>
+     * <b>Set reactions to trigger on a stimulus</b>
      * @param stimulus name of stimulus
      * @param reactions reactions to trigger
      * @return spine for chaining
@@ -239,7 +239,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set a reaction to trigger on stimuli</h3>
+     * <b>Set a reaction to trigger on stimuli</b>
      * @param stimuli names of stimuli
      * @param reaction reaction to trigger
      * @return spine for chaining
@@ -253,7 +253,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Set associated reactions to trigger on stimuli</h3>
+     * <b>Set associated reactions to trigger on stimuli</b>
      * @param assoc stimuli with associated reactions to trigger
      * @return spine for chaining
      */
@@ -266,7 +266,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off a reaction for a stimulus</h3>
+     * <b>Turn off a reaction for a stimulus</b>
      * @param stimulus name of stimulus
      * @param reaction reaction to turn off
      * @return spine for chaining
@@ -279,7 +279,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off reactions for a stimulus</h3>
+     * <b>Turn off reactions for a stimulus</b>
      * @param stimulus name of stimulus
      * @param reactions reactions to turn off
      * @return spine for chaining
@@ -292,7 +292,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off a reaction for stimuli</h3>
+     * <b>Turn off a reaction for stimuli</b>
      * @param stimuli names of stimuli
      * @param reaction reaction to turn off
      * @return spine for chaining
@@ -306,7 +306,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off associated reactions for stimuli</h3>
+     * <b>Turn off associated reactions for stimuli</b>
      * @param map stimuli with associated reactions to turn off
      * @return spine for chaining
      */
@@ -319,7 +319,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off all reactions for a stimulus</h3>
+     * <b>Turn off all reactions for a stimulus</b>
      * @param stimulus name of stimulus
      * @return spine for chaining
      */
@@ -330,7 +330,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     
     /**
-     * <h3>Turn off all reactions for all stimuli</h3>
+     * <b>Turn off all reactions for all stimuli</b>
      * @return spine for chaining
      */
     public Spine off() {

@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 
 
 /**
- * <h3>Annotation to specify reaction-method speed</h3>
+ * <b>Annotation to specify reaction-method speed</b>
  * <div>Use {@code @Reacts("fast")} for fast reaction-method (optional)</div>
  * <div>Use {@code @Reacts("slow")} for slow reaction-method (required)</div>
  * @author wolfram77
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 public @interface Reacts {
     
     /**
-     * <h3>Speed of reaction-method ("fast" or "slow")</h3>
+     * <b>Speed of reaction-method ("fast" or "slow")</b>
      * @return speed of reaction-method
      */
     String value() default "fast";

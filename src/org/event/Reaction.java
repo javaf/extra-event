@@ -10,7 +10,7 @@ import java.util.concurrent.*;
 
 
 /**
- * <h3>Reaction to a stimulus</h3>
+ * <b>Reaction to a stimulus</b>
  * <div>Encapsulates a reaction-method or {@linkplain Reactable} object</div>
  * @author wolfram77
  */
@@ -27,7 +27,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Create a new reaction from a reaction-method</h3>
+     * <b>Create a new reaction from a reaction-method</b>
      * @param cls class of reaction-method
      * @param mthd name of reaction-method
      * @param bestatic should method be static?
@@ -46,7 +46,7 @@ public class Reaction implements Reactable, Runnable {
 
 
     /**
-     * <h3>Invoke a fast reaction-method</h3>
+     * <b>Invoke a fast reaction-method</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -61,7 +61,7 @@ public class Reaction implements Reactable, Runnable {
 
     
     /**
-     * <h3>Create a copy of another reaction</h3>
+     * <b>Create a copy of another reaction</b>
      * @param reaction reaction to copy
      */
     public Reaction(Reaction reaction) {
@@ -72,7 +72,7 @@ public class Reaction implements Reactable, Runnable {
 
     
     /**
-     * <h3>Create a reaction from an object implementing {@linkplain Reactable}</h3>
+     * <b>Create a reaction from an object implementing {@linkplain Reactable}</b>
      * @param reactable object implementing {@linkplain Reactable}
      */
     public Reaction(Reactable reactable) {
@@ -82,7 +82,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Create a reaction from a static reaction-method</h3>
+     * <b>Create a reaction from a static reaction-method</b>
      * @param cls class containing reaction-method
      * @param mthd name of reaction-method
      */
@@ -92,7 +92,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Create a reaction from an instance reaction-method</h3>
+     * <b>Create a reaction from an instance reaction-method</b>
      * @param obj object containing reaction-method
      * @param mthd name of reaction-method
      */
@@ -103,7 +103,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Tell reaction-method's speed ("fast" or "slow")</h3>
+     * <b>Tell reaction-method's speed ("fast" or "slow")</b>
      * <div>A fast reaction-method is invoked synchronously</div>
      * <div>A slow reaction-method is invoked asynchronously</div>
      * @param speed reaction-method's speed
@@ -116,7 +116,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Get reaction-method's speed ("fast" or "slow")</h3>
+     * <b>Get reaction-method's speed ("fast" or "slow")</b>
      * <div>A fast reaction-method is invoked synchronously</div>
      * <div>A slow reaction-method is invoked asynchronously</div>
      * @return reaction-method's speed
@@ -127,7 +127,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Invoke the reaction-method</h3>
+     * <b>Invoke the reaction-method</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -141,7 +141,7 @@ public class Reaction implements Reactable, Runnable {
     
     
     /**
-     * <h3>Invoke reaction-method asynchronously</h3>
+     * <b>Invoke reaction-method asynchronously</b>
      * <div>DONT CALL THIS!</div>
      */
     @Override
