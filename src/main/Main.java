@@ -2,7 +2,6 @@
 package main;
 
 // required modules
-import java.util.*;
 import org.event.*;
 
 
