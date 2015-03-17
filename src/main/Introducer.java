@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 import java.util.*;
 import org.event.*;
 
-class Introducer extends Thread implements Reactable {
+public class Introducer extends Thread implements Reactable {
 
     public Spine spine;
     BlockingQueue<Object[]> events;
@@ -20,7 +20,6 @@ class Introducer extends Thread implements Reactable {
     	System.out.println("Lets get to work");
     }
     
-    @Reacts("slow")
     public void onBye(String stimulus, Map args) {
         System.out.print("Name: ");
         Scanner in = new Scanner(System.in);
