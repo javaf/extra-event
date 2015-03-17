@@ -177,6 +177,9 @@ Nice to meet you anonymous
 ### Reaction Method
 
 ```java
+[[Main.java]]
+package main;
+
 // required modules
 import java.util.*;
 import org.event.*;
