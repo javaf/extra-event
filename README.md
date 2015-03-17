@@ -163,7 +163,6 @@ public class Main {
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
         spine.is("hello").is("bye");
-        // process will terminate after all reactions (slow)
     }
 }
 ```
@@ -207,12 +206,15 @@ public class Main {
         spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
         spine.is("hello");
         spine.is("bye");
+        // slow reactions trigger asynchronously
+        System.out.println("ok?");
     }
 }
 ```
 
 ```
 Lets get to work
+ok?
 Name: anonymous
 Nice to meet you anonymous
 ```
