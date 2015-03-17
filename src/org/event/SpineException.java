@@ -18,7 +18,7 @@ public class SpineException extends RuntimeException {
     
     /**
      * <h3>Create a spine exception with specified message</h3>
-     * @param msg expection message
+     * @param msg exception message
      */
     public SpineException(String msg) {
         super(msg);
