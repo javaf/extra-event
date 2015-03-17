@@ -2,33 +2,22 @@
 package main;
 
 // required modules
-import java.util.*;
 import org.event.*;
 
 public class Main {
 
-    public static void helloReactor(String stimulus, Map args) {
-        System.out.println("Lets get to work");
-    }
-
-    public void byeReactor(String stimulus, Map args) {
-        System.out.print("Name: ");
-        Scanner in = new Scanner(System.in);
-        String name = in.next();
-        System.out.println("Nice to meet you "+name);
-    }
-
     public static void main(String[] args) {
-        Main main = new Main();
-        Spine spine = new Spine();
-        // static reaction method
-        spine.on("hello", new Reaction(Main.class, "helloReactor"));
-        // instance reaction method 
-        // speed can be indicated manually as well
-        spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
-        spine.is("hello");
-        spine.is("bye");
-        // slow reactions trigger asynchronously
-        System.out.println("done");
+        Introducer introducer = new Introducer();
+        // only static reaction methods are triggered
+        Spine spine1 = new Spine(Introducer.class);
+        spine1.is("hello").is("bye");
+        System.out.println();
+        // both static and instance methods are triggered
+        Spine spine2 = new Spine(introducer);
+        spine2.is("hello").is("bye");
+        System.out.println();
+        // import spine1 to spine2 (or any Map<String, Reactable>)
+        spine2.on(spine1);
+        spine2.is("hello").is("bye");
     }
 }
