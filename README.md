@@ -47,8 +47,10 @@ method. It is also possible to inherit stimulus-reaction associations from anoth
 ## Usage
 
 You can get started by going through the [examples](https://github.com/wolfram77/java-spine/blob/master/README.md#examples)
-first. That can help get a lot of things clear. I would suggest you try them out as well. To use this library,
-download the source code as a Zip and copy the `src/org` folder in it and add it to your *project*. The  [reference](https://github.com/wolfram77/java-spine/blob/master/README.md#reference) will help you know it all.
+first. That can help get a lot of things clear. I would suggest you try them out as well. To use this library, goto
+[releases](https://github.com/wolfram77/java-spine/releases), download the JAR files and add them to your project.
+Alternatiely download the source code as a Zip and copy the `src/org` folder in it and add it to your *project*. The 
+[reference](https://github.com/wolfram77/java-spine/blob/master/README.md#reference) will help you know it all.
 
 <br/>
 
