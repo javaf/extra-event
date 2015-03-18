@@ -1,12 +1,41 @@
 // @wolfram77
-package main;
+package org.event;
 
 // required modules
-import org.event.*;
+import java.util.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
-public class Main {
 
-    public static void main(String[] args) {
+
+public class SpineTest {
+    
+    public SpineTest() {
+    }
+    
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    
+    @Before
+    public void setUp() {
+    }
+    
+    
+    @After
+    public void tearDown() {
+    }
+
+
+    @Test
+    public void test_EventLoop() {
         Introducer introducer = new Introducer();
         // only static reaction methods are triggered
         Spine spine1 = new Spine(Introducer.class);

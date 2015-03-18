@@ -1,10 +1,11 @@
 // @wolfram77
-package main;
+package org.event;
 
 // required modules
 import java.util.concurrent.*;
 import java.util.*;
-import org.event.*;
+
+
 
 public class Introducer extends Thread implements Reactable {
 
