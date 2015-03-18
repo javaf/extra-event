@@ -219,7 +219,7 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
-### Class of Reaction Methods
+### Reaction Class
 
 ```java
 [[Introducer.java]]
