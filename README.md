@@ -175,6 +175,44 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
+### Lambda & Anonymous Reactable
+
+```java
+[[Main.java]]
+package main;
+
+// required modules
+import org.event.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // lambda expression is simpler
+        Reactable helloReaction = (String stimulus, Map args) -> {
+            System.out.println("Lets get to work");
+        };
+        // annotations allowed in anonymous class, but not in lambda expression
+        Reaction byeReaction = new Reaction(new Reactable() {
+            @Override
+            @Reacts("slow")
+            public void on(String stimulus, Map args) {
+                String name = "anonymous";
+                System.out.println("Nice to meet you "+name);
+            }
+        });
+        Spine spine = new Spine();
+        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.is("hello").is("bye");
+    }
+}
+```
+
+```
+Lets get to work
+Name: anonymous
+Nice to meet you anonymous
+```
+
 ### Reaction Method
 
 ```java
