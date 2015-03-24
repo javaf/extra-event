@@ -2,6 +2,7 @@
 package org.event;
 
 // required modules
+import java.util.Map;
 import org.junit.*;
 
 
@@ -62,6 +63,29 @@ public class SpineTest {
         ReactableClassHello helloReaction = new ReactableClassHello();
         // annotations only work in Reaction objects
         Reaction byeReaction = new Reaction(new ReactableClassBye());
+        Spine spine = new Spine();
+        // chaining method calls is supported
+        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.is("hello").is("bye");
+    }
+
+
+    @Test
+    public void test_AnonymousAndLambdaReactable() {
+        System.out.println("test_ReactableAnonymousClass");
+        // lambda expression is simpler
+        Reactable helloReaction = (String stimulus, Map args) -> {
+            System.out.println("Lets get to work");
+        };
+        // annotations allowed in anonymous class, but not lambda expression
+        Reaction byeReaction = new Reaction(new Reactable() {
+            @Override
+            @Reacts("slow")
+            public void on(String stimulus, Map args) {
+                String name = "anonymous";
+                System.out.println("Nice to meet you "+name);
+            }
+        });
         Spine spine = new Spine();
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
