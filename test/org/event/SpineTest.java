@@ -2,7 +2,7 @@
 package org.event;
 
 // required modules
-import java.util.Map;
+import java.util.*;
 import org.junit.*;
 
 
