@@ -16,8 +16,6 @@ public class SlowReaction implements Reactable {
     
     // data
     Reactable reaction;
-    String stimulus;
-    Map args;
     
     // static data
     static ExecutorService threads = Spine.threads;
