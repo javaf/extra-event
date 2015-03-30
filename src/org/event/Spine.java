@@ -22,7 +22,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     // static data
     static Reactable fallback = new DefReaction();
-    static ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
+    static final ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
         Thread t = new Thread(r);
         t.setDaemon(true);
         return t;
@@ -30,14 +30,11 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
     
     // init code
     static {
-        Runtime.getRuntime().addShutdownHook(new Thread(){
-            @Override
-            public void run() {
-                threads.shutdown();
-                try { threads.awaitTermination(3650, TimeUnit.DAYS); }
-                catch(InterruptedException e) {}
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            threads.shutdown();
+            try { threads.awaitTermination(3650, TimeUnit.DAYS); }
+            catch(InterruptedException e) {}
+        }));
     }
     
     
