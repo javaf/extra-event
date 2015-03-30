@@ -21,11 +21,7 @@ public class DefReaction implements Reactable {
      */
     @Override
     public void on(String stimulus, Map args) {
-        Reactable r = new DefReaction()::on;
         System.out.println("["+stimulus+"] : "+args);
         if(args.containsKey("err")) throw new SpineException((Throwable)args.get("err"));
-    }
-    
-    public static void testStaticMethod(String stimulus, Map args) {
     }
 }
