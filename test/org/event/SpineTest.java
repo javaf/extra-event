@@ -62,7 +62,7 @@ public class SpineTest {
         System.out.println("test_ReactableClass");
         ReactableClassHello helloReaction = new ReactableClassHello();
         // annotations only work in Reaction objects
-        Reaction byeReaction = new Reaction(new ReactableClassBye());
+        Reactable byeReaction = new SlowReaction(new ReactableClassBye());
         Spine spine = new Spine();
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
@@ -78,9 +78,8 @@ public class SpineTest {
             System.out.println("Lets get to work");
         };
         // annotations allowed in anonymous class, but not lambda expression
-        Reaction byeReaction = new Reaction(new Reactable() {
+        Reactable byeReaction = new SlowReaction(new Reactable() {
             @Override
-            @Reacts("slow")
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
                 System.out.println("Nice to meet you "+name);
@@ -99,10 +98,10 @@ public class SpineTest {
         ReactionMethods main = new ReactionMethods();
         Spine spine = new Spine();
         // static reaction method
-        spine.on("hello", new Reaction(ReactionMethods.class, "helloReactor"));
+        spine.on("hello", ReactionMethods::helloReactor);
         // instance reaction method 
         // speed can be indicated manually as well
-        spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
+        spine.on("bye", new SlowReaction(main::byeReactor));
         spine.is("hello");
         spine.is("bye");
         // slow reactions trigger asynchronously
@@ -115,11 +114,11 @@ public class SpineTest {
         System.out.println("test_ReactionClass");
         ReactionClass reactionClass = new ReactionClass();
         // only static reaction methods are triggered
-        Spine spine1 = new Spine(ReactionClass.class);
+        Spine spine1 = new Spine();
         spine1.is("hello").is("bye");
         System.out.println();
         // both static and instance methods are triggered
-        Spine spine2 = new Spine(reactionClass);
+        Spine spine2 = new Spine();
         spine2.is("hello").is("bye");
         System.out.println();
         // import spine1 to spine2 (or any Map<String, Reactable>)
@@ -133,11 +132,11 @@ public class SpineTest {
         System.out.println("test_EventLoop");
         EventLoop eventLoop = new EventLoop();
         // only static reaction methods are triggered
-        Spine spine1 = new Spine(EventLoop.class);
+        Spine spine1 = new Spine();
         spine1.is("hello").is("bye");
         System.out.println();
         // both static and instance methods are triggered
-        Spine spine2 = new Spine(eventLoop);
+        Spine spine2 = new Spine();
         spine2.is("hello").is("bye");
         System.out.println();
         // import spine1 to spine2 (or any Map<String, Reactable>)

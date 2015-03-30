@@ -13,7 +13,9 @@ public class EventLoop extends Thread implements Reactable {
     BlockingQueue<Object[]> events;
 
     public EventLoop() {
-    	spine = new Spine(this);
+    	spine = new Spine();
+        spine.on("hello", EventLoop::onHello);
+        spine.on("bye", this::onBye);
     	events = new LinkedBlockingQueue<>();
     }
     
