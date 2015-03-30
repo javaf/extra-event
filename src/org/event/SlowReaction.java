@@ -18,8 +18,21 @@ public class SlowReaction implements Reactable {
     Reactable reaction;
     
     // static data
-    static ExecutorService threads = Spine.threads;
-
+    static final ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        return t;
+    });
+    
+    // init code
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            threads.shutdown();
+            try { threads.awaitTermination(3650, TimeUnit.DAYS); }
+            catch(InterruptedException e) {}
+        }));
+    }
+    
     
     /**
      * <b>Create a Slow Reaction</b>
