@@ -11,7 +11,7 @@ import java.util.*;
  * <div>Classes implementing this interface are able to react to stimuli</div>
  * @author wolfram77
  */
-public interface Reaction {
+public interface Reactable {
     
     /**
      * <b>React on a stimulus</b>

@@ -74,7 +74,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reactable>> implements 
             if(!mthd.startsWith("on") || mthd.length()<=2 || (!isstatic && bestatic)) continue;
             // save appropriately
             String stim = _toHyphenCase(mthd.substring(2));
-            Reaction reaction = isstatic? new Reaction(cls, mthd) : new Reaction(obj, mthd);
+            Reactable reaction = isstatic? new Reactable(cls, mthd) : new Reactable(obj, mthd);
             if(m.isAnnotationPresent(Reacts.class)) reaction.speed(m.getAnnotation(Reacts.class).value());
             on(stim, reaction);
         }

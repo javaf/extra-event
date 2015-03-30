@@ -10,11 +10,11 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Reaction to a stimulus</b>
+ * <b>Reactable to a stimulus</b>
  * <div>Encapsulates a reaction-method or {@linkplain Reactable} object</div>
  * @author wolfram77
  */
-public class React implements Reactable, Runnable {
+public class SlowReaction implements Reactable, Runnable {
     
     // data
     Object obj;
@@ -64,7 +64,7 @@ public class React implements Reactable, Runnable {
      * <b>Create a copy of another reaction</b>
      * @param reaction reaction to copy
      */
-    public Reaction(Reaction reaction) {
+    public Reaction(Reactable reaction) {
         obj = reaction.obj;
         mthd = reaction.mthd;
         stimulus = reaction.stimulus;
@@ -107,9 +107,9 @@ public class React implements Reactable, Runnable {
      * <div>A fast reaction-method is invoked synchronously</div>
      * <div>A slow reaction-method is invoked asynchronously</div>
      * @param speed reaction-method's speed
-     * @return {@linkplain Reaction} for chaining
+     * @return {@link Reactable} for chaining
      */
-    public Reaction speed(String speed) {
+    public Reactable speed(String speed) {
         stimulus = speed.equalsIgnoreCase("slow")? "" : null;
         return this;
     }

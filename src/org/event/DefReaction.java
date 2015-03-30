@@ -12,7 +12,7 @@ import java.util.*;
  * <div>(when fallback reaction is unchanged)</div>
  * @author wolfram77
  */
-public class DefReaction implements Reaction {
+public class DefReaction implements Reactable {
 
     /**
      * <b>Print stimulus details and throw any error</b>
