@@ -14,7 +14,7 @@ import java.util.concurrent.*;
  * <div>Encapsulates a reaction-method or {@linkplain Reactable} object</div>
  * @author wolfram77
  */
-public class Reaction implements Reactable, Runnable {
+public class React implements Reactable, Runnable {
     
     // data
     Object obj;
