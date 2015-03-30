@@ -20,11 +20,10 @@ public class LambdaTest
  // hold result to prevent too much optimizations
     final int[] dummy=new int[4];
 
-    Method reflected=LambdaTest.class
-      .getDeclaredMethod("myMethod", int.class, int.class);
+    Method reflected = LambdaTest.class.getDeclaredMethod("myMethod", int.class, int.class);
     final MethodHandles.Lookup lookup = MethodHandles.lookup();
-    MethodHandle mh=lookup.unreflect(reflected);
-    IntBinaryOperator lambda=(IntBinaryOperator)LambdaMetafactory.metafactory(
+    MethodHandle mh = lookup.unreflect(reflected);
+    IntBinaryOperator lambda = (IntBinaryOperator) LambdaMetafactory.metafactory(
       lookup, "applyAsInt", MethodType.methodType(IntBinaryOperator.class),
       mh.type(), mh, mh.type()).getTarget().invokeExact();
 
