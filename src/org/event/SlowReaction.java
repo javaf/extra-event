@@ -10,15 +10,14 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Reactable to a stimulus</b>
- * <div>Encapsulates a reaction-method or {@linkplain Reactable} object</div>
+ * <b>Slow Reaction to a stimulus</b>
+ * <div>Encapsulates a slow reaction that is executed asynchronously</div>
  * @author wolfram77
  */
 public class SlowReaction implements Reactable, Runnable {
     
     // data
-    Object obj;
-    MethodHandle mthd;
+    Reactable reaction;
     String stimulus;
     Map args;
     
