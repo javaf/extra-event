@@ -16,7 +16,10 @@ import java.util.concurrent.*;
 public class Spine extends ConcurrentHashMap<String, Set<Reactable>> {
     
     // static data
-    static Reactable fallback = new DefReaction();
+    static Reactable fallback = (stimulus, args) -> {
+        System.out.println("["+stimulus+"] : "+args);
+        if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
+    };
     
     
     /**
