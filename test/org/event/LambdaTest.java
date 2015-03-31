@@ -16,7 +16,7 @@ public class LambdaTest {
     private static final LambdaTest obj = new LambdaTest();
     private static final int ITERATIONS = 50_000_000;
     private static final int WARM_UP = 10;
-
+    
     public static void main(String... args) throws Throwable {
         // hold result to prevent too much optimizations
         final int[] dummy = new int[4];

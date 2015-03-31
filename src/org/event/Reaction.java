@@ -12,7 +12,7 @@ import java.util.*;
  * @author wolfram77
  */
 @FunctionalInterface
-public interface Reactable {
+public interface Reaction {
     
     /**
      * <b>React on a stimulus</b>

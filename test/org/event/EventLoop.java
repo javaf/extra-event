@@ -7,7 +7,7 @@ import java.util.*;
 
 
 
-public class EventLoop extends Thread implements Reactable {
+public class EventLoop extends Thread implements Reaction {
 
     public Spine spine;
     BlockingQueue<Object[]> events;

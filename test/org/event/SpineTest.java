@@ -46,6 +46,8 @@ public class SpineTest {
     public void test_ErrorStimulus() {
         System.out.println("test_ErrorStimulus");
         Spine spine = new Spine();
+        // spine.on("", new SlowReaction(null));
+        // spine.on("", Spine.slow(null));
         try { throw new RuntimeException("Got a Sprain"); }
         catch(Exception e) {
             Exception ex = null;
@@ -62,7 +64,7 @@ public class SpineTest {
         System.out.println("test_ReactableClass");
         ReactableClassHello helloReaction = new ReactableClassHello();
         // annotations only work in Reaction objects
-        Reactable byeReaction = new SlowReaction(new ReactableClassBye());
+        Reaction byeReaction = new SlowReaction(new ReactableClassBye());
         Spine spine = new Spine();
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
@@ -74,11 +76,11 @@ public class SpineTest {
     public void test_AnonymousAndLambdaReactable() {
         System.out.println("test_ReactableAnonymousClass");
         // lambda expression is simpler
-        Reactable helloReaction = (String stimulus, Map args) -> {
+        Reaction helloReaction = (String stimulus, Map args) -> {
             System.out.println("Lets get to work");
         };
         // annotations allowed in anonymous class, but not lambda expression
-        Reactable byeReaction = new SlowReaction(new Reactable() {
+        Reaction byeReaction = new SlowReaction(new Reaction() {
             @Override
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
@@ -121,7 +123,7 @@ public class SpineTest {
         Spine spine2 = new Spine();
         spine2.is("hello").is("bye");
         System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reactable>)
+        // import spine1 to spine2 (or any Map<String, Reaction>)
         spine2.on(spine1);
         spine2.is("hello").is("bye");
     }
@@ -139,7 +141,7 @@ public class SpineTest {
         Spine spine2 = new Spine();
         spine2.is("hello").is("bye");
         System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reactable>)
+        // import spine1 to spine2 (or any Map<String, Reaction>)
         spine2.on(spine1);
         spine2.is("hello").is("bye");
     }

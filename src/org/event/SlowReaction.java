@@ -12,10 +12,10 @@ import java.util.concurrent.*;
  * <div>Encapsulates a slow reaction that is executed asynchronously</div>
  * @author wolfram77
  */
-public class SlowReaction implements Reactable {
+public class SlowReaction implements Reaction {
     
     // data
-    Reactable reaction;
+    Reaction reaction;
     
     // static data
     static final ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
@@ -38,7 +38,7 @@ public class SlowReaction implements Reactable {
      * <b>Create a Slow Reaction</b>
      * @param reaction slow reaction
      */
-    public SlowReaction(Reactable reaction) {
+    public SlowReaction(Reaction reaction) {
         this.reaction = reaction;
     }
     
