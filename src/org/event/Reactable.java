@@ -7,8 +7,8 @@ import java.util.*;
 
 
 /**
- * <b>Interface that can react on a stimulus</b>
- * <div>Classes implementing this interface are able to react to stimuli</div>
+ * <b>Interface for reaction to stimulus</b>
+ * <div>Classes implementing this interface can to react to stimuli</div>
  * @author wolfram77
  */
 @FunctionalInterface
