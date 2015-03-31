@@ -20,6 +20,20 @@ public class Spine extends ConcurrentHashMap<String, Set<Reaction>> {
         System.out.println("["+stimulus+"] : "+args);
         if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
     };
+    static final ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        return t;
+    });
+    
+    // init code
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            threads.shutdown();
+            try { threads.awaitTermination(3650, TimeUnit.DAYS); }
+            catch(InterruptedException e) {}
+        }));
+    }
     
     
     /**
@@ -47,6 +61,16 @@ public class Spine extends ConcurrentHashMap<String, Set<Reaction>> {
      */
     public static Reaction fallback() {
         return fallback;
+    }
+    
+    
+    /**
+     * <b>Get fallback reaction, for stimulus with no reaction</b>
+     * @param reaction reaction that is slow (must be executed asynchronously)
+     * @return fallback reaction
+     */
+    public static Reaction slow(Reaction reaction) {
+        return (stimulus, args) -> threads.submit(() -> reaction.on(stimulus, args));
     }
     
     
@@ -130,10 +154,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reaction>> {
      * @param assoc stimuli with associated reactions to trigger
      * @return spine for chaining
      */
-    public Spine on(Map<String, Set<Reaction>> assoc) {
-        assoc.keySet().stream().forEach((stim) -> {
-            on(stim, assoc.get(stim));
-        });
+    public Spine on(Map<String, Collection<Reaction>> assoc) {
+        assoc.forEach((stimulus, reaction) -> on(stimulus, reaction));
         return this;
     }
     
@@ -183,10 +205,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reaction>> {
      * @param assoc stimuli with associated reactions to turn off
      * @return spine for chaining
      */
-    public Spine off(Map<String, Set<Reaction>> assoc) {
-        assoc.keySet().stream().forEach((stim) -> {
-            off(stim, assoc.get(stim));
-        });
+    public Spine off(Map<String, Collection<Reaction>> assoc) {
+        assoc.forEach((stimulus, reaction) -> off(stimulus, reaction));
         return this;
     }
     
