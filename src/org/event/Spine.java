@@ -9,35 +9,24 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Represents stimuli with associated reactions</b>
- * <div>When a stimulus occurs, appropriate reactions are triggered</div>
+ * <b>Represents stimuli with associated reflexes</b>
+ * <div>When a stimulus occurs, appropriate reflexes are triggered</div>
  * @author wolfram77
  */
 public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     // static data
-    static Reflexive fallback = (stimulus, args) -> {
-        System.out.println("["+stimulus+"] : "+args);
-        if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
+    static Reflexive fallback = new Reflexive() {
+        @Override
+        public void on(String stimulus, Map args) {
+            System.out.println("["+stimulus+"] : "+args);
+            if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
+        }
     };
-    static final ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
-        Thread t = new Thread(r);
-        t.setDaemon(true);
-        return t;
-    });
-    
-    // init code
-    static {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            threads.shutdown();
-            try { threads.awaitTermination(3650, TimeUnit.DAYS); }
-            catch(InterruptedException e) {}
-        }));
-    }
     
     
     /**
-     * <b>Initialize {@link Reflexive} set of stimulus</b>
+     * <b>Initialize reflex set of stimulus</b>
      * @param stimulus name of stimulus
      */
     void _initStimulus(String stimulus) {

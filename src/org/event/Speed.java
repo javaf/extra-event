@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 /**
  * <b>Annotation to specify speed of a method</b>
  * <div>Use {@code @Speed("fast")} for fast method (optional)</div>
- * <div>Use {@code @Speed("slow")} for slow method <strong>(required)</strong></div>
+ * <div>Use {@code @Speed("slow")} for slow method <em>(required)</em></div>
  * @author wolfram77
  */
 @Retention(RetentionPolicy.RUNTIME)
