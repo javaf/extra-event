@@ -12,7 +12,7 @@ import java.util.*;
  * @author wolfram77
  */
 @FunctionalInterface
-public interface Reflex {
+public interface Reflexive {
     
     /**
      * <b>Respond to a stimulus</b>

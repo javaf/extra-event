@@ -7,7 +7,7 @@ import java.util.*;
 
 
 
-public class EventLoop extends Thread implements Reflex {
+public class EventLoop extends Thread implements Reflexive {
 
     public Spine spine;
     BlockingQueue<Object[]> events;

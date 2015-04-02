@@ -5,7 +5,7 @@ import java.util.*;
 
 
 
-public class ReactableClassBye implements Reflex {
+public class ReactableClassBye implements Reflexive {
 
     @Override
     public void on(String stimulus, Map args) {

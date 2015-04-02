@@ -63,8 +63,8 @@ public class SpineTest {
     public void test_ReactableClass() {
         System.out.println("test_ReactableClass");
         ReactableClassHello helloReaction = new ReactableClassHello();
-        // annotations only work in Reflex objects
-        Reflex byeReaction = new Reaction(new ReactableClassBye());
+        // annotations only work in Reflexive objects
+        Reflexive byeReaction = new Reaction(new ReactableClassBye());
         Spine spine = new Spine();
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
@@ -76,11 +76,11 @@ public class SpineTest {
     public void test_AnonymousAndLambdaReactable() {
         System.out.println("test_ReactableAnonymousClass");
         // lambda expression is simpler
-        Reflex helloReaction = (String stimulus, Map args) -> {
+        Reflexive helloReaction = (String stimulus, Map args) -> {
             System.out.println("Lets get to work");
         };
         // annotations allowed in anonymous class, but not lambda expression
-        Reflex byeReaction = new Reaction(new Reflex() {
+        Reflexive byeReaction = new Reaction(new Reflexive() {
             @Override
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
@@ -123,7 +123,7 @@ public class SpineTest {
         Spine spine2 = new Spine();
         spine2.is("hello").is("bye");
         System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reflex>)
+        // import spine1 to spine2 (or any Map<String, Reflexive>)
         spine2.on(spine1);
         spine2.is("hello").is("bye");
     }
@@ -141,7 +141,7 @@ public class SpineTest {
         Spine spine2 = new Spine();
         spine2.is("hello").is("bye");
         System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reflex>)
+        // import spine1 to spine2 (or any Map<String, Reflexive>)
         spine2.on(spine1);
         spine2.is("hello").is("bye");
     }

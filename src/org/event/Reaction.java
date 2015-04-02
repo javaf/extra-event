@@ -8,14 +8,14 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Slow Reflex to a stimulus</b>
+ * <b>Slow Reflexive to a stimulus</b>
  * <div>Encapsulates a slow reaction that is executed asynchronously</div>
  * @author wolfram77
  */
-public class Reaction implements Reflex {
+public class Reaction implements Reflexive {
     
     // data
-    Reflex reaction;
+    Reflexive reaction;
     
     // static data
     static final ExecutorService threads = Executors.newCachedThreadPool((Runnable r) -> {
@@ -35,10 +35,10 @@ public class Reaction implements Reflex {
     
     
     /**
-     * <b>Create a Slow Reflex</b>
+     * <b>Create a Slow Reflexive</b>
      * @param reaction slow reaction
      */
-    public Reaction(Reflex reaction) {
+    public Reaction(Reflexive reaction) {
         this.reaction = reaction;
     }
     

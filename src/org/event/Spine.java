@@ -13,10 +13,10 @@ import java.util.concurrent.*;
  * <div>When a stimulus occurs, appropriate reactions are triggered</div>
  * @author wolfram77
  */
-public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
+public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     // static data
-    static Reflex fallback = (stimulus, args) -> {
+    static Reflexive fallback = (stimulus, args) -> {
         System.out.println("["+stimulus+"] : "+args);
         if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
     };
@@ -37,12 +37,12 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
     
     
     /**
-     * <b>Initialize {@link Reflex} set of stimulus</b>
+     * <b>Initialize {@link Reflexive} set of stimulus</b>
      * @param stimulus name of stimulus
      */
     void _initStimulus(String stimulus) {
         if(get(stimulus) != null) return;
-        put(stimulus, Collections.newSetFromMap(new ConcurrentHashMap<Reflex, Boolean>()));
+        put(stimulus, Collections.newSetFromMap(new ConcurrentHashMap<Reflexive, Boolean>()));
     }
     
     
@@ -50,7 +50,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * <b>Set fallback reaction, for stimulus with no reaction</b>
      * @param fallback fallback reaction
      */
-    public static void fallback(Reflex fallback) {
+    public static void fallback(Reflexive fallback) {
         Spine.fallback = fallback;
     }
     
@@ -59,7 +59,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * <b>Get fallback reaction, for stimulus with no reaction</b>
      * @return fallback reaction
      */
-    public static Reflex fallback() {
+    public static Reflexive fallback() {
         return fallback;
     }
     
@@ -69,7 +69,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reaction reaction that is slow (must be executed asynchronously)
      * @return fallback reaction
      */
-    public static Reflex slow(Reflex reaction) {
+    public static Reflexive slow(Reflexive reaction) {
         return (stimulus, args) -> threads.submit(() -> reaction.on(stimulus, args));
     }
     
@@ -89,7 +89,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @return spine for chaining
      */
     public Spine is(String stimulus, Map args) {
-        Set<Reflex> s = get(stimulus);
+        Set<Reflexive> s = get(stimulus);
         if(s == null || s.isEmpty()) fallback.on(stimulus, args);
         else s.stream().forEach((r) -> {
             r.on(stimulus, args);
@@ -115,7 +115,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reaction reaction to trigger
      * @return spine for chaining
      */
-    public Spine on(String stimulus, Reflex reaction) {
+    public Spine on(String stimulus, Reflexive reaction) {
         _initStimulus(stimulus);
         get(stimulus).add(reaction);
         return this;
@@ -128,7 +128,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reactions reactions to trigger
      * @return spine for chaining
      */
-    public Spine on(String stimulus, Collection<Reflex> reactions) {
+    public Spine on(String stimulus, Collection<Reflexive> reactions) {
         _initStimulus(stimulus);
         get(stimulus).addAll(reactions);
         return this;
@@ -141,7 +141,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reaction reaction to trigger
      * @return spine for chaining
      */
-    public Spine on(Collection<String> stimuli, Reflex reaction) {
+    public Spine on(Collection<String> stimuli, Reflexive reaction) {
         stimuli.stream().forEach((stim) -> {
             on(stim, reaction);
         });
@@ -154,7 +154,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param assoc stimuli with associated reactions to trigger
      * @return spine for chaining
      */
-    public Spine on(Map<String, ? extends Collection<Reflex>> assoc) {
+    public Spine on(Map<String, ? extends Collection<Reflexive>> assoc) {
         assoc.forEach((stimulus, reaction) -> on(stimulus, reaction));
         return this;
     }
@@ -166,8 +166,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reaction reaction to turn off
      * @return spine for chaining
      */
-    public Spine off(String stimulus, Reflex reaction) {
-        Set<Reflex> s = get(stimulus);
+    public Spine off(String stimulus, Reflexive reaction) {
+        Set<Reflexive> s = get(stimulus);
         if(s != null) s.remove(reaction);
         return this;
     }
@@ -179,8 +179,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reactions reactions to turn off
      * @return spine for chaining
      */
-    public Spine off(String stimulus, Collection<Reflex> reactions) {
-        Set<Reflex> s = get(stimulus);
+    public Spine off(String stimulus, Collection<Reflexive> reactions) {
+        Set<Reflexive> s = get(stimulus);
         if(s != null) s.removeAll(reactions);
         return this;
     }
@@ -192,7 +192,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param reaction reaction to turn off
      * @return spine for chaining
      */
-    public Spine off(Collection<String> stimuli, Reflex reaction) {
+    public Spine off(Collection<String> stimuli, Reflexive reaction) {
         stimuli.stream().forEach((stim) -> {
             off(stim, reaction);
         });
@@ -205,7 +205,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflex>> {
      * @param assoc stimuli with associated reactions to turn off
      * @return spine for chaining
      */
-    public Spine off(Map<String, ? extends Collection<Reflex>> assoc) {
+    public Spine off(Map<String, ? extends Collection<Reflexive>> assoc) {
         assoc.forEach((stimulus, reaction) -> off(stimulus, reaction));
         return this;
     }
