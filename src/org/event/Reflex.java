@@ -12,7 +12,7 @@ import java.util.concurrent.*;
  * <div>Encapsulates a slow reaction that is executed asynchronously</div>
  * @author wolfram77
  */
-public class Reaction implements Reflexive {
+public class Reflex implements Reflexive {
     
     // data
     Reflexive reaction;
@@ -38,7 +38,7 @@ public class Reaction implements Reflexive {
      * <b>Create a Slow Reflexive</b>
      * @param reaction slow reaction
      */
-    public Reaction(Reflexive reaction) {
+    public Reflex(Reflexive reaction) {
         this.reaction = reaction;
     }
     

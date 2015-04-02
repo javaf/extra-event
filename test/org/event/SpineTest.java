@@ -46,7 +46,7 @@ public class SpineTest {
     public void test_ErrorStimulus() {
         System.out.println("test_ErrorStimulus");
         Spine spine = new Spine();
-        // spine.on("", new Reaction(null));
+        // spine.on("", new Reflex(null));
         // spine.on("", Spine.slow(null));
         try { throw new RuntimeException("Got a Sprain"); }
         catch(Exception e) {
@@ -64,7 +64,7 @@ public class SpineTest {
         System.out.println("test_ReactableClass");
         ReactableClassHello helloReaction = new ReactableClassHello();
         // annotations only work in Reflexive objects
-        Reflexive byeReaction = new Reaction(new ReactableClassBye());
+        Reflexive byeReaction = new Reflex(new ReactableClassBye());
         Spine spine = new Spine();
         // chaining method calls is supported
         spine.on("hello", helloReaction).on("bye", byeReaction);
@@ -80,7 +80,7 @@ public class SpineTest {
             System.out.println("Lets get to work");
         };
         // annotations allowed in anonymous class, but not lambda expression
-        Reflexive byeReaction = new Reaction(new Reflexive() {
+        Reflexive byeReaction = new Reflex(new Reflexive() {
             @Override
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
@@ -103,7 +103,7 @@ public class SpineTest {
         spine.on("hello", ReactionMethods::helloReactor);
         // instance reaction method 
         // speed can be indicated manually as well
-        spine.on("bye", new Reaction(main::byeReactor));
+        spine.on("bye", new Reflex(main::byeReactor));
         spine.is("hello");
         spine.is("bye");
         // slow reactions trigger asynchronously
