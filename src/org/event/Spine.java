@@ -36,8 +36,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Set fallback reaction, for stimulus with no reaction</b>
-     * @param fallback fallback reaction
+     * <b>Set fallback reflex, for stimulus with no reflex</b>
+     * @param fallback fallback reflex
      */
     public static void fallback(Reflexive fallback) {
         Spine.fallback = fallback;
@@ -45,8 +45,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Get fallback reaction, for stimulus with no reaction</b>
-     * @return fallback reaction
+     * <b>Get fallback reflex, for stimulus with no reflex</b>
+     * @return fallback reflex
      */
     public static Reflexive fallback() {
         return fallback;
@@ -54,18 +54,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Get fallback reaction, for stimulus with no reaction</b>
-     * @param reaction reaction that is slow (must be executed asynchronously)
-     * @return fallback reaction
-     */
-    public static Reflexive slow(Reflexive reaction) {
-        return (stimulus, args) -> threads.submit(() -> reaction.on(stimulus, args));
-    }
-    
-    
-    /**
-     * <b>Create an Spine</b>
-     * <div>Associate reactions to stimuli with {@code on(...)}</div>
+     * <b>Create a spine</b>
+     * <div>Associate reflexes to stimuli with {@code on(...)}</div>
      */
     public Spine() {
     }
