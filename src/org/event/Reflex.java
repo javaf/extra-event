@@ -14,16 +14,22 @@ import java.util.concurrent.*;
  * <div>Encapsulates a fast or <em>slow</em> response</div>
  * @author wolfram77
  */
-public class Reflex implements Reflexive, Runnable {
+public class Reflex implements Reflexive {
     
     // data
-    MethodHandle mthd;
-    Reflexive reflex;
+    final MethodHandle mthd;
+    final Reflexive reflex;
     boolean fast;
     
-    
     // static data
-    static ExecutorService threads = Spine.threads;
+    static final ExecutorService threads = Executors.newCachedThreadPool(new ThreadFactory() {
+        @Override
+        public Thread newThread(Runnable r) {
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            return t;
+        }
+    });
     
     
     /**
@@ -52,11 +58,10 @@ public class Reflex implements Reflexive, Runnable {
      */
     void _on(String stimulus, Map args) {
         try {
-            if(mthd == null) ((Reflexive)obj).on(stimulus, args);
-            else if(obj == null) mthd.invokeExact(stimulus, args);
-            else mthd.invoke(obj, stimulus, args);
+            if(mthd == null) reflex.on(stimulus, args);
+            else mthd.invoke(stimulus, args);
         }
-        catch(Throwable e) { throw new SpineException(e); }
+        catch(Throwable e) { throw new RuntimeException(e); }
     }
 
     
