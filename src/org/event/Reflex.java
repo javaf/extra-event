@@ -7,15 +7,15 @@ import java.util.*;
 
 
 /**
- * <b>Interface for reaction to stimulus</b>
- * <div>Classes implementing this interface can to react to stimuli</div>
+ * <b>Interface for response to stimulus</b>
+ * <div>Classes implementing this interface can to respond to stimuli</div>
  * @author wolfram77
  */
 @FunctionalInterface
 public interface Reflex {
     
     /**
-     * <b>React on a stimulus</b>
+     * <b>Respond to a stimulus</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
