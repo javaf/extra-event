@@ -11,7 +11,6 @@ import java.util.*;
  * <div>Classes implementing this interface can to respond to stimuli</div>
  * @author wolfram77
  */
-@FunctionalInterface
 public interface Reflexive {
     
     /**
