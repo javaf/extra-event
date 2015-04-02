@@ -37,7 +37,7 @@ public class Reflex implements Reflexive, Runnable {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(!isstatic && bestatic) throw new Exception("Method ["+m.getName()+"] is not static");
-            if(m.isAnnotationPresent(Reflexes.class) && m.getAnnotation(Reflexes.class).value().equalsIgnoreCase("slow")) stimulus = "";
+            if(m.isAnnotationPresent(Speed.class) && m.getAnnotation(Speed.class).value().equalsIgnoreCase("slow")) stimulus = "";
             return MethodHandles.lookup().unreflect(m);
         }
         catch(Exception e) { new SpineException(e).exit(); }
