@@ -154,7 +154,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reaction>> {
      * @param assoc stimuli with associated reactions to trigger
      * @return spine for chaining
      */
-    public Spine on(Map<String, Collection<Reaction>> assoc) {
+    public Spine on(Map<String, ? extends Collection<Reaction>> assoc) {
         assoc.forEach((stimulus, reaction) -> on(stimulus, reaction));
         return this;
     }
@@ -205,7 +205,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reaction>> {
      * @param assoc stimuli with associated reactions to turn off
      * @return spine for chaining
      */
-    public Spine off(Map<String, Collection<Reaction>> assoc) {
+    public Spine off(Map<String, ? extends Collection<Reaction>> assoc) {
         assoc.forEach((stimulus, reaction) -> off(stimulus, reaction));
         return this;
     }
