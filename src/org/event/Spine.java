@@ -4,6 +4,7 @@ package org.event;
 // required modules
 import org.data.*;
 import java.util.*;
+import java.lang.reflect.*;
 import java.util.concurrent.*;
 
 
@@ -23,6 +24,48 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
             if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
         }
     };
+    
+    
+    /**
+     * <b>Convert a string from camel case to hyphen case</b>
+     * @param str camel case string
+     * @return hyphen case string
+     */
+    String _toHyphenCase(String str) {
+        StringBuilder s = new StringBuilder();
+        for(int i=0; i<str.length(); i++) {
+            char c = str.charAt(i);
+            if(c >= 'A' && c<='Z') {
+                if(i > 0) s.append('-');
+                s.append((char)(c-'A'+'a'));
+            }
+            else s.append(c);
+        }
+        return s.toString();
+    }
+    
+    
+    /**
+     * <b>Add static / instance reflex methods of a class</b>
+     * @param obj object containing reflex methods (null if static)
+     * @param cls class containing reflex methods
+     */
+    private void _onClass(Object obj, Class cls) {
+        boolean bestatic = obj==null;
+        for(Method m : cls.getMethods()) {
+            // need static or instance?
+            String mthd = m.getName();
+            boolean isstatic = Modifier.isStatic(m.getModifiers());
+            if(!mthd.startsWith("on") || mthd.length()<=2 || isstatic != bestatic) continue;
+            // save appropriately
+            String stim = _toHyphenCase(mthd.substring(2));
+            try {
+                Reflex reflex = isstatic? new Reflex(cls, mthd) : new Reflex(obj, mthd);
+                on(stim, reflex);
+            }
+            catch(ReflectiveOperationException e) {}
+        }
+    }
     
     
     /**
@@ -62,7 +105,29 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Indicate a stimulus, causing reactions to trigger</b>
+     * <b>Create a spine from class</b>
+     * <div>{@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus</div>
+     * <div>Use {@code @Speed("slow")} annotation to indicate slow reflex methods</div>
+     * @param cls class containing reflex methods
+     */
+    public Spine(Class cls) {
+        _onClass(null, cls);
+    }
+    
+    
+    /**
+     * <b>Create a spine from object</b>
+     * <div>{@code on<stimulus>()} methods are associated {@code <stimulus>} stimulus</div>
+     * <div>Use {@code @Reacts("slow")} annotation to indicate slow reflex methods</div>
+     * @param obj object containing reflex methods
+     */
+    public Spine(Object obj) {
+        _onClass(obj, obj.getClass());
+    }
+    
+    
+    /**
+     * <b>Indicate a stimulus, causing reflexes to trigger</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return spine for chaining
@@ -70,128 +135,130 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     public Spine is(String stimulus, Map args) {
         Set<Reflexive> s = get(stimulus);
         if(s == null || s.isEmpty()) fallback.on(stimulus, args);
-        else s.stream().forEach((r) -> {
+        else for(Reflexive r : s)
             r.on(stimulus, args);
-        });
         return this;
     }
     
     
     /**
-     * <b>Indicate a stimulus, causing reactions to trigger</b>
+     * <b>Indicate a stimulus, causing reflexes to trigger</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return spine for chaining
      */
     public Spine is(String stimulus, Object... args) {
-        return is(stimulus, Coll.map(args));
+        Map margs = new HashMap();
+        for(int i=1; i<args.length; i+=2)
+            margs.put(args[i-1], args[i]);
+        return is(stimulus, margs);
     }
     
     
     /**
-     * <b>Set a reaction to trigger on a stimulus</b>
+     * <b>Set a reflex to trigger on a stimulus</b>
      * @param stimulus name of stimulus
-     * @param reaction reaction to trigger
+     * @param reflex reflex to trigger
      * @return spine for chaining
      */
-    public Spine on(String stimulus, Reflexive reaction) {
+    public Spine on(String stimulus, Reflexive reflex) {
         _initStimulus(stimulus);
-        get(stimulus).add(reaction);
+        get(stimulus).add(reflex);
         return this;
     }
     
     
     /**
-     * <b>Set reactions to trigger on a stimulus</b>
+     * <b>Set reflexes to trigger on a stimulus</b>
      * @param stimulus name of stimulus
-     * @param reactions reactions to trigger
+     * @param reflexes reflexes to trigger
      * @return spine for chaining
      */
-    public Spine on(String stimulus, Collection<Reflexive> reactions) {
+    public Spine on(String stimulus, Collection<Reflexive> reflexes) {
         _initStimulus(stimulus);
-        get(stimulus).addAll(reactions);
+        get(stimulus).addAll(reflexes);
         return this;
     }
     
     
     /**
-     * <b>Set a reaction to trigger on stimuli</b>
+     * <b>Set a reflex to trigger on stimuli</b>
      * @param stimuli names of stimuli
-     * @param reaction reaction to trigger
+     * @param reflex reflex to trigger
      * @return spine for chaining
      */
-    public Spine on(Collection<String> stimuli, Reflexive reaction) {
-        stimuli.stream().forEach((stim) -> {
-            on(stim, reaction);
-        });
+    public Spine on(Collection<String> stimuli, Reflexive reflex) {
+        for(String stim : stimuli)
+            on(stim, reflex);
         return this;
     }
     
     
     /**
-     * <b>Set associated reactions to trigger on stimuli</b>
-     * @param assoc stimuli with associated reactions to trigger
+     * <b>Set associated reflexes to trigger on stimuli</b>
+     * @param assoc stimuli with associated reflexes to trigger
      * @return spine for chaining
      */
     public Spine on(Map<String, ? extends Collection<Reflexive>> assoc) {
-        assoc.forEach((stimulus, reaction) -> on(stimulus, reaction));
+        for(Map.Entry<String, ? extends Collection<Reflexive>> e : assoc.entrySet())
+            on(e.getKey(), e.getValue());
         return this;
     }
     
     
     /**
-     * <b>Turn off a reaction for a stimulus</b>
+     * <b>Turn off a reflex for a stimulus</b>
      * @param stimulus name of stimulus
-     * @param reaction reaction to turn off
+     * @param reflex reflex to turn off
      * @return spine for chaining
      */
-    public Spine off(String stimulus, Reflexive reaction) {
+    public Spine off(String stimulus, Reflexive reflex) {
         Set<Reflexive> s = get(stimulus);
-        if(s != null) s.remove(reaction);
+        if(s != null) s.remove(reflex);
         return this;
     }
     
     
     /**
-     * <b>Turn off reactions for a stimulus</b>
+     * <b>Turn off reflexes for a stimulus</b>
      * @param stimulus name of stimulus
-     * @param reactions reactions to turn off
+     * @param reflexes reflexes to turn off
      * @return spine for chaining
      */
-    public Spine off(String stimulus, Collection<Reflexive> reactions) {
+    public Spine off(String stimulus, Collection<Reflexive> reflexes) {
         Set<Reflexive> s = get(stimulus);
-        if(s != null) s.removeAll(reactions);
+        if(s != null) s.removeAll(reflexes);
         return this;
     }
     
     
     /**
-     * <b>Turn off a reaction for stimuli</b>
+     * <b>Turn off a reflex for stimuli</b>
      * @param stimuli names of stimuli
-     * @param reaction reaction to turn off
+     * @param reflex reflex to turn off
      * @return spine for chaining
      */
-    public Spine off(Collection<String> stimuli, Reflexive reaction) {
-        stimuli.stream().forEach((stim) -> {
-            off(stim, reaction);
-        });
+    public Spine off(Collection<String> stimuli, Reflexive reflex) {
+        for(String stim : stimuli)
+            off(stim, reflex);
         return this;
     }
     
     
     /**
-     * <b>Turn off associated reactions for stimuli</b>
-     * @param assoc stimuli with associated reactions to turn off
+     * <b>Turn off associated reflexes for stimuli</b>
+     * @param assoc stimuli with associated reflexes to turn off
      * @return spine for chaining
      */
     public Spine off(Map<String, ? extends Collection<Reflexive>> assoc) {
-        assoc.forEach((stimulus, reaction) -> off(stimulus, reaction));
+        for(Map.Entry<String, ? extends Collection<Reflexive>> e : assoc.entrySet())
+            off(e.getKey(), e.getValue());
         return this;
     }
     
     
     /**
-     * <b>Turn off all reactions for a stimulus</b>
+     * <b>Turn off all reflexes for a stimulus</b>
      * @param stimulus name of stimulus
      * @return spine for chaining
      */
@@ -202,7 +269,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off all reactions for all stimuli</b>
+     * <b>Turn off all reflexes for all stimuli</b>
      * @return spine for chaining
      */
     public Spine off() {
