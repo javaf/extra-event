@@ -2,6 +2,11 @@
 package org.event;
 
 // required modules
+import org.event.part.EventLoop;
+import org.event.part.ReactableClassBye;
+import org.event.part.ReactableClassHello;
+import org.event.part.ReactionClass;
+import org.event.part.ReactionMethods;
 import java.util.*;
 import org.junit.*;
 

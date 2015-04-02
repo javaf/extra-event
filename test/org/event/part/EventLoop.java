@@ -1,9 +1,11 @@
 // @wolfram77
-package org.event;
+package org.event.part;
 
 // required modules
 import java.util.concurrent.*;
 import java.util.*;
+import org.event.Reflexive;
+import org.event.Spine;
 
 
 
