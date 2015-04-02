@@ -19,7 +19,7 @@ public class Reflex implements Reflexive {
     // data
     final MethodHandle mthd;
     final Reflexive reflex;
-    boolean fast;
+    boolean slow;
     
     // static data
     static final ExecutorService threads = Executors.newCachedThreadPool(new ThreadFactory() {
@@ -33,26 +33,26 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Create a new reaction from a reaction-method</b>
-     * @param cls class of reaction-method
-     * @param mthd name of reaction-method
+     * <b>Create reflex from method</b>
+     * @param cls class of method
+     * @param mthd name of method
      * @param bestatic should method be static?
+     * @param gethandle is method handle required?
      */
-    private MethodHandle _new(Class cls, String mthd, boolean bestatic) {
+    private MethodHandle _new(Class cls, String mthd, boolean bestatic, boolean gethandle) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(!isstatic && bestatic) throw new Exception("Method ["+m.getName()+"] is not static");
-            if(m.isAnnotationPresent(Speed.class) && m.getAnnotation(Speed.class).value().equalsIgnoreCase("slow")) stimulus = "";
-            return MethodHandles.lookup().unreflect(m);
+            if(!isstatic && bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is not static");
+            if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
+            return gethandle? MethodHandles.lookup().unreflect(m) : null;
         }
-        catch(Exception e) { new SpineException(e).exit(); }
-        return null;
+        catch(Exception e) { throw new RuntimeException(e); }
     }
 
 
     /**
-     * <b>Invoke a fast reaction-method</b>
+     * <b>Invoke reflex synchronously</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -67,12 +67,13 @@ public class Reflex implements Reflexive {
     
     /**
      * <b>Encapsulate a reflex</b>
-     * <div>Slow reflex must be encapsuted</div>
+     * <div>Slow reflex must be encapsulated</div>
      * @param reflex reflex to encapsulate
      */
     public Reflex(Reflexive reflex) {
+        this.mthd = null;
         this.reflex = reflex;
-        _new(reflex.getClass(), "on", false);
+        _new(reflex.getClass(), "on", false, false);
     }
     
     
@@ -82,7 +83,8 @@ public class Reflex implements Reflexive {
      * @param mthd name of the method
      */
     public Reflex(Class cls, String mthd) {
-        this.mthd = _new(cls, mthd, true);
+        this.reflex = null;
+        this.mthd = _new(cls, mthd, true, true);
     }
     
     
@@ -92,7 +94,8 @@ public class Reflex implements Reflexive {
      * @param mthd name of the method
      */
     public Reflex(Object obj, String mthd) {
-        this.mthd = _new(obj.getClass(), mthd, false);
+        this.reflex = null;
+        this.mthd = _new(obj.getClass(), mthd, false, true);
         this.mthd.bindTo(obj);
     }
     
@@ -105,7 +108,7 @@ public class Reflex implements Reflexive {
      * @return {@linkplain Reflex} for chaining
      */
     public Reflex speed(String speed) {
-        stimulus = speed.equalsIgnoreCase("slow")? "" : null;
+        slow = speed.equalsIgnoreCase("slow");
         return this;
     }
     
@@ -117,7 +120,7 @@ public class Reflex implements Reflexive {
      * @return speed of reflex
      */
     public String speed() {
-        return stimulus != null? "slow" : "fast";
+        return slow? "slow" : "fast";
     }
     
     
@@ -128,22 +131,12 @@ public class Reflex implements Reflexive {
      */
     @Override
     public void on(final String stimulus, final Map args) {
-        if(fast) _on(stimulus, args);
+        if(!slow) _on(stimulus, args);
         else threads.submit(new Thread(new Runnable() {
             @Override
             public void run() {
                 _on(stimulus, args);
             }
         }));
-    }
-    
-    
-    /**
-     * <b>Invoke reaction-method asynchronously</b>
-     * <div>DONT CALL THIS!</div>
-     */
-    @Override
-    public void run() {
-        _on(stimulus, args);
     }
 }

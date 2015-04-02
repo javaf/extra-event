@@ -82,6 +82,7 @@ public class SpineTest {
         // annotations allowed in anonymous class, but not lambda expression
         Reflexive byeReaction = new Reflex(new Reflexive() {
             @Override
+            @Speed("slow")
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
                 System.out.println("Nice to meet you "+name);
