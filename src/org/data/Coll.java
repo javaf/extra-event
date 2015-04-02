@@ -39,9 +39,8 @@ public class Coll {
     @SuppressWarnings("rawtypes")
     public static String toString(Collection coll, String format, String separator) {
         StringBuilder ans = new StringBuilder();
-        coll.stream().forEach((item) -> {
+        for(Object item : coll)
             ans.append(format.replaceAll("\\\\\\(item\\)", item.toString())).append(separator);
-        });
         if (ans.length() > separator.length())
             ans.delete(ans.length() - separator.length(), ans.length());
         return ans.toString();
