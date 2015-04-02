@@ -10,17 +10,17 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Reaction to a stimulus</b>
- * <div>Encapsulates a reaction-method or {@linkplain Reactable} object</div>
+ * <b>Response to a stimulus</b>
+ * <div>Encapsulates a fast or <em>slow</em> response</div>
  * @author wolfram77
  */
 public class Reflex implements Reflexive, Runnable {
     
     // data
-    Object obj;
     MethodHandle mthd;
-    String stimulus;
-    Map args;
+    Reflexive reflex;
+    boolean fast;
+    
     
     // static data
     static ExecutorService threads = Spine.threads;
@@ -37,7 +37,7 @@ public class Reflex implements Reflexive, Runnable {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(!isstatic && bestatic) throw new Exception("Method ["+m.getName()+"] is not static");
-            if(m.isAnnotationPresent(Reacts.class) && m.getAnnotation(Reacts.class).value().equalsIgnoreCase("slow")) stimulus = "";
+            if(m.isAnnotationPresent(Reflexes.class) && m.getAnnotation(Reflexes.class).value().equalsIgnoreCase("slow")) stimulus = "";
             return MethodHandles.lookup().unreflect(m);
         }
         catch(Exception e) { new SpineException(e).exit(); }
@@ -52,7 +52,7 @@ public class Reflex implements Reflexive, Runnable {
      */
     void _on(String stimulus, Map args) {
         try {
-            if(mthd == null) ((Reactable)obj).on(stimulus, args);
+            if(mthd == null) ((Reflexive)obj).on(stimulus, args);
             else if(obj == null) mthd.invokeExact(stimulus, args);
             else mthd.invoke(obj, stimulus, args);
         }
@@ -61,65 +61,55 @@ public class Reflex implements Reflexive, Runnable {
 
     
     /**
-     * <b>Create a copy of another reaction</b>
-     * @param reaction reaction to copy
+     * <b>Encapsulate a reflex</b>
+     * <div>Slow reflex must be encapsuted</div>
+     * @param reflex reflex to encapsulate
      */
-    public Reaction(Reaction reaction) {
-        obj = reaction.obj;
-        mthd = reaction.mthd;
-        stimulus = reaction.stimulus;
-    }
-
-    
-    /**
-     * <b>Create a reaction from an object implementing {@linkplain Reactable}</b>
-     * @param reactable object implementing {@linkplain Reactable}
-     */
-    public Reaction(Reactable reactable) {
-        obj = reactable;
-        _new(reactable.getClass(), "on", false);
+    public Reflex(Reflexive reflex) {
+        this.reflex = reflex;
+        _new(reflex.getClass(), "on", false);
     }
     
     
     /**
-     * <b>Create a reaction from a static reaction-method</b>
-     * @param cls class containing reaction-method
-     * @param mthd name of reaction-method
+     * <b>Create reflex from a static method</b>
+     * @param cls class containing the method
+     * @param mthd name of the method
      */
-    public Reaction(Class cls, String mthd) {
+    public Reflex(Class cls, String mthd) {
         this.mthd = _new(cls, mthd, true);
     }
     
     
     /**
-     * <b>Create a reaction from an instance reaction-method</b>
-     * @param obj object containing reaction-method
-     * @param mthd name of reaction-method
+     * <b>Create a reflex from an instance method</b>
+     * @param obj object containing the method
+     * @param mthd name of the method
      */
-    public Reaction(Object obj, String mthd) {
+    public Reflex(Object obj, String mthd) {
         this.mthd = _new(obj.getClass(), mthd, false);
-        this.obj = obj;
+        this.mthd.bindTo(obj);
     }
     
     
     /**
-     * <b>Tell reaction-method's speed ("fast" or "slow")</b>
-     * <div>A fast reaction-method is invoked synchronously</div>
-     * <div>A slow reaction-method is invoked asynchronously</div>
-     * @param speed reaction-method's speed
-     * @return {@linkplain Reaction} for chaining
+     * <b>Tell reflex speed ("fast" or "slow")</b>
+     * <div>A fast reflex is invoked synchronously</div>
+     * <div>A slow reflex is invoked asynchronously</div>
+     * @param speed speed of reflex
+     * @return {@linkplain Reflex} for chaining
      */
-    public Reaction speed(String speed) {
+    public Reflex speed(String speed) {
         stimulus = speed.equalsIgnoreCase("slow")? "" : null;
         return this;
     }
     
     
     /**
-     * <b>Get reaction-method's speed ("fast" or "slow")</b>
-     * <div>A fast reaction-method is invoked synchronously</div>
-     * <div>A slow reaction-method is invoked asynchronously</div>
-     * @return reaction-method's speed
+     * <b>Get reflex speed ("fast" or "slow")</b>
+     * <div>A fast reflex is invoked synchronously</div>
+     * <div>A slow reflex is invoked asynchronously</div>
+     * @return speed of reflex
      */
     public String speed() {
         return stimulus != null? "slow" : "fast";
@@ -127,16 +117,19 @@ public class Reflex implements Reflexive, Runnable {
     
     
     /**
-     * <b>Invoke the reaction-method</b>
+     * <b>Invoke the reflex</b>
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
     @Override
-    public void on(String stimulus, Map args) {
-        if(this.stimulus == null) { _on(stimulus, args); return; }
-        this.stimulus = stimulus;
-        this.args = args;
-        threads.submit(this);
+    public void on(final String stimulus, final Map args) {
+        if(fast) _on(stimulus, args);
+        else threads.submit(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                _on(stimulus, args);
+            }
+        }));
     }
     
     
