@@ -475,17 +475,8 @@ Annotation to specify reaction-method speed *(internal)* <br/>
 Use `@Reacts("fast")` for fast reaction-methods (optional) <br/>
 Use `@Reacts("slow")` for slow reaction methods (required)
 
-| **(@Reacts)** |     |
+| **(@Speed)** |     |
 |---------------|-----|
-| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction-method |
+| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of method *(fast / slow)* |
 
 <br/>
-
-### SpineException
-
-Unchecked exception for spine *(internal)*
-
-| **SpineException** | `RuntimeException` |
-|--------------------|--------------------|
-| **SpineException** <br/>                                                                                                   `()`, `(msg)`, `(cause)` |                                                                                                   create spine exception - empty, with specified message or cause |
-| **exit** <br/>                                                                                                             `()` |                                                                                                                       show stack trace and exit |
