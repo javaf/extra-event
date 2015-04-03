@@ -15,9 +15,7 @@ public class EventLoop extends Thread implements Reflexive {
     BlockingQueue<Object[]> events;
 
     public EventLoop() {
-    	spine = new Spine();
-        spine.on("hello", EventLoop::onHello);
-        spine.on("bye", this::onBye);
+    	spine = new Spine(this);
     	events = new LinkedBlockingQueue<>();
     }
     
@@ -25,7 +23,7 @@ public class EventLoop extends Thread implements Reflexive {
     	System.out.println("Lets get to work");
     }
     
-    public void onBye(String stimulus, Map args) {
+    private void onBye(String stimulus, Map args) {
         String name = "anonymous";
         System.out.println("Nice to meet you "+name);
     }

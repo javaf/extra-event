@@ -2,7 +2,6 @@
 package org.event;
 
 // required modules
-import org.data.*;
 import java.util.*;
 import java.lang.reflect.*;
 import java.util.concurrent.*;
@@ -10,8 +9,8 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Represents stimuli with associated reflexes</b>
- * <div>When a stimulus occurs, appropriate reflexes are triggered</div>
+ * Represents stimuli with associated reflexes. <p>
+ * When a stimulus occurs, appropriate reflexes are triggered. </p>
  * @author wolfram77
  */
 public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
@@ -27,7 +26,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Convert a string from camel case to hyphen case</b>
+     * Convert a string from camel case to hyphen case.
      * @param str camel case string
      * @return hyphen case string
      */
@@ -46,7 +45,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Add static / instance reflex methods of a class</b>
+     * Add static / instance reflex methods of a class.
      * @param obj object containing reflex methods (null if static)
      * @param cls class containing reflex methods
      */
@@ -63,13 +62,13 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
                 Reflex reflex = isstatic? new Reflex(cls, mthd) : new Reflex(obj, mthd);
                 on(stim, reflex);
             }
-            catch(ReflectiveOperationException e) {}
+            catch(ReflectiveOperationException e) { System.out.println("OOOOooo"); }
         }
     }
     
     
     /**
-     * <b>Initialize reflex set of stimulus</b>
+     * Initialize reflex set of stimulus.
      * @param stimulus name of stimulus
      */
     void _initStimulus(String stimulus) {
@@ -79,7 +78,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Set fallback reflex, for stimulus with no reflex</b>
+     * Set fallback reflex, for stimulus with no reflex.
      * @param fallback fallback reflex
      */
     public static void fallback(Reflexive fallback) {
@@ -88,7 +87,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Get fallback reflex, for stimulus with no reflex</b>
+     * Get fallback reflex, for stimulus with no reflex.
      * @return fallback reflex
      */
     public static Reflexive fallback() {
@@ -97,17 +96,17 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Create a spine</b>
-     * <div>Associate reflexes to stimuli with {@code on(...)}</div>
+     * Create a spine. <p>
+     * Associate reflexes to stimuli with {@code on(...)}. </p>
      */
     public Spine() {
     }
     
     
     /**
-     * <b>Create a spine from class</b>
-     * <div>{@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus</div>
-     * <div>Use {@code @Speed("slow")} annotation to indicate slow reflex methods</div>
+     * Create a spine from class. <p>
+     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus.
+     * Use {@code @Speed("slow")} annotation to indicate slow reflex methods. </p>
      * @param cls class containing reflex methods
      */
     public Spine(Class cls) {
@@ -116,9 +115,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Create a spine from object</b>
-     * <div>{@code on<stimulus>()} methods are associated {@code <stimulus>} stimulus</div>
-     * <div>Use {@code @Reacts("slow")} annotation to indicate slow reflex methods</div>
+     * Create a spine from object. <p>
+     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus.
+     * Use {@code @Speed("slow")} annotation to indicate slow reflex methods. </p>
      * @param obj object containing reflex methods
      */
     public Spine(Object obj) {
@@ -127,7 +126,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Indicate a stimulus, causing reflexes to trigger</b>
+     * Indicate a stimulus, causing reflexes to trigger.
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return spine for chaining
@@ -142,7 +141,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Indicate a stimulus, causing reflexes to trigger</b>
+     * Indicate a stimulus, causing reflexes to trigger.
      * @param stimulus name of stimulus
      * @param args additional arguments
      * @return spine for chaining
@@ -156,7 +155,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Set a reflex to trigger on a stimulus</b>
+     * Set a reflex to trigger on a stimulus.
      * @param stimulus name of stimulus
      * @param reflex reflex to trigger
      * @return spine for chaining
@@ -169,7 +168,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Set reflexes to trigger on a stimulus</b>
+     * Set reflexes to trigger on a stimulus.
      * @param stimulus name of stimulus
      * @param reflexes reflexes to trigger
      * @return spine for chaining
@@ -182,7 +181,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Set a reflex to trigger on stimuli</b>
+     * Set a reflex to trigger on stimuli.
      * @param stimuli names of stimuli
      * @param reflex reflex to trigger
      * @return spine for chaining
@@ -195,7 +194,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Set associated reflexes to trigger on stimuli</b>
+     * Set associated reflexes to trigger on stimuli.
      * @param assoc stimuli with associated reflexes to trigger
      * @return spine for chaining
      */
@@ -207,7 +206,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off a reflex for a stimulus</b>
+     * Turn off a reflex for a stimulus.
      * @param stimulus name of stimulus
      * @param reflex reflex to turn off
      * @return spine for chaining
@@ -220,7 +219,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off reflexes for a stimulus</b>
+     * Turn off reflexes for a stimulus.
      * @param stimulus name of stimulus
      * @param reflexes reflexes to turn off
      * @return spine for chaining
@@ -233,7 +232,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off a reflex for stimuli</b>
+     * Turn off a reflex for stimuli.
      * @param stimuli names of stimuli
      * @param reflex reflex to turn off
      * @return spine for chaining
@@ -246,7 +245,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off associated reflexes for stimuli</b>
+     * Turn off associated reflexes for stimuli.
      * @param assoc stimuli with associated reflexes to turn off
      * @return spine for chaining
      */
@@ -258,7 +257,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off all reflexes for a stimulus</b>
+     * Turn off all reflexes for a stimulus.
      * @param stimulus name of stimulus
      * @return spine for chaining
      */
@@ -269,7 +268,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * <b>Turn off all reflexes for all stimuli</b>
+     * Turn off all reflexes for all stimuli.
      * @return spine for chaining
      */
     public Spine off() {

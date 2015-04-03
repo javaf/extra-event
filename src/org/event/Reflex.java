@@ -10,8 +10,10 @@ import java.util.concurrent.*;
 
 
 /**
- * <b>Response to a stimulus</b>
- * <div>Encapsulates a fast or <em>slow</em> response</div>
+ * Response to a stimulus. <p>
+ * Encapsulates a fast or <i>slow</i> response. Slow
+ * response is run on a daemon thread. Any executing
+ * slow response is aborted on application exit. </p>
  * @author wolfram77
  */
 public class Reflex implements Reflexive {
@@ -33,7 +35,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Create reflex from method</b>
+     * Create reflex from method.
      * @param cls class of method
      * @param mthd name of method
      * @param bestatic should method be static?
@@ -49,7 +51,7 @@ public class Reflex implements Reflexive {
 
 
     /**
-     * <b>Invoke reflex synchronously</b>
+     * Invoke reflex synchronously.
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
@@ -63,8 +65,8 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Encapsulate a reflex</b>
-     * <div>Slow reflex must be encapsulated</div>
+     * Encapsulate a reflex. <p>
+     * Slow reflex must be encapsulated. </p>
      * @param reflex reflex to encapsulate
      */
     public Reflex(Reflexive reflex) {
@@ -76,7 +78,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Create reflex from a static method</b>
+     * Create reflex from static method.
      * @param cls class containing the method
      * @param mthd name of the method
      * @throws java.lang.ReflectiveOperationException if method not accessible
@@ -88,7 +90,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Create a reflex from an instance method</b>
+     * Create a reflex from instance method.
      * @param obj object containing the method
      * @param mthd name of the method
      * @throws java.lang.ReflectiveOperationException if method not accessible
@@ -101,11 +103,11 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Tell reflex speed ("fast" or "slow")</b>
-     * <div>A fast reflex is invoked synchronously</div>
-     * <div>A slow reflex is invoked asynchronously</div>
+     * Tell reflex speed <i>fast / slow.</i> <p>
+     * A fast reflex is invoked synchronously,
+     * slow reflex - asynchronously. </p>
      * @param speed speed of reflex
-     * @return {@linkplain Reflex} for chaining
+     * @return reflex for chaining
      */
     public Reflex speed(String speed) {
         slow = speed.equalsIgnoreCase("slow");
@@ -114,9 +116,9 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Get reflex speed ("fast" or "slow")</b>
-     * <div>A fast reflex is invoked synchronously</div>
-     * <div>A slow reflex is invoked asynchronously</div>
+     * Get reflex speed <i>fast / slow.</i>  <p>
+     * A fast reflex is invoked synchronously,
+     * slow reflex - asynchronously. </p>
      * @return speed of reflex
      */
     public String speed() {
@@ -125,7 +127,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * <b>Invoke the reflex</b>
+     * Invoke the reflex.
      * @param stimulus name of stimulus
      * @param args additional arguments
      */

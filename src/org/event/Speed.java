@@ -7,9 +7,9 @@ import java.lang.annotation.*;
 
 
 /**
- * <b>Annotation to specify speed of a method</b>
- * <div>Use {@code @Speed("fast")} for fast method (optional)</div>
- * <div>Use {@code @Speed("slow")} for slow method <em>(required)</em></div>
+ * Annotation to specify speed of a method. <p>
+ * Use {@code @Speed("fast")} for fast method (optional), or
+ * {@code @Speed("slow")} for slow method <i>(required)</i>. </p>
  * @author wolfram77
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 public @interface Speed {
     
     /**
-     * <b>Speed of method ("fast" or "slow")</b>
+     * Speed of method <i>fast / slow</i>.
      * @return speed of method
      */
     String value() default "fast";
