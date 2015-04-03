@@ -477,6 +477,6 @@ Use `@Reacts("slow")` for slow reaction methods (required)
 
 | **(@Speed)** |     |
 |---------------|-----|
-| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of method *(fast / slow)* |
+| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of method ("fast" or "slow") |
 
 <br/>
