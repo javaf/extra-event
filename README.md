@@ -433,16 +433,17 @@ When a stimulus occurs, appropriate reactions are triggered
 
 <br/>
 
-### Reaction
+### Reflex
 
-Reaction to a stimulus <br/>
-Encapsulates a reaction-method or `Reactable` object
+Response to a stimulus. <br/>
+Encapsulates a fast or <i>slow</i> response. Slow response is run on a daemon thread.
+Any executing slow response is aborted on application exit.
 
-| **Reaction** | `(Reactable)` |
-|--------------|---------------|
-| **Reaction** <br/>                                                                                                         `(reaction)`, `(reactable)`, <br/> `(cls, mthd)`, `(obj, mthd)` |                                                            create a reaction that can be invoked on a stimulus <br/>                                                                    `Reaction done = new Reaction(anotherReaction);` <br/>                                                                       `Reaction done = new Reaction(reactableObj);` <br/>                                                                          `Reaction done = new Reaction(MthdCls.class, "mthd");` <br/>                                                                 `Reaction done = new Reaction(MthdObj, "mthd");` |
-| **speed** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of reaction <br/>                                                                                            `String speed = reaction.speed();` <br/>                                                                                     `reaction.speed("slow");` |
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         invoke reaction-method *(internal)* |
+| **Reflex** | `(Reflexive)` |
+|------------|---------------|
+| **Reflex** <br/>                                                                                                         `(reflexive)`, `(cls, mthd)`, <br/> `(obj, mthd)` |                                                                          Create a reflex that can be invoked on a stimulus <br/>                                                                    `Reflex done = new Reflex(reflexive);` <br/>                                                                                 `Reflex done = new Reflex(MthdCls.class, "mthd");` <br/>                                                                     `Reflex done = new Reflex(MthdObj, "mthd");` |
+| **speed** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            Get / set speed of reflex <br/>                                                                                              `String speed = reflex.speed();` <br/>                                                                                       `reflex.speed("slow");` |
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         Invoke the response. *(internal)* |
 
 <br/>
 
