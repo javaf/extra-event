@@ -435,7 +435,7 @@ When a stimulus occurs, appropriate reflexes are triggered.
 ### Reflex
 
 Response to a stimulus. <br/>
-Encapsulates a fast or <i>slow</i> response. Slow response is run on a daemon thread.
+Encapsulates a fast or <i>slow</i> response. Slow response is run on a daemon thread.<br/>
 Any executing slow response is aborted on application exit.
 
 | **Reflex** | `(Reflexive)` |
