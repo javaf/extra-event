@@ -6,7 +6,7 @@ import java.util.*;
 
 
 
-public class ReactionClass {
+public class ReflexClass {
 
     public static void onHello(String stimulus, Map args) {
         System.out.println("Lets get to work");

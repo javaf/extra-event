@@ -5,17 +5,17 @@ import java.util.*;
 
 
 
-public class CustomTest {
+public class AsyncTest {
     
     public static void main(String[] args) {
         Spine spine = new Spine();
         System.out.println(Thread.currentThread());
-        spine.on("hello", new Reflex(new HelloReflex()));
-        spine.is("hello");
+        spine.on("hello-test", new Reflex(new HelloTestReflex()));
+        spine.is("hello-test");
     }
 }
 
-class HelloReflex implements Reflexive {
+class HelloTestReflex implements Reflexive {
     @Override
     @Speed("slow")
     public void on(String stimulus, Map args) {

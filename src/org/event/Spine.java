@@ -30,7 +30,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @param str camel case string
      * @return hyphen case string
      */
-    String _toHyphenCase(String str) {
+    String _hyphenCase(String str) {
         StringBuilder s = new StringBuilder();
         for(int i=0; i<str.length(); i++) {
             char c = str.charAt(i);
@@ -55,14 +55,14 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
             // need static or instance?
             String mthd = m.getName();
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(!mthd.startsWith("on") || mthd.length()<=2 || isstatic != bestatic) continue;
+            if(mthd.length()<=2 || !mthd.startsWith("on") || isstatic != bestatic) continue;
             // save appropriately
-            String stim = _toHyphenCase(mthd.substring(2));
+            String stim = _hyphenCase(mthd.substring(2));
             try {
                 Reflex reflex = isstatic? new Reflex(cls, mthd) : new Reflex(obj, mthd);
                 on(stim, reflex);
             }
-            catch(ReflectiveOperationException e) { System.out.println("OOOOooo"); }
+            catch(ReflectiveOperationException e) {}
         }
     }
     

@@ -44,7 +44,7 @@ public class Reflex implements Reflexive {
     private MethodHandle _new(Class cls, String mthd, boolean bestatic, boolean gethandle) throws ReflectiveOperationException {
         Method m = cls.getMethod(mthd, String.class, Map.class);
         boolean isstatic = Modifier.isStatic(m.getModifiers());
-        if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is "+(bestatic?"not static":"static"));
+        if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
         if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
         return gethandle? MethodHandles.lookup().unreflect(m) : null;
     }
@@ -97,8 +97,7 @@ public class Reflex implements Reflexive {
      */
     public Reflex(Object obj, String mthd) throws ReflectiveOperationException {
         this.reflex = null;
-        this.mthd = _new(obj.getClass(), mthd, false, true);
-        this.mthd.bindTo(obj);
+        this.mthd = _new(obj.getClass(), mthd, false, true).bindTo(obj);
     }
     
     

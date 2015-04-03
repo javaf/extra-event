@@ -4,8 +4,7 @@ package org.event.part;
 // required modules
 import java.util.concurrent.*;
 import java.util.*;
-import org.event.Reflexive;
-import org.event.Spine;
+import org.event.*;
 
 
 
@@ -19,10 +18,11 @@ public class EventLoop extends Thread implements Reflexive {
     	events = new LinkedBlockingQueue<>();
     }
     
-    public static void onHello(String stimulus, Map args) {
+    public void onHello(String stimulus, Map args) {
     	System.out.println("Lets get to work");
     }
     
+    @Speed("slow")
     private void onBye(String stimulus, Map args) {
         String name = "anonymous";
         System.out.println("Nice to meet you "+name);

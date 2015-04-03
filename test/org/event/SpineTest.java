@@ -63,12 +63,12 @@ public class SpineTest {
     @Test
     public void test_ReactableClass() {
         System.out.println("test_ReactableClass");
-        ReactableClassHello helloReaction = new ReactableClassHello();
+        HelloReflex helloReflex = new HelloReflex();
         // annotations only work in Reflexive objects
-        Reflexive byeReaction = new Reflex(new ReactableClassBye());
+        Reflexive byeReflex = new Reflex(new ByeReflex());
         Spine spine = new Spine();
         // chaining method calls is supported
-        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.on("hello", helloReflex).on("bye", byeReflex);
         spine.is("hello").is("bye");
     }
 
@@ -99,13 +99,13 @@ public class SpineTest {
     @Test
     public void test_ReactionMethod() {
         System.out.println("test_ReactionMethod");
-        ReactionMethods main = new ReactionMethods();
+        ReflexClass main = new ReflexClass();
         Spine spine = new Spine();
         // static reaction method
-        spine.on("hello", ReactionMethods::helloReactor);
+        spine.on("hello", ReflexClass::onHello);
         // instance reaction method 
         // speed can be indicated manually as well
-        spine.on("bye", new Reflex(main::byeReactor));
+        spine.on("bye", new Reflex(main::onBye));
         spine.is("hello");
         spine.is("bye");
         // slow reactions trigger asynchronously
@@ -116,7 +116,7 @@ public class SpineTest {
     @Test
     public void test_ReactionClass() {
         System.out.println("test_ReactionClass");
-        ReactionClass reactionClass = new ReactionClass();
+        ReflexClass reactionClass = new ReflexClass();
         // only static reaction methods are triggered
         Spine spine1 = new Spine();
         spine1.is("hello").is("bye");

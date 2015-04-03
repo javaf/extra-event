@@ -6,10 +6,11 @@ import org.event.Reflexive;
 
 
 
-public class ReactableClassHello implements Reflexive {
+public class ByeReflex implements Reflexive {
 
     @Override
     public void on(String stimulus, Map args) {
-        System.out.println("Lets get to work");
+        String name = "anonymous";
+        System.out.println("Nice to meet you "+name);
     }
 }
