@@ -21,14 +21,15 @@ What is `java-spine` you ask? Here is a short-story to help understand.
 > or else you might have a bad burn on your hand, and you just lost your best day of this year.
 
 > Okay, now think of this. The sparkler which suddenly ignited was a stimulus that was immediately
-> processed by your spinal cord as a threat and an instant reaction was made to happen without your
-> conscious thinking. However, the stimulus also triggered a slow (conscious) response to cool your
+> processed by your spinal cord as a threat and an instant reflex was made to happen without your
+> conscious thinking. However, the stimulus also triggered a slow (conscious) reflex to cool your
 > burn in the hand with a piece of ice from the freezer.
 
-`java-spine` is a minimal stimulus-response (event) library for Java. It provides a subscribe-publish
+`java-spine` is a minimal stimulus-reflex (event) library for Java. It provides a subscribe-publish
 communication mechanism, and can be used in case of a event loop as well. Here, an event is considered
 as a stimulus, and an event handler as the reaction. The `Spine` controls the activation of reactions
-with respect to a stimulus.
+with respect to a stimulus. Also, note that a stimulus can have a specific location, and reflex is
+triggered based on the location. This location is comparable to a `Spine` object.
 
 Here, reactions are categorized as fast or slow. Fast reactions are executed sychronously (because they
 are fast), and slow reactions are executed asynchrounously. In the exact same way, a spine is categorized
