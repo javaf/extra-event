@@ -458,7 +458,7 @@ is unchanged, then this reaction occurs
 
 <br/>
 
-### (Reactable)
+### (Reflexive)
 
 Interface that can react on a stimulus <br/>
 Create a class implementing this interface to be able to react to a stimulus
@@ -469,14 +469,14 @@ Create a class implementing this interface to be able to react to a stimulus
 
 <br/>
 
-### @Reacts
+### @Speed
 
-Annotation to specify reaction-method speed *(internal)* <br/>
-Use `@Reacts("fast")` for fast reaction-methods (optional) <br/>
-Use `@Reacts("slow")` for slow reaction methods (required)
+Annotation to specify method speed <br/>
+Use `@Speed("fast")` for fast methods (optional) <br/>
+Use `@Speed("slow")` for slow methods (required)
 
 | **(@Speed)** |     |
 |---------------|-----|
-| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of method ("fast" or "slow") |
+| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of method |
 
 <br/>
