@@ -446,37 +446,25 @@ Encapsulates a reaction-method or `Reactable` object
 
 <br/>
 
-### DefReaction
-
-Default reaction for stimulus with no reaction <br/>
-If a stimulus has no associated reactions, and the fallback reaction <br/>
-is unchanged, then this reaction occurs
-
-| **DefReaction** | `(Reactable)`  |
-|-----------------|----------------|
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         Print stimulus details and throw any error |
-
-<br/>
-
 ### (Reflexive)
 
-Interface that can react on a stimulus <br/>
-Create a class implementing this interface to be able to react to a stimulus
+Interface for response to stimulus. <br/>
+Classes implementing this interface can to respond to stimuli.
 
-| **(Reactable)** |      |
+| **(Reflexive)** |      |
 |-----------------|------|
-| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         react on a stimulus, can be attached to multiple stimulus |
+| **on** <br/>                                                                                                               `(stimulus, args)` |                                                                                                         Respond to a stimulus. |
 
 <br/>
 
 ### @Speed
 
-Annotation to specify method speed <br/>
-Use `@Speed("fast")` for fast methods (optional) <br/>
-Use `@Speed("slow")` for slow methods (required)
+Annotation to specify speed of a method. <br/>
+Use `@Speed("fast")` for fast method (optional) <br/>
+Use `@Speed("slow")` for slow method *(required)*
 
 | **(@Speed)** |     |
-|---------------|-----|
-| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            get / set speed of method |
+|--------------|-----|
+| **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            Speed of method (fast or slow). |
 
 <br/>
