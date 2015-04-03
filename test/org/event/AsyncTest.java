@@ -21,8 +21,8 @@ class HelloTestReflex implements Reflexive {
     public void on(String stimulus, Map args) {
         System.out.println(Thread.currentThread());
         System.out.println("Hello World");
-        Scanner in = new Scanner(System.in);
-        in.next();
+        // Scanner in = new Scanner(System.in);
+        // in.next();
     }
 }
 
