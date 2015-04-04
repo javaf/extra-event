@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 public @interface Speed {
     
     /**
-     * Speed of method <i>fast / slow</i>.
+     * Speed of method (fast or slow).
      * @return speed of method
      */
     String value() default "fast";

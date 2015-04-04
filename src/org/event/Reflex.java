@@ -126,7 +126,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * Invoke the reflex.
+     * Invoke the response.
      * @param stimulus name of stimulus
      * @param args additional arguments
      */
