@@ -74,7 +74,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * Set fallback reflex, for stimulus with no reflex.
+     * Set fallback reflex, for stimuli with no reflex.
      * @param fallback fallback reflex
      */
     public static void fallback(Reflexive fallback) {
@@ -83,7 +83,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     
     /**
-     * Get fallback reflex, for stimulus with no reflex.
+     * Get fallback reflex, for stimuli with no reflex.
      * @return fallback reflex
      */
     public static Reflexive fallback() {
