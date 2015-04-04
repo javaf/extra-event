@@ -1,5 +1,4 @@
 language: java
-install: sh prebuild.sh
 jdk:
   - oraclejdk8
   - oraclejdk7
