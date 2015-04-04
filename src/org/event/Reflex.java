@@ -19,8 +19,9 @@ import java.util.concurrent.*;
 public class Reflex implements Reflexive {
     
     // data
-    final MethodHandle mthd;
     final Reflexive reflex;
+    final Method mthd;
+    final Object obj;
     boolean slow;
     
     // static data
@@ -41,12 +42,12 @@ public class Reflex implements Reflexive {
      * @param bestatic should method be static?
      * @param gethandle is method handle required?
      */
-    private MethodHandle _new(Class cls, String mthd, boolean bestatic, boolean gethandle) throws ReflectiveOperationException {
+    private Method _new(Class cls, String mthd, boolean bestatic) throws ReflectiveOperationException {
         Method m = cls.getMethod(mthd, String.class, Map.class);
         boolean isstatic = Modifier.isStatic(m.getModifiers());
         if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
         if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
-        return gethandle? MethodHandles.lookup().unreflect(m) : null;
+        return m;
     }
 
 
@@ -58,7 +59,7 @@ public class Reflex implements Reflexive {
     void _on(String stimulus, Map args) {
         try {
             if(mthd == null) reflex.on(stimulus, args);
-            else mthd.invoke(stimulus, args);
+            else mthd.invoke(obj, stimulus, args);
         }
         catch(Throwable e) { throw new RuntimeException(e); }
     }
@@ -70,9 +71,10 @@ public class Reflex implements Reflexive {
      * @param reflex reflex to encapsulate
      */
     public Reflex(Reflexive reflex) {
-        this.mthd = null;
+        obj = null;
+        mthd = null;
         this.reflex = reflex;
-        try { _new(reflex.getClass(), "on", false, false); }
+        try { _new(reflex.getClass(), "on", false); }
         catch(ReflectiveOperationException e) {}
     }
     
@@ -84,8 +86,9 @@ public class Reflex implements Reflexive {
      * @throws java.lang.ReflectiveOperationException if method not accessible
      */
     public Reflex(Class cls, String mthd) throws ReflectiveOperationException {
-        this.reflex = null;
-        this.mthd = _new(cls, mthd, true, true);
+        obj = null;
+        reflex = null;
+        this.mthd = _new(cls, mthd, true);
     }
     
     
@@ -96,8 +99,9 @@ public class Reflex implements Reflexive {
      * @throws java.lang.ReflectiveOperationException if method not accessible
      */
     public Reflex(Object obj, String mthd) throws ReflectiveOperationException {
-        this.reflex = null;
-        this.mthd = _new(obj.getClass(), mthd, false, true).bindTo(obj);
+        reflex = null;
+        this.obj = obj;
+        this.mthd = _new(obj.getClass(), mthd, false);
     }
     
     

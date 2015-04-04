@@ -10,45 +10,35 @@ import org.event.part.*;
 
 public class SpineTest {
     
-    public SpineTest() {
-    }
-    
+    public SpineTest() {}
     
     @BeforeClass
-    public static void setUpClass() {
-    }
-    
+    public static void setUpClass() {}
     
     @AfterClass
-    public static void tearDownClass() {
-    }
-    
+    public static void tearDownClass() {}
     
     @Before
-    public void setUp() {
-    }
-    
+    public void setUp() {}
     
     @After
-    public void tearDown() {
-    }
+    public void tearDown() {}
 
 
     @Test
     public void test_StandardStimulus() {
-        System.out.println("test_StandardStimulus");
+        System.out.println("test - standard stimulus");
         Spine spine = new Spine();
         // trigger default reaction
         spine.is("hot-object", "msg", "Ouch!");
+        System.out.println("\n");
     }
 
 
     @Test
     public void test_ErrorStimulus() {
-        System.out.println("test_ErrorStimulus");
+        System.out.println("test - error stimulus");
         Spine spine = new Spine();
-        // spine.on("", new Reflex(null));
-        // spine.on("", Spine.slow(null));
         try { throw new RuntimeException("Got a Sprain"); }
         catch(Exception e) {
             Exception ex = null;
@@ -57,12 +47,13 @@ public class SpineTest {
             if(ex == null) throw new RuntimeException();
         }
         // err argument indicates it is an error stimulus
+        System.out.println("\n");
     }
 
 
     @Test
     public void test_ReactableClass() {
-        System.out.println("test_ReactableClass");
+        System.out.println("\n\ntest_ReactableClass");
         HelloReflex helloReflex = new HelloReflex();
         // annotations only work in Reflexive objects
         Reflexive byeReflex = new Reflex(new ByeReflex());
@@ -75,7 +66,7 @@ public class SpineTest {
 
     @Test
     public void test_AnonymousAndLambdaReactable() {
-        System.out.println("test_ReactableAnonymousClass");
+        System.out.println("\n\ntest_ReactableAnonymousClass");
         // lambda expression is simpler
         Reflexive helloReaction = (String stimulus, Map args) -> {
             System.out.println("Lets get to work");
@@ -98,7 +89,7 @@ public class SpineTest {
 
     @Test
     public void test_ReactionMethod() {
-        System.out.println("test_ReactionMethod");
+        System.out.println("\n\ntest_ReactionMethod");
         ReflexClass main = new ReflexClass();
         Spine spine = new Spine();
         // static reaction method
@@ -115,7 +106,7 @@ public class SpineTest {
 
     @Test
     public void test_ReactionClass() {
-        System.out.println("test_ReactionClass");
+        System.out.println("\n\ntest_ReactionClass");
         ReflexClass reactionClass = new ReflexClass();
         // only static reaction methods are triggered
         Spine spine1 = new Spine();
@@ -133,18 +124,11 @@ public class SpineTest {
 
     @Test
     public void test_EventLoop() {
-        System.out.println("test_EventLoop");
+        System.out.println("\n\ntest_EventLoop");
         EventLoop eventLoop = new EventLoop();
-        // only static reaction methods are triggered
-        Spine spine1 = new Spine();
-        spine1.is("hello").is("bye");
+        Spine spine = new Spine();
+        spine.on(eventLoop.spine.keySet(), eventLoop);
+        spine.is("hello").is("bye");
         System.out.println();
-        // both static and instance methods are triggered
-        Spine spine2 = new Spine();
-        spine2.is("hello").is("bye");
-        System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reflexive>)
-        spine2.on(spine1);
-        spine2.is("hello").is("bye");
     }
 }
