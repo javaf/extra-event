@@ -1,5 +1,4 @@
 language: java
-install: junit
 jdk:
   - oraclejdk8
   - oraclejdk7
