@@ -23,7 +23,12 @@ public class SpineTest {
     
     @After
     public void tearDown() {}
-
+    
+    public static void done() {
+        try { Thread.sleep(10); }
+        catch(InterruptedException e) {}
+        System.out.println("\n");
+    }
 
     @Test
     public void test_StandardStimulus() {
@@ -31,104 +36,94 @@ public class SpineTest {
         Spine spine = new Spine();
         // trigger default reaction
         spine.is("hot-object", "msg", "Ouch!");
-        System.out.println("\n");
+        done();
     }
 
 
     @Test
-    public void test_ErrorStimulus() {
-        System.out.println("test - error stimulus");
-        Spine spine = new Spine();
-        try { throw new RuntimeException("Got a Sprain"); }
-        catch(Exception e) {
-            Exception ex = null;
-            try { spine.is("injury", "err", e, "msg", "Cant go to school"); }
-            catch(Exception exx) { ex = exx; }
-            if(ex == null) throw new RuntimeException();
-        }
-        // err argument indicates it is an error stimulus
-        System.out.println("\n");
-    }
-
-
-    @Test
-    public void test_ReactableClass() {
-        System.out.println("\n\ntest_ReactableClass");
-        HelloReflex helloReflex = new HelloReflex();
-        // annotations only work in Reflexive objects
-        Reflexive byeReflex = new Reflex(new ByeReflex());
+    public void test_Reflexive() {
+        System.out.println("test - reflexive");
+        HelloReflex hello = new HelloReflex();
+        // annotations only work when encapsulated by Reflex
+        Reflexive bye = new Reflex(new ByeReflex());
         Spine spine = new Spine();
         // chaining method calls is supported
-        spine.on("hello", helloReflex).on("bye", byeReflex);
+        spine.on("hello", hello).on("bye", bye);
         spine.is("hello").is("bye");
+        done();
     }
 
 
     @Test
-    public void test_AnonymousAndLambdaReactable() {
-        System.out.println("\n\ntest_ReactableAnonymousClass");
-        // lambda expression is simpler
-        Reflexive helloReaction = (String stimulus, Map args) -> {
-            System.out.println("Lets get to work");
-        };
-        // annotations allowed in anonymous class, but not lambda expression
-        Reflexive byeReaction = new Reflex(new Reflexive() {
+    public void test_AnonymousReflexive() {
+        System.out.println("test - anonymous reflexive");
+        // anonymous classes are easy to write
+        Reflexive hello = new Reflex(new Reflexive() {
+            @Override
+            public void on(String stimulus, Map args) {
+                System.out.println("Anonymous: Lets get to work");
+            }
+        });
+        // annotations allowed in anonymous class
+        Reflexive bye = new Reflex(new Reflexive() {
             @Override
             @Speed("slow")
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
-                System.out.println("Nice to meet you "+name);
+                System.out.println("Anonymous: Nice to meet you "+name);
             }
         });
         Spine spine = new Spine();
         // chaining method calls is supported
-        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.on("hello", hello).on("bye", bye);
         spine.is("hello").is("bye");
+        done();
     }
 
 
     @Test
-    public void test_ReactionMethod() {
-        System.out.println("\n\ntest_ReactionMethod");
-        ReflexClass main = new ReflexClass();
+    public void test_ReflexMethod() {
+        System.out.println("test - reflex method");
         Spine spine = new Spine();
         // static reaction method
-        spine.on("hello", ReflexClass::onHello);
+        spine.on("hello", new Reflex(ReflexMethods.class, "onHello"));
         // instance reaction method 
         // speed can be indicated manually as well
-        spine.on("bye", new Reflex(main::onBye));
+        spine.on("bye", new Reflex(new ReflexMethods(), "onBye").speed("slow"));
         spine.is("hello");
         spine.is("bye");
         // slow reactions trigger asynchronously
-        System.out.println("ok?");
+        done();
     }
 
 
     @Test
-    public void test_ReactionClass() {
-        System.out.println("\n\ntest_ReactionClass");
-        ReflexClass reactionClass = new ReflexClass();
-        // only static reaction methods are triggered
-        Spine spine1 = new Spine();
+    public void test_ReflexClass() {
+        System.out.println("test - reflex class");
+        ReflexClass reflexClass = new ReflexClass();
+        // static reaction methods are triggered
+        Spine spine1 = new Spine(ReflexClass.class);
         spine1.is("hello").is("bye");
         System.out.println();
-        // both static and instance methods are triggered
-        Spine spine2 = new Spine();
+        // instance methods are triggered
+        Spine spine2 = new Spine(reflexClass);
         spine2.is("hello").is("bye");
         System.out.println();
         // import spine1 to spine2 (or any Map<String, Reflexive>)
         spine2.on(spine1);
         spine2.is("hello").is("bye");
+        done();
     }
 
 
     @Test
     public void test_EventLoop() {
-        System.out.println("\n\ntest_EventLoop");
+        System.out.println("test - event loop");
         EventLoop eventLoop = new EventLoop();
+        eventLoop.start();
         Spine spine = new Spine();
         spine.on(eventLoop.spine.keySet(), eventLoop);
         spine.is("hello").is("bye");
-        System.out.println();
+        done();
     }
 }

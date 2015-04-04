@@ -20,7 +20,6 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
         @Override
         public void on(String stimulus, Map args) {
             System.out.println("["+stimulus+"] : "+args);
-            if(args.containsKey("err")) throw new RuntimeException((Throwable)args.get("err"));
         }
     };
     
@@ -58,11 +57,8 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
             if(mthd.length()<=2 || !mthd.startsWith("on") || isstatic != bestatic) continue;
             // save appropriately
             String stim = _hyphenCase(mthd.substring(2));
-            try {
-                Reflex reflex = isstatic? new Reflex(cls, mthd) : new Reflex(obj, mthd);
-                on(stim, reflex);
-            }
-            catch(ReflectiveOperationException e) {}
+            Reflex reflex = isstatic? new Reflex(cls, mthd) : new Reflex(obj, mthd);
+            on(stim, reflex);
         }
     }
     

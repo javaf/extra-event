@@ -19,13 +19,13 @@ public class EventLoop extends Thread implements Reflexive {
     }
     
     public void onHello(String stimulus, Map args) {
-    	System.out.println("Lets get to work");
+    	System.out.println("EventLoop: Lets get to work");
     }
     
     @Speed("slow")
-    private void onBye(String stimulus, Map args) {
+    public void onBye(String stimulus, Map args) {
         String name = "anonymous";
-        System.out.println("Nice to meet you "+name);
+        System.out.println("EventLoop: Nice to meet you "+name);
     }
     
     @Override

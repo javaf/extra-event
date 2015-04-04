@@ -6,14 +6,14 @@ import java.util.*;
 
 
 
-public class ReflexClass {
+public class ReflexMethods {
 
     public static void onHello(String stimulus, Map args) {
-        System.out.println("ReflexClass: Lets get to work");
+        System.out.println("ReflexMethod: Lets get to work");
     }
 
     public void onBye(String stimulus, Map args) {
         String name = "anonymous";
-        System.out.println("ReflexClass: Nice to meet you "+name);
+        System.out.println("ReflexMethod: Nice to meet you "+name);
     }
 }
