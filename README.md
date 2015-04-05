@@ -8,8 +8,8 @@ and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loo
 [examples](#examples). Here, everthing related to **events** in *computer science* is named in
 terms of their *biological counterparts* to make it easier to **feel** and *memorize*.
 
-It is [simple](#reference), [fast](#), [tiny](/releases) and [easy to extend](#),
-helping you reduce your *design complexity*, *software rigidity*,
+It is [simple](#reference), [fast](#), [tiny](https://github.com/wolfram77/java-spine/releases)
+and [easy to extend](#), helping you reduce your *design complexity*, *software rigidity*,
 *development time*, *software bugs*, *response time at runtime*. `java-spine` is available for
 *Java 5 and above*, and can be used for **Dektop**, **Web**, or **Mobile** *(Android)*.
 
