@@ -1,32 +1,13 @@
 # java-spine
 
-<img src="/assets/img/head.png" width="100%"><br/>
+<img src="/assets/img/example.png" width="100%"><br/>
 
-> Today is Diwali. You waited a long time for this, didn't you? The dark night is lit up with
-> numerous lights. People have gathered around showers of sparkles oozing from the ground. In
-> the far reaches of the world, beyond your sight, you can hear chained explosions being triggered
-> at random intervals. Darkness is neither spared in the dome skies, as sprays of light spin
-> around with joy.
-
-> Ah! Your crackers are cracked to dryness, ready for their annhilation. But, you are a new
-> kid to this business, and this is the first time you are taking charge. Your mother just
-> laid down the last of deeps' (tear-drop shaped clay candles). Next minute, a sparkler is
-> in your hand. You make sure no one is watching, because you want to do it on your own.
-> After all, you want to treated like a big boy in your house.
-
-> Flame of a deep heats the sparkler. Nothing. You wait. The wait seems for ever, but it never
-> starts to sparkle, but then... Ouch! A pulse rushes down your spine, and without a thought
-> the ignited sparkler goes flying off your hand. Now you are in your conscious mode, and start
-> to think what just happened. Then you realize you should cool it off with a block of ice,
-> or else you might have a bad burn on your hand, and you just lost your best day of this year.
-
-> Okay, now think of this. The sparkler which suddenly ignited was a stimulus that was immediately
-> processed by your spinal cord as a threat and an instant reflex was made to happen without your
-> conscious thinking. However, the stimulus also triggered a slow (conscious) reflex to cool your
-> burn in the hand with a piece of ice from the freezer.
-
-`java-spine` is a minimal stimulus-reflex (event) library for Java. It provides a subscribe-publish
-communication mechanism, and can be used in case of a event loop as well. Here, an event is considered
+`java-spine` is a *minimal* **stimulus-reflex** *(event)* library for *Java*. It is based on
+[publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
+and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as shown
+in [examples](https://github.com/wolfram77/java-spine/blob/master/README.md#examples).
+`java-spine` names everthing related to **events** in terms of their *biological counterparts*
+to make it easier to **feel** and *memorize*.
 as a stimulus, and an event handler as the reaction. The `Spine` controls the activation of reactions
 with respect to a stimulus. Also, note that a stimulus can have a specific location, and reflex is
 triggered based on the location. This location is comparable to a `Spine` object.
