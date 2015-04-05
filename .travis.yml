@@ -4,4 +4,4 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
-script: sh "./build.sh"
+before_install: sh "./install.sh"
