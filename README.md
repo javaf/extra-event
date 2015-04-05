@@ -6,8 +6,8 @@
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
 and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as shown
 in [examples](https://github.com/wolfram77/java-spine/blob/master/README.md#examples).
-`java-spine` names everthing related to **events** in terms of their *biological counterparts*
-to make it easier to **feel** and *memorize*.
+Here, everthing related to **events** in *computer science* is named in terms of their
+*biological counterparts* to make it easier to **feel** and *memorize*.
 as a stimulus, and an event handler as the reaction. The `Spine` controls the activation of reactions
 with respect to a stimulus. Also, note that a stimulus can have a specific location, and reflex is
 triggered based on the location. This location is comparable to a `Spine` object.
