@@ -5,7 +5,7 @@
 `java-spine` is a *minimal* **stimulus-reflex** *(event)* library for *Java*. It is based on
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
 and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as shown
-in [examples](https://github.com/wolfram77/java-spine/blob/master/README.md#examples).
+in [examples](#examples).
 Here, everthing related to **events** in *computer science* is named in terms of their
 *biological counterparts* to make it easier to **feel** and *memorize*.
 
