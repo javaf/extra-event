@@ -1,6 +1,6 @@
 # java-spine
 
-What is `java-spine` you ask? Here is a short-story to help understand.
+<img src="/assets/img/logo.png" width="70%"><br/>
 
 > Today is Diwali. You waited a long time for this, didn't you? The dark night is lit up with
 > numerous lights. People have gathered around showers of sparkles oozing from the ground. In
