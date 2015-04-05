@@ -9,8 +9,8 @@ in [examples](https://github.com/wolfram77/java-spine/blob/master/README.md#exam
 Here, everthing related to **events** in *computer science* is named in terms of their
 *biological counterparts* to make it easier to **feel** and *memorize*.
 
-It is [simple](https://github.com/wolfram77/java-spine/blob/master/README.md#reference), [fast],
-[tiny] and [easy to extend], helping you reduce your *design complexity*, *software rigidity*,
+It is [simple](https://github.com/wolfram77/java-spine/blob/master/README.md#reference), [fast](#),
+[tiny](#) and [easy to extend](#), helping you reduce your *design complexity*, *software rigidity*,
 *development time*, *software bugs*, *response time at runtime*. `java-spine` is available for
 *Java 5 and above*, and can be used for **Dektop**, **Web**, or **Mobile** *(Android)*.
 
