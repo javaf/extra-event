@@ -49,7 +49,7 @@ public class Reflex implements Reflexive {
             if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
             return m;
         }
-        catch(ReflectiveOperationException e) { throw new RuntimeException(e); }
+        catch(NoSuchMethodException e) { throw new RuntimeException(e); }
     }
 
 

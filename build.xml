@@ -10,6 +10,21 @@
 <project name="java-spine" default="default" basedir=".">
     <description>Builds, tests, and runs the project java-spine.</description>
     <import file="nbproject/build-impl.xml"/>
+
+	<!-- directories -->
+	<property name="src.dir" location="./src"/>
+	<property name="dist.dir" location="./dist"/>
+	
+	<!-- sources jar -->
+	<target name="-post-jar">
+		<jar destfile="${dist.dir}/java-spine-sources.jar" basedir="${src.dir}"/>
+    </target>
+	
+	<!-- javadoc jar -->
+    <target depends="init,-javadoc-build,-javadoc-browse" name="javadoc">
+		<echo>Files foo.txt and bar.txt are present.</echo>
+		<jar destfile="${dist.dir}/java-spine-javadoc.jar" basedir="${dist.dir}/javadoc"/>
+    </target>
     <!--
 
     There exist several targets which are by default empty and which can be 

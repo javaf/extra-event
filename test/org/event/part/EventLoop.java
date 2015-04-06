@@ -15,7 +15,7 @@ public class EventLoop extends Thread implements Reflexive {
 
     public EventLoop() {
     	spine = new Spine(this);
-    	events = new LinkedBlockingQueue<>();
+    	events = new LinkedBlockingQueue<Object[]>();
     }
     
     public void onHello(String stimulus, Map args) {
