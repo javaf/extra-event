@@ -49,11 +49,11 @@ methods. This technique can be used to [create an Event Loop](#event-loop).
 
 ## Usage
 
-You can get started by going through the [examples](https://github.com/wolfram77/java-spine/blob/master/README.md#examples)
-first. That can help get a lot of things clear. I would suggest you try them out as well. To use this library, goto
-[releases](https://github.com/wolfram77/java-spine/releases), download the JAR files and add them to your project.
-Alternatiely download the source code as a Zip and copy the `src/org` folder in it and add it to your *project*. The 
-[reference](https://github.com/wolfram77/java-spine/blob/master/README.md#reference) will help you know it all.
+Get started by going through the [examples](#examples). To use this library, goto
+[releases](https://github.com/wolfram77/java-spine/releases), and download the *JAR files*,
+`java-spine-jdk<x>`, `java-spine-jdk<x>-sources`, `java-spine-jdk<x>-javadoc` of the appropriate
+*JDK version* and add them to your *project*. Use [reference](#reference) or [javadoc]() while
+developing an *application*.
 
 <br/>
 
