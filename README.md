@@ -25,18 +25,18 @@ stimulus. `java-spine` follows this *concept*.
 
 `java-spine` consists of *class* [Spine](#spine) which is used to **indicate** *reflexes* to
 *stimuli* as `spine.on(stimuli, reflexes)`. Appropriate *reflexes* are **triggered** when a
-*stimulus* is **indicated** as `spine.is(stimulus, args)`. Any *reflex* to a *stimulus* can
+*stimulus* is *indicated* as `spine.is(stimulus, args)`. Any *reflex* to a *stimulus* can
 be removed as `spine.off(stimuli, reflexes)`. If a *stimulus* has *no associated reflex*, the
 **fallback** reflex is invoked, whch simply *prints out* the *details* of the *stimulus*.
-This behaviour can be changed with `Spine.fallback(reflex)` to your **own fallback** *reflex*.
+This behaviour can be changed with `Spine.fallback(reflex)` to your *own fallback reflex*.
 
 A **reflex** can be made as a [class implementing]() *interface* [Reflexive](#reflexive), as
 [anonymous class](), or as [methods encapsulated]() by *class* [Reflex](). *Reflexes* are
-categorized as **slow** and **fast**. A *fast reflex* is invoked by **Spine** **synchronously**
-(because it is *fast*), while a *slow reflex* **asynchronously** (on a seperate *thread* from
+categorized as **slow** and **fast**. A *fast reflex* is invoked by `Spine` *synchronously*
+(because it is *fast*), while a *slow reflex asynchronously* (on a seperate *thread* from
 *threadpool*). This *speed* can be set by using *annotation* [@Speed](#speed) as `@Speed("slow")`
-for **slow** *reflex* (`@Speed("fast")` is *optional*). It can also be set by `reflex.speed(speed)`
-(**not** *suggested*).
+for *slow reflex* (`@Speed("fast")` is *optional*). It can also be set by `reflex.speed(speed)`
+(*not suggested*).
 
 While *indicating* a *stimulus* as `spine.is("mouse-click", "x", x, "y", y)`, *additional arguments*
 or information can be passed to the *reflex*. This information can be *obtained* at the *reflex* as
