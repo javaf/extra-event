@@ -85,66 +85,37 @@ public class Main {
 [hot-object] : {msg=Ouch!}
 ```
 
-### Error Stimulus
+
+### Implement Reflexive
+
+> HelloReflex.java
 
 ```java
-[[Main.java]]
-package main;
-
-// required modules
-import org.event.*;
-
-public class Main {
-    
-    public static void main(String[] args) {
-        Spine spine = new Spine();
-        try { throw new RuntimeException("Got a Sprain"); }
-        catch(Exception e) { spine.is("injury", "err", e, "msg", "Cant go to school"); }
-        // err argument indicates it is an error stimulus
-    }
-}
-```
-
-```
-[injury] : {msg=Cant go to school, err=java.lang.RuntimeException: Got a Sprain}
-Exception in thread "main" org.event.SpineException: java.lang.RuntimeException: Got a Sprain
-	at org.event.DefReaction.on(DefReaction.java:25)
-	at org.event.Spine._is(Spine.java:85)
-	at org.event.Spine.is(Spine.java:181)
-	at org.event.Spine.is(Spine.java:195)
-	at main.Main.main(Main.java:12)
-Caused by: java.lang.RuntimeException: Got a Sprain
-	at main.Main.main(Main.java:11)
-Java Result: 1
-```
-
-### Reactable Class
-
-```java
-[[HelloReactor.java]]
 package main;
 
 // required modules
 import java.util.*;
 import org.event.*;
 
-public class HelloReactor implements Reactable {
+public class HelloReflex implements Reflexive {
 
     @Override
     public void on(String stimulus, Map args) {
         System.out.println("Lets get to work");
     }
 }
+```
 
+> ByeReflex.java
 
-[[ByeReactor.java]]
+```java
 package main;
 
 // required modules
 import java.util.*;
 import org.event.*;
 
-public class ByeReactor implements Reactable {
+public class ByeReflex implements Reflexive {
 
     @Override
     @Reacts("slow")
@@ -155,9 +126,11 @@ public class ByeReactor implements Reactable {
         System.out.println("Nice to meet you "+name);
     }
 }
+```
 
+> Main.java
 
-[[Main.java]]
+```java
 package main;
 
 // required modules
@@ -166,16 +139,18 @@ import org.event.*;
 public class Main {
 
     public static void main(String[] args) {
-        HelloReactor helloReaction = new HelloReactor();
-        // annotations only work in Reaction objects
-        Reaction byeReaction = new Reaction(new ByeReactor());
+        HelloReflex hello = new HelloReflex();
+        // annotations only work when encapsulated by Reflex
+        Reflexive bye = new Reflex(new ByeReflex());
         Spine spine = new Spine();
         // chaining method calls is supported
-        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.on("hello", hello).on("bye", bye);
         spine.is("hello").is("bye");
     }
 }
 ```
+
+> Output
 
 ```
 Lets get to work
@@ -183,10 +158,11 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
-### Lambda & Anonymous Reactable
+### Anonymous Class
+
+> Main.java
 
 ```java
-[[Main.java]]
 package main;
 
 // required modules
@@ -195,12 +171,8 @@ import org.event.*;
 public class Main {
 
     public static void main(String[] args) {
-        // lambda expression is simpler
-        Reactable helloReaction = (String stimulus, Map args) -> {
-            System.out.println("Lets get to work");
-        };
-        // annotations allowed in anonymous class, but not in lambda expression
-        Reaction byeReaction = new Reaction(new Reactable() {
+        // annotations allowed in anonymous class
+        Reflexive bye = new Reflex(new Reflexive() {
             @Override
             @Reacts("slow")
             public void on(String stimulus, Map args) {
@@ -209,22 +181,26 @@ public class Main {
             }
         });
         Spine spine = new Spine();
-        spine.on("hello", helloReaction).on("bye", byeReaction);
+        spine.on("bye", bye);
+        // default reflex for hello
         spine.is("hello").is("bye");
     }
 }
 ```
 
+> Output
+
 ```
-Lets get to work
+[hello] : {}
 Name: anonymous
 Nice to meet you anonymous
 ```
 
-### Reaction Method
+### Reflex Method
+
+> Main.java
 
 ```java
-[[Main.java]]
 package main;
 
 // required modules
@@ -233,11 +209,11 @@ import org.event.*;
 
 public class Main {
     
-    public static void helloReactor(String stimulus, Map args) {
+    public static void helloReflex(String stimulus, Map args) {
     	System.out.println("Lets get to work");
     }
     
-    public void byeReactor(String stimulus, Map args) {
+    public void byeReflex(String stimulus, Map args) {
         System.out.print("Name: ");
         Scanner in = new Scanner(System.in);
         String name = in.next();
@@ -248,17 +224,19 @@ public class Main {
     	Main main = new Main();
         Spine spine = new Spine();
         // static reaction method
-        spine.on("hello", new Reaction(Main.class, "helloReactor"));
+        spine.on("hello", new Reflex(Main.class, "helloReflex"));
         // instance reaction method 
         // speed can be indicated manually as well
-        spine.on("bye", new Reaction(main, "byeReactor").speed("slow"));
+        spine.on("bye", new Reflex(main, "byeReflex").speed("slow"));
         spine.is("hello");
-        spine.is("bye");
         // slow reactions trigger asynchronously
+        spine.is("bye");
         System.out.println("ok?");
     }
 }
 ```
+
+> Output
 
 ```
 Lets get to work
@@ -267,10 +245,11 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
-### Reaction Class
+### Reflex Class
+
+> Introducer.java
 
 ```java
-[[Introducer.java]]
 package main;
 
 // required modules
@@ -289,9 +268,11 @@ public class Introducer {
         System.out.println("Nice to meet you "+name);
     }
 }
+```
 
+> Main.java
 
-[[Main.java]]
+```java
 package main;
 
 // required modules
@@ -301,11 +282,11 @@ public class Main {
 
     public static void main(String[] args) {
         Introducer introducer = new Introducer();
-        // only static reaction methods are triggered
+        // static reflex methods are triggered
         Spine spine1 = new Spine(Introducer.class);
         spine1.is("hello").is("bye");
         System.out.println();
-        // both static and instance methods are triggered
+        // instance methods are triggered
         Spine spine2 = new Spine(introducer);
         spine2.is("hello").is("bye");
         System.out.println();
@@ -316,15 +297,16 @@ public class Main {
 }
 ```
 
+> Output
+
 ```
 Lets get to work
 [bye] : {}
 
-Lets get to work
+[hello] : {}
 Name: anonymous
 Nice to meet you anonymous
 
-Lets get to work
 Lets get to work
 Name: anonymous
 Nice to meet you anonymous
@@ -332,8 +314,9 @@ Nice to meet you anonymous
 
 ### Event Loop
 
+> Introducer.java
+
 ```java
-[[Introducer.java]]
 package main;
 
 // required modules
@@ -341,17 +324,17 @@ import java.util.concurrent.*;
 import java.util.*;
 import org.event.*;
 
-public class Introducer extends Thread implements Reactable {
+public class Introducer extends Thread implements Reflexive {
 
     public Spine spine;
     BlockingQueue<Object[]> events;
 
     public Introducer() {
     	spine = new Spine(this);
-    	events = new LinkedBlockingQueue<>();
+    	events = new LinkedBlockingQueue<Object[]>();
     }
     
-    public static void onHello(String stimulus, Map args) {
+    public void onHello(String stimulus, Map args) {
     	System.out.println("Lets get to work");
     }
     
@@ -379,9 +362,11 @@ public class Introducer extends Thread implements Reactable {
         catch(InterruptedException e) {}
     }
 }
+```
 
+> Main.java
 
-[[Main.java]]
+```java
 package main;
 
 // required modules
@@ -391,30 +376,18 @@ public class Main {
 
     public static void main(String[] args) {
         Introducer introducer = new Introducer();
-        // only static reaction methods are triggered
-        Spine spine1 = new Spine(Introducer.class);
-        spine1.is("hello").is("bye");
-        System.out.println();
-        // both static and instance methods are triggered
-        Spine spine2 = new Spine(introducer);
-        spine2.is("hello").is("bye");
-        System.out.println();
-        // import spine1 to spine2 (or any Map<String, Reactable>)
-        spine2.on(spine1);
-        spine2.is("hello").is("bye");
+        introducer.start();
+        Spine spine = new Spine();
+        spine.on(introducer.spine.keySet(), introducer);
+        // onHello & onBye run on introducer thread
+        spine.is("hello").is("bye");
     }
 }
 ```
 
+> Output
+
 ```
-Lets get to work
-[bye] : {}
-
-Lets get to work
-Name: anonymous
-Nice to meet you anonymous
-
-Lets get to work
 Lets get to work
 Name: anonymous
 Nice to meet you anonymous
