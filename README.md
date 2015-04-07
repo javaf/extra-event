@@ -13,6 +13,17 @@ and [easy to extend](#), helping you reduce your *design complexity*, *software 
 *development time*, *software bugs*, *response time at runtime*. `java-spine` is available for
 *Java 6 and above*, and can be used for **Dektop**, **Web**, or **Mobile** *(Android)*.
 
+
+## Concept
+
+[Spinal Cord](http://en.wikipedia.org/wiki/Spinal_cord) is the connected set of thinking bones in our
+body. **Spine** [helps](https://www.uab.edu/medicine/sci/faqs-about-spinal-cord-injury-sci/what-does-the-spinal-cord-do)
+us sense touch, pressure, temperature and pain. Walk ,jump, run, or even type, without it, no action
+is possible. **Spine** not only [acts as a neural pathway for your brain](https://www.uab.edu/medicine/sci/faqs-about-spinal-cord-injury-sci/what-does-the-spinal-cord-do),
+it is your [quick reflex guardian](http://chestofbooks.com/health/body/massage/Margaret-D-Palmer/Lessons-on-Massage/Reflex-Action-Of-The-Spinal-Cord.html#.VSN7r_mUemE), saving you from dangers.
+
+
+
 as a stimulus, and an event handler as the reaction. The `Spine` controls the activation of reactions
 with respect to a stimulus. Also, note that a stimulus can have a specific location, and reflex is
 triggered based on the location. This location is comparable to a `Spine` object.
