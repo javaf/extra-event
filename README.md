@@ -73,7 +73,7 @@ public class Main {
     
     public static void main(String[] args) {
         Spine spine = new Spine();
-        // trigger default reaction
+        // trigger default reflex
         spine.is("hot-object", "msg", "Ouch!");
     }
 }
