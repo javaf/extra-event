@@ -42,7 +42,7 @@ While *indicating* a *stimulus* as `spine.is("mouse-click", "x", x, "y", y)`, *a
 or information can be passed to the *reflex*. This information can be *obtained* at the *reflex* as
 `args.get("x")` to get `x` *value* passed above. It is possible to create an class full of reflexes
 which respond to specific stimulus by creating **static** methods with names as `on<stimulus>` and
-creating a **Spine** object as `new Spine(ClassName.class)`. A similar way is possible for **instance**
+creating a `Spine` object as `new Spine(ClassName.class)`. A similar way is possible for **instance**
 methods. This technique can be used to [create an Event Loop](#event-loop).
 
 <br/>
