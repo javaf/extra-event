@@ -16,10 +16,15 @@ and [easy to extend](#), helping you reduce your *design complexity*, *software 
 
 ## Concept
 
-[Spinal Cord](http://en.wikipedia.org/wiki/Spinal_cord) is the connected set of thinking bones in our
-body. **Spine** [helps](https://www.uab.edu/medicine/sci/faqs-about-spinal-cord-injury-sci/what-does-the-spinal-cord-do)
-us sense touch, pressure, temperature and pain. Walk ,jump, run, or even type, without it, no action
-is possible. **Spine** not only [acts as a neural pathway for your brain](https://www.uab.edu/medicine/sci/faqs-about-spinal-cord-injury-sci/what-does-the-spinal-cord-do),
+[Spinal Cord](http://en.wikipedia.org/wiki/Spinal_cord) or **Spine** is the connected set of
+thinking bones in our body. We know it as the one who pulls our hand back from a hot object, or
+out leg from a sharp stone. It autonomous and almost instantly provides a reflex to a stimulus
+and also informs our brain to enable it to do something more on a given stimulus. `java-spine`
+follows this concept.
+
+It consists of [class Spine]()
+
+It not only [acts as a neural pathway for your brain](https://www.uab.edu/medicine/sci/faqs-about-spinal-cord-injury-sci/what-does-the-spinal-cord-do),
 it is your [quick reflex guardian](http://chestofbooks.com/health/body/massage/Margaret-D-Palmer/Lessons-on-Massage/Reflex-Action-Of-The-Spinal-Cord.html#.VSN7r_mUemE), saving you from dangers.
 
 
