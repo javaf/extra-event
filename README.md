@@ -1,7 +1,5 @@
 # java-spine
 
-<img src="/assets/img/example.png" width="100%"><br/>
-
 `java-spine` is a *minimal* **stimulus-reflex** *(event)* library for *Java*. It is based on
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
 and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as shown in
@@ -12,6 +10,8 @@ It is [simple](#reference), [fast](#), [tiny](https://github.com/wolfram77/java-
 and [easy to extend](#), helping you reduce your *design complexity*, *software rigidity*,
 *development time*, *software bugs*, *response time at runtime*. `java-spine` is available for
 *Java 6 and above*, and can be used for **Dektop**, **Web**, or **Mobile** *(Android)*.
+
+<img src="/assets/img/example.png" width="100%"><br/>
 
 
 ## Concept
@@ -26,7 +26,7 @@ follows this *concept*.
 `spine.on(stimuli, reflexes)`. Appropriate *reflexes* are **triggered** when a *stimulus* is **indicated**
 as `spine.is(stimulus, args)`. Any *reflex* to a *stimulus* can be removed as `spine.off(stimuli, reflexes)`.
 If a *stimulus* has *no associated reflex*, the **fallback** reflex is invoked, whch simply *prints out* the
-*details* of the *stimulus*. This behaviour can be changed with `Spine.fallback(reflex)` to your **own**
+*details* of the *stimulus*. This behaviour can be changed with `Spine.fallback(reflex)` to your **own fallback**
 *reflex*.
 
 A **reflex** can be made as a [class implementing]() interface [Reflexive](#reflexive)
