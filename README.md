@@ -61,10 +61,9 @@ developing an *application*.
 
 ### Default Reflex
 
-> a
+> Main.java
 
 ```java
-[[Main.java]]
 package main;
 
 // required modules
@@ -79,6 +78,9 @@ public class Main {
     }
 }
 ```
+
+> Output
+
 ```
 [hot-object] : {msg=Ouch!}
 ```
