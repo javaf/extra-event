@@ -41,7 +41,7 @@ public class Reflex implements Reflexive {
      * @param bestatic should method be static?
      * @param gethandle is method handle required?
      */
-    private Method _new(Class cls, String mthd, boolean bestatic) {
+    private Method _new(Class<?> cls, String mthd, boolean bestatic) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());

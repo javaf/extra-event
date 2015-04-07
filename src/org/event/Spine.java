@@ -143,7 +143,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @return spine for chaining
      */
     public Spine is(String stimulus, Object... args) {
-        Map margs = new HashMap();
+        Map<Object, Object> margs = new HashMap<Object, Object>();
         for(int i=1; i<args.length; i+=2)
             margs.put(args[i-1], args[i]);
         return is(stimulus, margs);
