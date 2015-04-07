@@ -59,7 +59,10 @@ developing an *application*.
 
 ## Examples
 
-### Standard Stimulus
+### Default Reflex
+
+> a
+
 ```java
 [[Main.java]]
 package main;
