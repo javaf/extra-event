@@ -51,7 +51,7 @@ methods. This technique can be used to [create an Event Loop](#event-loop).
 
 Get started by going through the [examples](#examples). To use this library, goto
 [releases](https://github.com/wolfram77/java-spine/releases), and download the *JAR files*,
-`java-spine-jdk<x>`, `java-spine-jdk<x>-sources`, `java-spine-jdk<x>-javadoc` of the appropriate
+`java-spine.jar`, `java-spine-sources.jar`, `java-spine-javadoc.jar` of the appropriate
 *JDK version* and add them to your *project*. Use [reference](#reference) or [javadoc]() while
 developing an *application*.
 
