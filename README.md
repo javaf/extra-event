@@ -2,7 +2,7 @@
 
 `java-spine` is a *minimal* **stimulus-reflex** *(event)* library for *Java*. It is based on
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
-and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as shown in
+and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as well, see
 [examples](#examples). Here, everthing related to **events** in *computer science* is named in
 terms of their *biological counterparts* to make it easier to **feel** and *memorize*.
 
@@ -13,43 +13,37 @@ and [easy to extend](#), helping you reduce your *design complexity*, *software 
 
 <img src="/assets/img/example.png" width="100%"><br/>
 
+<br/>
 
 ## Concept
 
 [Spinal Cord](http://en.wikipedia.org/wiki/Spinal_cord) or **Spine** is the connected set of
-*thinking bones* in our body. We know it as the one who *pulls our hand back* from a *hot object*, or
-*leg* from a *sharp stone*. It *autonomously* and *almost instantly* provides a **reflex** to a **stimulus**
-and also *informs our brain* to enable it to *do something more* on a given stimulus. `java-spine`
-follows this *concept*.
+*thinking bones* in our body. We know it as the one who *pulls our hand back* from a *hot object*,
+or *leg* from a *sharp stone*. It *autonomously* and *almost instantly* provides a **reflex**
+to a **stimulus** and also *informs our brain* to enable it to *do something more* on a given
+stimulus. `java-spine` follows this *concept*.
 
-`java-spine` consists of class [Spine](#spine) which is used to **indicate** *reflexes* to *stimuli* as
-`spine.on(stimuli, reflexes)`. Appropriate *reflexes* are **triggered** when a *stimulus* is **indicated**
-as `spine.is(stimulus, args)`. Any *reflex* to a *stimulus* can be removed as `spine.off(stimuli, reflexes)`.
-If a *stimulus* has *no associated reflex*, the **fallback** reflex is invoked, whch simply *prints out* the
-*details* of the *stimulus*. This behaviour can be changed with `Spine.fallback(reflex)` to your **own fallback**
-*reflex*.
+`java-spine` consists of *class* [Spine](#spine) which is used to **indicate** *reflexes* to
+*stimuli* as `spine.on(stimuli, reflexes)`. Appropriate *reflexes* are **triggered** when a
+*stimulus* is **indicated** as `spine.is(stimulus, args)`. Any *reflex* to a *stimulus* can
+be removed as `spine.off(stimuli, reflexes)`. If a *stimulus* has *no associated reflex*, the
+**fallback** reflex is invoked, whch simply *prints out* the *details* of the *stimulus*.
+This behaviour can be changed with `Spine.fallback(reflex)` to your **own fallback** *reflex*.
 
-A **reflex** can be made as a [class implementing]() interface [Reflexive](#reflexive)
-*Reflexes* are categorized as **slow** and **fast**. A fast reflex is invoked by [Spine](#spine) synchronously
-(because it is fast), 
+A **reflex** can be made as a [class implementing]() *interface* [Reflexive](#reflexive), as
+[anonymous class](), or as [methods encapsulated]() by *class* [Reflex](). *Reflexes* are
+categorized as **slow** and **fast**. A *fast reflex* is invoked by **Spine** **synchronously**
+(because it is *fast*), while a *slow reflex* **asynchronously** (on a seperate *thread* from
+*threadpool*). This *speed* can be set by using *annotation* [@Speed](#speed) as `@Speed("slow")`
+for **slow** *reflex* (`@Speed("fast")` is *optional*). It can also be set by `reflex.speed(speed)`
+(**not** *suggested*).
 
-
-
-as a stimulus, and an event handler as the reaction. The `Spine` controls the activation of reactions
-with respect to a stimulus. Also, note that a stimulus can have a specific location, and reflex is
-triggered based on the location. This location is comparable to a `Spine` object.
-
-Here, reactions are categorized as fast or slow. Fast reactions are executed sychronously (because they
-are fast), and slow reactions are executed asynchrounously. In the exact same way, a spine is categorized
-as fast or slow. Fast spine invokes all its reactions synchronously (because it is fast), and a slow spine
-invokes all its reactions asynchronously. Fast or slow indicate the speed of something.
-
-Reactions can be objects of classes that implement the `Reactable` interface, or independent static / instance
-methods of any class. An annotations `@Reacts("slow")` can be used to indicate slow reaction methods, and
-`@Reacts("fast")` can be used to indicate fast reaction methods (this one is optional). It is also possible
-to create a spine from an entire class, in which case functions names as `on<stimulus>` will be registered
-as reactions for `<stimulus>` stimulus. Again, annotaations can be used to indicate the speed of each reaction
-method. It is also possible to inherit stimulus-reaction associations from another spine.
+While *indicating* a *stimulus* as `spine.is("mouse-click", "x", x, "y", y)`, *additional arguments*
+or information can be passed to the *reflex*. This information can be *obtained* at the *reflex* as
+`args.get("x")` to get `x` *value* passed above. It is possible to create an class full of reflexes
+which respond to specific stimulus by creating **static** methods with names as `on<stimulus>` and
+creating a **Spine** object as `new Spine(ClassName.class)`. A similar way is possible for **instance**
+methods. This technique can be used to [create an Event Loop](#event-loop).
 
 <br/>
 
