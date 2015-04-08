@@ -33,6 +33,15 @@ public class Reflex implements Reflexive {
         }
     });
     
+    // init code
+    static {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            threads.shutdown();
+            try { threads.awaitTermination(3650, TimeUnit.DAYS); }
+            catch(InterruptedException e) {}
+        }));
+    }
+
     
     /**
      * Create reflex from method.
