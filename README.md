@@ -299,7 +299,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Runnable](http://runnable.com/VSUt5H5lLUtHHG_S/reflex-class-for-java)
 
 ```
 Lets get to work
