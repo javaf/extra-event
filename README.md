@@ -80,7 +80,7 @@ public class Main {
 }
 ```
 
-> [Output](http://runnable.com/VSUPLNBGR5REcSX6/default-reflex-for-java)
+> Output : [@Runnable](http://runnable.com/VSUPLNBGR5REcSX6/default-reflex-for-java)
 
 ```
 [hot-object] : {msg=Ouch!}
