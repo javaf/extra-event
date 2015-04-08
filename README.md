@@ -30,13 +30,13 @@ be removed as `spine.off(stimuli, reflexes)`. If a *stimulus* has *no associated
 **fallback** reflex is invoked, whch simply *prints out* the *details* of the *stimulus*.
 This behaviour can be changed with `Spine.fallback(reflex)` to your *own fallback reflex*.
 
-A **reflex** can be made as a [class implementing]() *interface* [Reflexive](#reflexive), as
-[anonymous class](), or as [methods encapsulated]() by *class* [Reflex](). *Reflexes* are
-categorized as **slow** and **fast**. A *fast reflex* is invoked by `Spine` *synchronously*
-(because it is *fast*), while a *slow reflex asynchronously* (on a seperate *thread* from
-*threadpool*). This *speed* can be set by using *annotation* [@Speed](#speed) as `@Speed("slow")`
-for *slow reflex* (`@Speed("fast")` is *optional*). It can also be set by `reflex.speed(speed)`
-(*not suggested*).
+A **reflex** can be made as a [class implementing](#implement-reflexive) *interface*
+[Reflexive](#reflexive), as [anonymous class](#anonymous-class), or as [methods encapsulated](#reflex-method)
+by *class* [Reflex](#reflex). *Reflexes* are categorized as **slow** and **fast**. A *fast reflex*
+is invoked by `Spine` *synchronously* (because it is *fast*), while a *slow reflex asynchronously*
+(on a seperate *thread* from *threadpool*). This *speed* can be set by using *annotation*
+[@Speed](#speed) as `@Speed("slow")` for *slow reflex* (`@Speed("fast")` is *optional*). It can also
+be set by `reflex.speed(speed)` (*not suggested*).
 
 While *indicating* a *stimulus* as `spine.is("mouse-click", "x", x, "y", y)`, *additional arguments*
 or information can be passed to the *reflex*. This information can be *obtained* at the *reflex* as
@@ -52,8 +52,9 @@ methods. This technique can be used to [create an Event Loop](#event-loop).
 Get started by going through the [examples](#examples). To use this library, goto
 [releases](https://github.com/wolfram77/java-spine/releases), and download the *JAR files*,
 `java-spine.jar`, `java-spine-sources.jar`, `java-spine-javadoc.jar` of the appropriate
-*JDK version* and add them to your *project*. Use [reference](#reference) or [javadoc]() while
-developing an *application*.
+*JDK version* and add them to your *project*. Use [reference](#reference) or
+[javadoc](http://wolfram77.github.io/java-spine/docs/jdk6/index.html) while developing
+an *application*.
 
 <br/>
 
