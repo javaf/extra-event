@@ -11,8 +11,7 @@ import java.util.concurrent.*;
 /**
  * Response to a stimulus. <p>
  * Encapsulates a fast or <i>slow</i> response. Slow
- * response is run on a daemon thread. Any executing
- * slow response is aborted on application exit. </p>
+ * response is run on a separate thread from threadpool. </p>
  * @author wolfram77
  */
 public class Reflex implements Reflexive {
