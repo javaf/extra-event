@@ -9,7 +9,7 @@ terms of their *biological counterparts* to make it easier to **feel** and *memo
 It is [simple](#reference), [fast](#), [tiny](https://github.com/wolfram77/java-spine/releases)
 and [easy to extend](#), helping you reduce your *design complexity*, *software rigidity*,
 *development time*, *software bugs*, *response time at runtime*. `java-spine` is available for
-*Java 6 and above*, and can be used for **Dektop**, **Web**, or **Mobile** *(Android)*.
+*Java 6 and above*, and can be used for **Desktop**, **Web**, or **Mobile** *(Android)*.
 
 <img src="/assets/img/example.png" width="100%"><br/>
 
