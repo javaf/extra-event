@@ -7,9 +7,9 @@ and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loo
 terms of their biological counterparts to make it easier to **feel** and *memorize*.
 
 It is [simple](#reference) and [tiny](https://github.com/wolfram77/java-spine/releases),
-helping you reduce your *design complexity*, *development time* and *software bugs*.
-`java-spine` is available for *Java 6 and above*, and can be used for **Desktop**,
-**Web**, or **Mobile** *(Android)*.
+helping you reduce your design complexity, development time and software bugs. `java-spine`
+is available for *Java 6 and above*, and can be used for **Desktop**, **Web**, or **Mobile**
+*(Android)*.
 
 <img src="/assets/img/example.png" width="100%"><br/>
 
