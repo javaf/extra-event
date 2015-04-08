@@ -119,7 +119,7 @@ import org.event.*;
 public class ByeReflex implements Reflexive {
 
     @Override
-    @Reacts("slow")
+    @Speed("slow")
     public void on(String stimulus, Map args) {
         System.out.print("Name: ");
         Scanner in = new Scanner(System.in);
@@ -175,7 +175,7 @@ public class Main {
         // annotations allowed in anonymous class
         Reflexive bye = new Reflex(new Reflexive() {
             @Override
-            @Reacts("slow")
+            @Speed("slow")
             public void on(String stimulus, Map args) {
                 String name = "anonymous";
                 System.out.println("Nice to meet you "+name);
