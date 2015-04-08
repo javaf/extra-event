@@ -151,7 +151,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Runnable](http://runnable.com/VSUh3Ym0HHpG68cB/implement-reflexive-for-java)
 
 ```
 Lets get to work
