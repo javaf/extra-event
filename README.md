@@ -18,9 +18,9 @@ is available for *Java 6 and above*, and can be used for **Desktop**, **Web**, o
 ## Concept
 
 [Spinal Cord](http://en.wikipedia.org/wiki/Spinal_cord) or **Spine** is the connected set of
-*thinking bones* in our body. We know it as the one who *pulls our hand back* from a *hot object*,
-or *leg* from a *sharp stone*. It *autonomously* and *almost instantly* provides a **reflex**
-to a **stimulus** and also *informs our brain* to enable it to *do something more* on a given
+thinking bones in our body. We know it as the one who pulls our hand back from a *hot object*,
+or leg from a *sharp stone*. It autonomously and almost instantly provides a *reflex*
+to a *stimulus* and also informs our brain to enable it to do something more on a given
 stimulus. `java-spine` follows this *concept*.
 
 `java-spine` consists of *class* [Spine](#spine) which is used to **indicate** *reflexes* to
