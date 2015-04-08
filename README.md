@@ -4,11 +4,11 @@
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
 and can be used in [event-loop construct](http://en.wikipedia.org/wiki/Event_loop) as well, see
 [examples](#examples). Here, everthing related to **events** in computer science is named in
-terms of their biological counterparts to make it easier to **feel** and *memorize*.
+terms of their biological counterparts to make it easier to *feel* and *memorize*.
 
 It is [simple](#reference) and [tiny](https://github.com/wolfram77/java-spine/releases),
 helping you reduce your design complexity, development time and software bugs. `java-spine`
-is available for *Java 6 and above*, and can be used for **Desktop**, **Web**, or **Mobile**
+is available for *Java 6 and above*, and can be used for *Desktop*, *Web*, or *Mobile*
 *(Android)*.
 
 <img src="/assets/img/example.png" width="100%"><br/>
