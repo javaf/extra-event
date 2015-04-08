@@ -24,11 +24,11 @@ to a *stimulus* and also informs our brain to enable it to do something more on 
 stimulus. `java-spine` follows this *concept*.
 
 `java-spine` consists of *class* [Spine](#spine) which is used to **indicate** *reflexes* to
-*stimuli* as `spine.on(stimuli, reflexes)`. Appropriate *reflexes* are **triggered** when a
-*stimulus* is *indicated* as `spine.is(stimulus, args)`. Any *reflex* to a *stimulus* can
-be removed as `spine.off(stimuli, reflexes)`. If a *stimulus* has *no associated reflex*, the
-**fallback** reflex is invoked, whch simply *prints out* the *details* of the *stimulus*.
-This behaviour can be changed with `Spine.fallback(reflex)` to your *own fallback reflex*.
+*stimuli* as `spine.on(stimuli, reflexes)`. Appropriate reflexes are *triggered* when a
+stimulus is indicated as `spine.is(stimulus, args)`. Any reflex to a stimulus can be removed
+as `spine.off(stimuli, reflexes)`. If a stimulus has no associated reflex, the *fallback*
+reflex is invoked, whch simply prints out the details of the *stimulus*. This behaviour can
+be changed with `Spine.fallback(reflex)` to your own fallback reflex.
 
 A **reflex** can be made as a [class implementing](#implement-reflexive) *interface*
 [Reflexive](#reflexive), as [anonymous class](#anonymous-class), or as [methods encapsulated](#reflex-method)
