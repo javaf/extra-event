@@ -383,6 +383,7 @@ public class Main {
         spine.on(introducer.spine.keySet(), introducer);
         // onHello & onBye run on introducer thread
         spine.is("hello").is("bye");
+        // introducer thread still running
     }
 }
 ```
