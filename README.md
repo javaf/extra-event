@@ -32,17 +32,17 @@ be changed with `Spine.fallback(reflex)` to your own fallback reflex.
 
 A **reflex** can be made as a [class implementing](#implement-reflexive) *interface*
 [Reflexive](#reflexive), as [anonymous class](#anonymous-class), or as [methods encapsulated](#reflex-method)
-by *class* [Reflex](#reflex). *Reflexes* are categorized as **slow** and **fast**. A *fast reflex*
-is invoked by `Spine` *synchronously* (because it is *fast*), while a *slow reflex asynchronously*
-(on a seperate *thread* from *threadpool*). This *speed* can be set by using *annotation*
-[@Speed](#speed) as `@Speed("slow")` for *slow reflex* (`@Speed("fast")` is *optional*). It can also
-be set by `reflex.speed(speed)` (*not suggested*).
+by *class* [Reflex](#reflex). Reflexes are categorized as *slow* and *fast*. A fast reflex
+is invoked by `Spine` *synchronously* (because it is fast), while a slow reflex *asynchronously*
+(on a seperate thread from threadpool). This *speed* can be set by using *annotation* [@Speed](#speed)
+as `@Speed("slow")` for slow reflex (`@Speed("fast")` is *optional*). It can also be set by
+`reflex.speed(speed)` (*not suggested*).
 
-While *indicating* a *stimulus* as `spine.is("mouse-click", "x", x, "y", y)`, *additional arguments*
-or information can be passed to the *reflex*. This information can be *obtained* at the *reflex* as
-`args.get("x")` to get `x` *value* passed above. It is possible to create an class full of reflexes
-which respond to specific stimulus by creating **static** methods with names as `on<stimulus>` and
-creating a `Spine` object as `new Spine(ClassName.class)`. A similar way is possible for **instance**
+While *indicating* a stimulus as `spine.is("mouse-click", "x", x, "y", y)`, *additional arguments*
+or information can be passed to the *reflex*. This information can be obtained at the reflex as
+`args.get("x")` to get `x` value passed above. It is possible to create an class full of reflexes
+which respond to specific stimulus by creating *static* methods with names as `on<stimulus>` and
+creating a `Spine` object as `new Spine(ClassName.class)`. A similar way is possible for *instance*
 methods. This technique can be used to [create an Event Loop](#event-loop).
 
 <br/>
