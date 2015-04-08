@@ -116,7 +116,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * Tell reflex speed <i>fast / slow.</i> <p>
+     * Tell reflex speed (fast / slow). <p>
      * A fast reflex is invoked synchronously,
      * slow reflex - asynchronously. </p>
      * @param speed speed of reflex
@@ -129,7 +129,7 @@ public class Reflex implements Reflexive {
     
     
     /**
-     * Get reflex speed <i>fast / slow.</i>  <p>
+     * Get reflex speed (fast / slow).  <p>
      * A fast reflex is invoked synchronously,
      * slow reflex - asynchronously. </p>
      * @return speed of reflex
