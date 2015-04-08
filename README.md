@@ -238,7 +238,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Runnable](http://runnable.com/VSUsXM5pKB5H1mm9/reflex-method-for-java)
 
 ```
 Lets get to work
