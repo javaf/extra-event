@@ -23,8 +23,8 @@ or leg from a *sharp stone*. It autonomously and almost instantly provides a *re
 to a *stimulus* and also informs our brain to enable it to do something more on a given
 stimulus. `java-spine` follows this *concept*.
 
-`java-spine` consists of *class* [Spine](#spine) which is used to **indicate** *reflexes* to
-*stimuli* as `spine.on(stimuli, reflexes)`. Appropriate reflexes are *triggered* when a
+`java-spine` consists of *class* [Spine](#spine) which is used to *associate* reflexes to
+stimuli as `spine.on(stimuli, reflexes)`. Appropriate reflexes are *triggered* when a
 stimulus is indicated as `spine.is(stimulus, args)`. Any reflex to a stimulus can be removed
 as `spine.off(stimuli, reflexes)`. If a stimulus has no associated reflex, the *fallback*
 reflex is invoked, whch simply prints out the details of the *stimulus*. This behaviour can
