@@ -388,7 +388,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Runnable](http://runnable.com/VSUvgkXKRJZH3R9H/event-loop-for-java)
 
 ```
 Lets get to work
