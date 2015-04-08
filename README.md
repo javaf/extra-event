@@ -190,7 +190,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Runnable](http://runnable.com/VSUPLNBGR5REcSX6/anonymous-class-for-java)
 
 ```
 [hello] : {}
