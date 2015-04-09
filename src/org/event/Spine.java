@@ -16,11 +16,8 @@ import java.util.concurrent.*;
 public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     // static data
-    static Reflexive fallback = new Reflexive() {
-        @Override
-        public void on(String stimulus, Map args) {
-            System.out.println("["+stimulus+"] : "+args);
-        }
+    static Reflexive fallback = (String stimulus, Map args) -> {
+        System.out.println("["+stimulus+"] : "+args);
     };
     
     
@@ -130,8 +127,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     public Spine is(String stimulus, Map args) {
         Set<Reflexive> s = get(stimulus);
         if(s == null || s.isEmpty()) fallback.on(stimulus, args);
-        else for(Reflexive r : s)
+        else s.stream().forEach((r) -> {
             r.on(stimulus, args);
+        });
         return this;
     }
     
@@ -143,7 +141,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @return spine for chaining
      */
     public Spine is(String stimulus, Object... args) {
-        Map<Object, Object> margs = new HashMap<Object, Object>();
+        Map<Object, Object> margs = new HashMap<>();
         for(int i=1; i<args.length; i+=2)
             margs.put(args[i-1], args[i]);
         return is(stimulus, margs);
@@ -183,8 +181,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @return spine for chaining
      */
     public Spine on(Collection<String> stimuli, Reflexive reflex) {
-        for(String stim : stimuli)
+        stimuli.stream().forEach((stim) -> {
             on(stim, reflex);
+        });
         return this;
     }
     
@@ -195,8 +194,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @return spine for chaining
      */
     public Spine on(Map<String, ? extends Collection<Reflexive>> assoc) {
-        for(Map.Entry<String, ? extends Collection<Reflexive>> e : assoc.entrySet())
+        assoc.entrySet().stream().forEach((e) -> {
             on(e.getKey(), e.getValue());
+        });
         return this;
     }
     
@@ -234,8 +234,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @return spine for chaining
      */
     public Spine off(Collection<String> stimuli, Reflexive reflex) {
-        for(String stim : stimuli)
+        stimuli.stream().forEach((stim) -> {
             off(stim, reflex);
+        });
         return this;
     }
     
@@ -246,8 +247,9 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
      * @return spine for chaining
      */
     public Spine off(Map<String, ? extends Collection<Reflexive>> assoc) {
-        for(Map.Entry<String, ? extends Collection<Reflexive>> e : assoc.entrySet())
+        assoc.entrySet().stream().forEach((e) -> {
             off(e.getKey(), e.getValue());
+        });
         return this;
     }
     
