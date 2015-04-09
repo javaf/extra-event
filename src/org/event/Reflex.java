@@ -18,7 +18,6 @@ import java.util.concurrent.*;
 public class Reflex implements Reflexive {
     
     // data
-    final MethodHandle mthd;
     final Reflexive reflex;
     boolean slow;
     
@@ -46,15 +45,24 @@ public class Reflex implements Reflexive {
      * @param mthd name of method
      * @param gethandle is method handle required?
      */
-    private MethodHandle _onMethod(Object obj, Class<?> cls, String mthd, boolean gethandle) {
+    private Reflexive _onMethod(Object obj, Class<?> cls, String mthd, boolean gethandle) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(isstatic != (obj==null)) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
             if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
-            return gethandle? MethodHandles.lookup().unreflect(m) : null;
+            if(!gethandle) return null;
+            // convert to lambda expression
+            final MethodHandles.Lookup lookup = MethodHandles.lookup();
+            MethodType getter = MethodType.methodType(void.class, String.class, Map.class);
+            MethodType invType = MethodType.methodType(Reflexive.class, cls);
+            MethodHandle target = lookup.findVirtual(cls, mthd, getter);
+            CallSite site = LambdaMetafactory.metafactory(lookup, "on", invType, getter, target, getter);
+            MethodHandle factory = site.getTarget();
+            if(obj != null) factory = factory.bindTo(obj);
+            return (Reflexive)factory.invoke();
         }
-        catch(ReflectiveOperationException e) { throw new RuntimeException(e); }
+        catch(Throwable e) { throw new RuntimeException(e); }
     }
 
 
