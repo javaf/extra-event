@@ -72,10 +72,7 @@ public class Reflex implements Reflexive {
      * @param args additional arguments
      */
     void _on(String stimulus, Map args) {
-        try {
-            if(mthd == null) reflex.on(stimulus, args);
-            else mthd.invoke(stimulus, args);
-        }
+        try { reflex.on(stimulus, args); }
         catch(Throwable e) { throw new RuntimeException(e); }
     }
     
@@ -86,9 +83,8 @@ public class Reflex implements Reflexive {
      * @param reflex reflex to encapsulate
      */
     public Reflex(Reflexive reflex) {
-        mthd = null;
         this.reflex = reflex;
-        _new(reflex.getClass(), "on", false, false);
+        _onMethod(reflex, reflex.getClass(), "on", false);
     }
     
     
@@ -98,8 +94,7 @@ public class Reflex implements Reflexive {
      * @param mthd name of the method
      */
     public Reflex(Class cls, String mthd) {
-        reflex = null;
-        this.mthd = _new(cls, mthd, true, true);
+        reflex = _onMethod(null, cls, mthd, true);
     }
     
     
@@ -109,8 +104,7 @@ public class Reflex implements Reflexive {
      * @param mthd name of the method
      */
     public Reflex(Object obj, String mthd) {
-        reflex = null;
-        this.mthd = _new(obj.getClass(), mthd, false, true).bindTo(obj);
+        reflex = _onMethod(obj, obj.getClass(), mthd, true);
     }
     
     
