@@ -53,7 +53,7 @@ Get started by going through the [examples](#examples). To use this library, got
 [releases](https://github.com/wolfram77/java-spine/releases), and download the *JAR files*,
 `java-spine.jar`, `java-spine-sources.jar`, `java-spine-javadoc.jar` of the appropriate
 *JDK version* and add them to your *project*. Use [reference](#reference) or
-[javadoc](http://wolfram77.github.io/java-spine/docs/jdk6/index.html) while developing
+[javadoc](http://wolfram77.github.io/java-spine/docs/jdk6) while developing
 an *application*.
 
 <br/>
