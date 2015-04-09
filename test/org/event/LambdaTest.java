@@ -23,9 +23,10 @@ public class LambdaTest {
 
         final MethodHandles.Lookup caller = MethodHandles.lookup();
         Method reflected = LambdaTest.class.getDeclaredMethod("myMethod", int.class, int.class);
-        MethodHandle mh = caller.unreflect(reflected);
+        MethodHandle target = caller.unreflect(reflected);
+        MethodHandle mh = target;
         MethodType getter = MethodType.methodType(int.class, int.class, int.class);
-        MethodHandle target = caller.findVirtual(LambdaTest.class, "myMethod", getter);
+        // MethodHandle mh = caller.findVirtual(LambdaTest.class, "myMethod", getter);
         CallSite site = LambdaMetafactory.metafactory(
                 caller, "applyAsInt", MethodType.methodType(IntBinaryOperator.class, LambdaTest.class),
                 getter, target, getter);
@@ -85,7 +86,7 @@ public class LambdaTest {
         return v;
     }
 
-    private int myMethod(int a, int b) {
+    public int myMethod(int a, int b) {
         return a < b ? a : b;
     }
 }
