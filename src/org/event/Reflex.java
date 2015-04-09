@@ -46,7 +46,7 @@ public class Reflex implements Reflexive {
     
     /**
      * Create reflex from method.
-     * @param obj class of method
+     * @param obj object of method
      * @param cls class of method
      * @param mthd name of method
      * @param gethandle is method handle required?
