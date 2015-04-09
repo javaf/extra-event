@@ -46,10 +46,9 @@ public class Reflex implements Reflexive {
     
     /**
      * Create reflex from method.
+     * @param obj object of method
      * @param cls class of method
      * @param mthd name of method
-     * @param bestatic should method be static?
-     * @param gethandle is method handle required?
      */
     private Method _onMethod(Object obj, Class<?> cls, String mthd) {
         try {
@@ -73,7 +72,7 @@ public class Reflex implements Reflexive {
             if(mthd == null) reflex.on(stimulus, args);
             else mthd.invoke(obj, stimulus, args);
         }
-        catch(Throwable e) { throw new RuntimeException(e); }
+        catch(ReflectiveOperationException e) { throw new RuntimeException(e); }
     }
     
     
