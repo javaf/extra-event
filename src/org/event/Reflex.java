@@ -54,8 +54,9 @@ public class Reflex implements Reflexive {
             if(!gethandle) return null;
             // convert to lambda expression
             final MethodHandles.Lookup lookup = MethodHandles.lookup();
-            MethodType getter = MethodType.methodType(void.class, String.class, Map.class);
-            MethodType invType = MethodType.methodType(Reflexive.class);
+            MethodType invType, getter = MethodType.methodType(void.class, String.class, Map.class);
+            if(obj == null) invType = MethodType.methodType(Reflexive.class);
+            else invType = MethodType.methodType(Reflexive.class, cls);
             MethodHandle target = lookup.unreflect(m);
             CallSite site = LambdaMetafactory.metafactory(lookup, "on", invType, getter, target, getter);
             MethodHandle factory = site.getTarget();
