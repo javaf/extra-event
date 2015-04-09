@@ -41,16 +41,16 @@ public class Reflex implements Reflexive {
     
     /**
      * Create reflex from method.
+     * @param obj object of method
      * @param cls class of method
      * @param mthd name of method
-     * @param bestatic should method be static?
      * @param gethandle is method handle required?
      */
-    private MethodHandle _new(Class<?> cls, String mthd, boolean bestatic, boolean gethandle) {
+    private MethodHandle _onMethod(Object obj, Class<?> cls, String mthd, boolean gethandle) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
+            if(isstatic != (obj==null)) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
             if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
             return gethandle? MethodHandles.lookup().unreflect(m) : null;
         }
