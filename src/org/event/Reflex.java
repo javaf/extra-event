@@ -3,6 +3,7 @@ package org.event;
 
 // required modules
 import java.util.*;
+import java.lang.invoke.*;
 import java.lang.reflect.*;
 import java.util.concurrent.*;
 
@@ -17,9 +18,8 @@ import java.util.concurrent.*;
 public class Reflex implements Reflexive {
     
     // data
+    final MethodHandle mthd;
     final Reflexive reflex;
-    final Method mthd;
-    final Object obj;
     boolean slow;
     
     // static data
@@ -51,15 +51,15 @@ public class Reflex implements Reflexive {
      * @param bestatic should method be static?
      * @param gethandle is method handle required?
      */
-    private Method _new(Class<?> cls, String mthd, boolean bestatic) {
+    private MethodHandle _new(Class<?> cls, String mthd, boolean bestatic, boolean gethandle) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
             if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
-            return m;
+            return gethandle? MethodHandles.lookup().unreflect(m) : null;
         }
-        catch(NoSuchMethodException e) { throw new RuntimeException(e); }
+        catch(ReflectiveOperationException e) { throw new RuntimeException(e); }
     }
 
 
@@ -71,7 +71,7 @@ public class Reflex implements Reflexive {
     void _on(String stimulus, Map args) {
         try {
             if(mthd == null) reflex.on(stimulus, args);
-            else mthd.invoke(obj, stimulus, args);
+            else mthd.invoke(stimulus, args);
         }
         catch(Throwable e) { throw new RuntimeException(e); }
     }
@@ -83,10 +83,9 @@ public class Reflex implements Reflexive {
      * @param reflex reflex to encapsulate
      */
     public Reflex(Reflexive reflex) {
-        obj = null;
         mthd = null;
         this.reflex = reflex;
-        _new(reflex.getClass(), "on", false);
+        _new(reflex.getClass(), "on", false, false);
     }
     
     
@@ -96,9 +95,8 @@ public class Reflex implements Reflexive {
      * @param mthd name of the method
      */
     public Reflex(Class cls, String mthd) {
-        obj = null;
         reflex = null;
-        this.mthd = _new(cls, mthd, true);
+        this.mthd = _new(cls, mthd, true, true);
     }
     
     
@@ -109,8 +107,7 @@ public class Reflex implements Reflexive {
      */
     public Reflex(Object obj, String mthd) {
         reflex = null;
-        this.obj = obj;
-        this.mthd = _new(obj.getClass(), mthd, false);
+        this.mthd = _new(obj.getClass(), mthd, false, true).bindTo(obj);
     }
     
     
