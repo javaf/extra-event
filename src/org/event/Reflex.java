@@ -23,24 +23,19 @@ public class Reflex implements Reflexive {
     boolean slow;
     
     // static data
-    static final ExecutorService threads = Executors.newCachedThreadPool(new ThreadFactory() {
-        @Override
-        public Thread newThread(Runnable r) {
-            Thread t = new Thread(r);
-            t.setDaemon(true);
-            return t;
-        }
+    static final ExecutorService threads = Executors.newCachedThreadPool((r) -> {
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        return t;
     });
     
     // init code
     static {
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable(){
-            @Override
-            public void run() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             threads.shutdown();
             try { threads.awaitTermination(3650, TimeUnit.DAYS); }
             catch(InterruptedException e) {}
-        }}));
+        }));
     }
 
     
@@ -143,11 +138,8 @@ public class Reflex implements Reflexive {
     @Override
     public void on(final String stimulus, final Map args) {
         if(!slow) _on(stimulus, args);
-        else threads.submit(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                _on(stimulus, args);
-            }
+        else threads.submit(new Thread(() -> {
+            _on(stimulus, args);
         }));
     }
 }
