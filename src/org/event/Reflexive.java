@@ -11,6 +11,7 @@ import java.util.*;
  * Classes implementing this interface can to respond to stimuli. </p>
  * @author wolfram77
  */
+@FunctionalInterface
 public interface Reflexive {
     
     /**
