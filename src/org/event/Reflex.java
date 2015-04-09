@@ -18,6 +18,7 @@ import java.util.concurrent.*;
 public class Reflex implements Reflexive {
     
     // data
+    final MethodHandle mthd;
     final Reflexive reflex;
     boolean slow;
     
@@ -50,21 +51,12 @@ public class Reflex implements Reflexive {
      * @param bestatic should method be static?
      * @param gethandle is method handle required?
      */
-    private Reflexive _new(Object obj, Class<?> cls, String mthd, boolean bestatic, boolean gethandle) {
+    private MethodHandle _new(Class<?> cls, String mthd, boolean bestatic, boolean gethandle) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
             if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
             if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
-            if(!gethandle) return null;
-            final MethodHandles.Lookup lookup = MethodHandles.lookup();
-            MethodHandle target = lookup.unreflect(m);
-            MethodType getter = MethodType.methodType(void.class, String.class, Map.class);
-            MethodType invType = MethodType.methodType(Reflexive.class, cls);
-            CallSite site = LambdaMetafactory.metafactory(lookup, "on", invType, getter, target, getter);
-            MethodHandle factory = site.getTarget();
-            if(obj != null) factory.bindTo(obj);
-            return (Reflexive)factory.invoke();
             return gethandle? MethodHandles.lookup().unreflect(m) : null;
         }
         catch(ReflectiveOperationException e) { throw new RuntimeException(e); }
