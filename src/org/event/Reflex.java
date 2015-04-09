@@ -72,7 +72,7 @@ public class Reflex implements Reflexive {
             if(mthd == null) reflex.on(stimulus, args);
             else mthd.invoke(obj, stimulus, args);
         }
-        catch(ReflectiveOperationException e) { throw new RuntimeException(e); }
+        catch(Exception e) { throw new RuntimeException(e); }
     }
     
     
