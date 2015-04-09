@@ -51,11 +51,11 @@ public class Reflex implements Reflexive {
      * @param bestatic should method be static?
      * @param gethandle is method handle required?
      */
-    private Method _new(Class<?> cls, String mthd, boolean bestatic) {
+    private Method _onMethod(Object obj, Class<?> cls, String mthd) {
         try {
             Method m = cls.getMethod(mthd, String.class, Map.class);
             boolean isstatic = Modifier.isStatic(m.getModifiers());
-            if(isstatic != bestatic) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
+            if(isstatic != (obj==null)) throw new NoSuchMethodException("Method ["+m.getName()+"] is inaccessible");
             if(m.isAnnotationPresent(Speed.class)) speed(m.getAnnotation(Speed.class).value());
             return m;
         }
@@ -86,7 +86,7 @@ public class Reflex implements Reflexive {
         obj = null;
         mthd = null;
         this.reflex = reflex;
-        _new(reflex.getClass(), "on", false);
+        _onMethod(reflex, reflex.getClass(), "on");
     }
     
     
@@ -98,7 +98,7 @@ public class Reflex implements Reflexive {
     public Reflex(Class cls, String mthd) {
         obj = null;
         reflex = null;
-        this.mthd = _new(cls, mthd, true);
+        this.mthd = _onMethod(null, cls, mthd);
     }
     
     
@@ -110,7 +110,7 @@ public class Reflex implements Reflexive {
     public Reflex(Object obj, String mthd) {
         reflex = null;
         this.obj = obj;
-        this.mthd = _new(obj.getClass(), mthd, false);
+        this.mthd = _onMethod(obj, obj.getClass(), mthd);
     }
     
     
