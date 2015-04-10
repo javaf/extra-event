@@ -30,13 +30,13 @@ as `spine.off(stimuli, reflexes)`. If a stimulus has no associated reflex, the *
 reflex is invoked, whch simply prints out the details of the *stimulus*. This behaviour can
 be changed with `Spine.fallback(reflex)` to your own fallback reflex.
 
-A **reflex** can be made as a [class implementing](#implement-reflexive) *interface*
-[Reflexive](#reflexive), as [anonymous class](#anonymous-class), or as [methods encapsulated](#reflex-method)
-by *class* [Reflex](#reflex). Reflexes are categorized as *slow* and *fast*. A fast reflex
-is invoked by `Spine` *synchronously* (because it is fast), while a slow reflex *asynchronously*
-(on a seperate thread from threadpool). This *speed* can be set by using *annotation* [@Speed](#speed)
-as `@Speed("slow")` for slow reflex (`@Speed("fast")` is *optional*). It can also be set by
-`reflex.speed(speed)` (*not suggested*).
+A **reflex** can be made as a [class implementing](#implement-reflexive) *interface* [Reflexive](#reflexive),
+using [method reference](#method-reference), as [anonymous class](#anonymous-class), as
+[lambda expression](#lambda-expression), or as [methods encapsulated](#reflex-method) by *class* [Reflex](#reflex).
+Reflexes are categorized as *slow* and *fast*. A fast reflex is invoked by `Spine` *synchronously* (because
+it is fast), while a slow reflex *asynchronously* (on a seperate thread from threadpool). This *speed* can
+be set by using *annotation* [@Speed](#speed) as `@Speed("slow")` for slow reflex (`@Speed("fast")` is
+*optional*). It can also be set by `reflex.speed(speed)` (*not suggested*).
 
 While *indicating* a stimulus as `spine.is("mouse-click", "x", x, "y", y)`, *additional arguments*
 or information can be passed to the *reflex*. This information can be obtained at the reflex as
