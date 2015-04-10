@@ -186,13 +186,13 @@ public class Main {
     public static void main(String[] args) {
     	Main main = new Main();
         Spine spine = new Spine();
-        // static reaction method
+        // static reflex method reference
         spine.on("hello", Main::helloReflex);
-        // instance reaction method 
+        // instance reflex method reference
         // speed can be indicated manually as well
         spine.on("bye", new Reflex(main::byeReflex).speed("slow"));
         spine.is("hello");
-        // slow reactions trigger asynchronously
+        // slow reflexes trigger asynchronously
         spine.is("bye");
         System.out.println("ok?");
     }
@@ -238,6 +238,42 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
+### Lambda Expression
+
+> Main.java
+
+```java
+package main;
+
+// required modules
+import java.util.*;
+import org.event.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Spine spine = new Spine();
+        // lambda expressions are much simpler to use
+        // but they dont support annotations
+        // hence speed must be set manually
+        spine.on("bye", (stimulus, args) -> {
+            String name = "anonymous";
+            System.out.println("Nice to meet you "+name);
+        });
+        // default reflex for hello
+        spine.is("hello").is("bye");
+    }
+}
+```
+
+> Output : [@Runnable](http://runnable.com/VSUPLNBGR5REcSX6/anonymous-class-for-java)
+
+```
+[hello] : {}
+Name: anonymous
+Nice to meet you anonymous
+```
+
 ### Reflex Method
 
 > Main.java
@@ -265,13 +301,13 @@ public class Main {
     public static void main(String[] args) {
     	Main main = new Main();
         Spine spine = new Spine();
-        // static reaction method
+        // static reflex method
         spine.on("hello", new Reflex(Main.class, "helloReflex"));
-        // instance reaction method 
+        // instance reflex method 
         // speed can be indicated manually as well
         spine.on("bye", new Reflex(main, "byeReflex").speed("slow"));
         spine.is("hello");
-        // slow reactions trigger asynchronously
+        // slow reflexes trigger asynchronously
         spine.is("bye");
         System.out.println("ok?");
     }
