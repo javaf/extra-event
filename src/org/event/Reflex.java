@@ -85,9 +85,8 @@ public class Reflex implements Reflexive {
      * @param reflex reflex to encapsulate
      */
     public Reflex(Reflexive reflex) {
-        mthd = null;
         this.reflex = reflex;
-        _onMethod(reflex, reflex.getClass(), "on", false);
+        mthd = _onMethod(reflex, reflex.getClass(), "on", false);
     }
     
     
