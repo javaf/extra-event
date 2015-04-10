@@ -53,7 +53,7 @@ Get started by going through the [examples](#examples). To use this library, got
 [releases](https://github.com/wolfram77/java-spine/releases), and download the *JAR files*,
 `java-spine.jar`, `java-spine-sources.jar`, `java-spine-javadoc.jar` of the appropriate
 *JDK version* and add them to your *project*. Use [reference](#reference) or
-[javadoc](http://wolfram77.github.io/java-spine/docs/jdk6/index.html) while developing
+[javadoc](http://wolfram77.github.io/java-spine/docs/jdk7) while developing
 an *application*.
 
 <br/>
@@ -80,7 +80,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUrcKxatQpHThx9/default-reflex-for-java)
+> Output : [@Runnable](http://runnable.com/VSeZDRwBvx1iYBJC/java-spine-%5Bjdk7%5D-default-reflex)
 
 ```
 [hot-object] : {msg=Ouch!}
@@ -151,7 +151,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUh3Ym0HHpG68cB/implement-reflexive-for-java)
+> Output : [@Runnable](http://runnable.com/VSeaq47yHUpgRPHu/java-spine-%5Bjdk7%5D-implement-reflexive)
 
 ```
 Lets get to work
@@ -230,7 +230,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUPLNBGR5REcSX6/anonymous-class-for-java)
+> Output : [@Runnable](http://runnable.com/VSebmY7yHUpgRPIP/java-spine-%5Bjdk7%5D-anonymous-class)
 
 ```
 [hello] : {}
@@ -314,7 +314,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUsXM5pKB5H1mm9/reflex-method-for-java)
+> Output : [@Runnable](http://runnable.com/VSedL6XjGFVhxekY/java-spine-%5Bjdk7%5D-reflex-method)
 
 ```
 Lets get to work
@@ -375,7 +375,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUt5H5lLUtHHG_S/reflex-class-for-java)
+> Output : [@Runnable](http://runnable.com/VSed8RwBvx1iYBN8/java-spine-%5Bjdk7%5D-reflex-class)
 
 ```
 Lets get to work
@@ -464,7 +464,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUvgkXKRJZH3R9H/event-loop-for-java)
+> Output : [@Runnable](http://runnable.com/VSehtbl4TxpjGpZo/java-spine-%5Bjdk7%5D-event-loop)
 
 ```
 Lets get to work
@@ -472,7 +472,7 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
-<br/>
+<img src="/assets/img/head.png" width="100%"><br/>
 
 ## Reference
 
