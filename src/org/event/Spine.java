@@ -101,7 +101,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     /**
      * Create a spine from class. <p>
-     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus.
+     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus. <br>
      * Use {@code @Speed("slow")} annotation to indicate slow reflex methods. </p>
      * @param cls class containing reflex methods
      */
@@ -112,7 +112,7 @@ public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     /**
      * Create a spine from object. <p>
-     * {@code on<stimulus>()} static methods are associated {@code <stimulus>} stimulus.
+     * {@code on<stimulus>()} instance methods are associated {@code <stimulus>} stimulus. <br>
      * Use {@code @Speed("slow")} annotation to indicate slow reflex methods. </p>
      * @param obj object containing reflex methods
      */
