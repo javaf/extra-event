@@ -396,7 +396,7 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
-<br/>
+<img src="/assets/img/head.png" width="100%"><br/>
 
 ## Reference
 
