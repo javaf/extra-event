@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 /**
  * Response to a stimulus. <p>
  * Encapsulates a fast or <i>slow</i> response. Slow
- * response is run on a separate thread from threadpool. </p>
+ * response is run on a separate thread from thread-pool. </p>
  * @author wolfram77
  */
 public class Reflex implements Reflexive {
