@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 public class Spine extends ConcurrentHashMap<String, Set<Reflexive>> {
     
     // static data
-    static Reflexive fallback = (String stimulus, Map args) -> {
+    static Reflexive fallback = (stimulus, args) -> {
         System.out.println("["+stimulus+"] : "+args);
     };
     
