@@ -31,8 +31,8 @@ public class SpineTest {
     }
 
     @Test
-    public void test_StandardStimulus() {
-        System.out.println("test - standard stimulus");
+    public void test_DefaultReflex() {
+        System.out.println("test - default reflex");
         Spine spine = new Spine();
         // trigger default reaction
         spine.is("hot-object", "msg", "Ouch!");
@@ -49,6 +49,19 @@ public class SpineTest {
         Spine spine = new Spine();
         // chaining method calls is supported
         spine.on("hello", hello).on("bye", bye);
+        spine.is("hello").is("bye");
+        done();
+    }
+
+
+    @Test
+    public void test_MethodReference() {
+        System.out.println("test - method reference");
+        Spine spine = new Spine();
+        spine.on("hello", ReflexMethods::onHello);
+        // set method speed manually
+        spine.on("bye", new Reflex(new ReflexMethods()::onBye).speed("slow"));
+        // chaining method calls is supported
         spine.is("hello").is("bye");
         done();
     }
@@ -72,6 +85,26 @@ public class SpineTest {
                 String name = "anonymous";
                 System.out.println("Anonymous: Nice to meet you "+name);
             }
+        });
+        Spine spine = new Spine();
+        // chaining method calls is supported
+        spine.on("hello", hello).on("bye", bye);
+        spine.is("hello").is("bye");
+        done();
+    }
+
+
+    @Test
+    public void test_LambdaExpression() {
+        System.out.println("test - lamdba expression");
+        // anonymous classes are easy to write
+        Reflexive hello = new Reflex((String stimulus, Map args) -> {
+            System.out.println("lamdba: Lets get to work");
+        });
+        // annotations allowed in anonymous class
+        Reflexive bye = new Reflex((String stimulus, Map args) -> {
+            String name = "anonymous";
+            System.out.println("lamdba: Nice to meet you "+name);
         });
         Spine spine = new Spine();
         // chaining method calls is supported
