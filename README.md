@@ -80,7 +80,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUrcKxatQpHThx9/default-reflex-for-java)
+> Output : [@Runnable](http://runnable.com/VSUrcKxatQpHThx9/java-spine-%5Bjdk6%5D-default-reflex)
 
 ```
 [hot-object] : {msg=Ouch!}
@@ -151,7 +151,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUh3Ym0HHpG68cB/implement-reflexive-for-java)
+> Output : [@Runnable](http://runnable.com/VSUh3Ym0HHpG68cB/java-spine-%5Bjdk6%5D-implement-reflexive)
 
 ```
 Lets get to work
@@ -190,7 +190,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUPLNBGR5REcSX6/anonymous-class-for-java)
+> Output : [@Runnable](http://runnable.com/VSUPLNBGR5REcSX6/java-spine-%5Bjdk6%5D-anonymous-class)
 
 ```
 [hello] : {}
@@ -238,7 +238,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUsXM5pKB5H1mm9/reflex-method-for-java)
+> Output : [@Runnable](http://runnable.com/VSUsXM5pKB5H1mm9/java-spine-%5Bjdk6%5D-reflex-method)
 
 ```
 Lets get to work
@@ -299,7 +299,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUt5H5lLUtHHG_S/reflex-class-for-java)
+> Output : [@Runnable](http://runnable.com/VSUt5H5lLUtHHG_S/java-spine-%5Bjdk6%5D-reflex-class)
 
 ```
 Lets get to work
@@ -388,7 +388,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable](http://runnable.com/VSUvgkXKRJZH3R9H/event-loop-for-java)
+> Output : [@Runnable](http://runnable.com/VSUvgkXKRJZH3R9H/java-spine-%5Bjdk6%5D-event-loop)
 
 ```
 Lets get to work
