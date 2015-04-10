@@ -159,6 +159,46 @@ Name: anonymous
 Nice to meet you anonymous
 ```
 
+### Method Reference
+
+> Main.java
+
+```java
+package main;
+
+// required modules
+import java.util.*;
+import org.event.*;
+
+public class Main {
+    
+    public static void helloReflex(String stimulus, Map args) {
+    	System.out.println("Lets get to work");
+    }
+    
+    public void byeReflex(String stimulus, Map args) {
+        System.out.print("Name: ");
+        Scanner in = new Scanner(System.in);
+        String name = in.next();
+        System.out.println("Nice to meet you "+name);
+    }
+    
+    public static void main(String[] args) {
+    	Main main = new Main();
+        Spine spine = new Spine();
+        // static reaction method
+        spine.on("hello", Main::helloReflex);
+        // instance reaction method 
+        // speed can be indicated manually as well
+        spine.on("bye", new Reflex(main::byeReflex).speed("slow"));
+        spine.is("hello");
+        // slow reactions trigger asynchronously
+        spine.is("bye");
+        System.out.println("ok?");
+    }
+}
+```
+
 ### Anonymous Class
 
 > Main.java
