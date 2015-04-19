@@ -79,7 +79,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable:JDK7](http://runnable.com/VSeZDRwBvx1iYBJC/java-spine-%5Bjdk7%5D-default-reflex)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMbkhFQmRPazFncEE)
 
 ```
 [hot-object] : {msg=Ouch!}
