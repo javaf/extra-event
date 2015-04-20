@@ -263,7 +263,7 @@ public class Main {
         // lambda expressions are much simpler to use
         // but they dont support annotations
         // hence speed must be set manually
-        spine.on("bye", (stimulus, args) -> {
+        spine.on("bye", (stimulus, eargs) -> {
             String name = "anonymous";
             System.out.println("Nice to meet you "+name);
         });
