@@ -79,7 +79,7 @@ public class Main {
 }
 ```
 
-> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMbkhFQmRPazFncEE)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMbHhMSU9uZ3lnUkE)
 
 ```
 [hot-object] : {msg=Ouch!}
@@ -150,7 +150,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable:JDK7](http://runnable.com/VSeaq47yHUpgRPHu/java-spine-%5Bjdk7%5D-implement-reflexive)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMeUZpQVNad3dMZGc)
 
 ```
 Lets get to work
@@ -198,7 +198,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMbTNKQWZIWHVxZk0)
 
 ```
 Lets get to work
@@ -237,7 +237,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable:JDK7](http://runnable.com/VSebmY7yHUpgRPIP/java-spine-%5Bjdk7%5D-anonymous-class)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMYmRnNFRkTmtzNzA)
 
 ```
 [hello] : {}
@@ -273,7 +273,7 @@ public class Main {
 }
 ```
 
-> Output
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMWWJuZjVWWFVIdkE)
 
 ```
 [hello] : {}
@@ -321,7 +321,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable:JDK7](http://runnable.com/VSedL6XjGFVhxekY/java-spine-%5Bjdk7%5D-reflex-method)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMb1MxcEFISExHNnc)
 
 ```
 Lets get to work
@@ -382,7 +382,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable:JDK7](http://runnable.com/VSed8RwBvx1iYBN8/java-spine-%5Bjdk7%5D-reflex-class)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMQkV1V3lVVjhFRjA)
 
 ```
 Lets get to work
@@ -471,7 +471,7 @@ public class Main {
 }
 ```
 
-> Output : [@Runnable:JDK7](http://runnable.com/VSehtbl4TxpjGpZo/java-spine-%5Bjdk7%5D-event-loop)
+> Output : [@Coding Ground](http://www.tutorialspoint.com/compile_java8_online.php?PID=0Bw_CjBb95KQMQ202b0xpczE1ZHc)
 
 ```
 Lets get to work
