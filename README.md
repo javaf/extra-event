@@ -440,14 +440,24 @@ Classes implementing this interface can to respond to stimuli.
 
 <br/>
 
+### (Eventable)
+Classes implementing this interface can accept reflexes to stimuli. <br/>
+In other words, it can be used to notify events to listeners.
+
+| **(Eventable)** |     |
+|-----------------|-----|
+| **event** <br/>                                                                                                            `()` |                                                                                                                       Returns the spine object for events associated with this object. |
+
+<br/>
+
 ### @Speed
 
 Annotation to specify speed of a method. <br/>
 Use `@Speed("fast")` for fast method (optional) <br/>
 Use `@Speed("slow")` for slow method *(required)*
 
-| **(@Speed)** |     |
-|--------------|-----|
+| **@Speed** |     |
+|------------|-----|
 | **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            Speed of method (fast or slow). |
 
 <br/>
