@@ -1,4 +1,4 @@
-# java-spine <img src="https://travis-ci.org/wolfram77/java-spine.svg?branch=master">
+# java-spine <img src="https://travis-ci.org/wolfram77/java-spine.svg?branch=code-jdk7">
 
 `java-spine` is a *minimal* **stimulus-reflex** *(event)* library for *Java*. It is based on
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
@@ -523,14 +523,24 @@ Classes implementing this interface can to respond to stimuli.
 
 <br/>
 
+### (Eventable)
+Classes implementing this interface can accept reflexes to stimuli. <br/>
+In other words, it can be used to notify events to listeners.
+
+| **(Eventable)** |     |
+|-----------------|-----|
+| **event** <br/>                                                                                                            `()` |                                                                                                                       Returns the spine object for events associated with this object. |
+
+<br/>
+
 ### @Speed
 
 Annotation to specify speed of a method. <br/>
 Use `@Speed("fast")` for fast method (optional) <br/>
 Use `@Speed("slow")` for slow method *(required)*
 
-| **(@Speed)** |     |
-|--------------|-----|
+| **@Speed** |     |
+|------------|-----|
 | **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            Speed of method (fast or slow). |
 
 <br/>
