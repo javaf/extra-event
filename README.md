@@ -1,4 +1,4 @@
-# java-spine <img src="https://travis-ci.org/wolfram77/java-spine.svg?branch=code-jdk6">
+# java-spine <img src="https://travis-ci.org/wolfram77/java-spine.svg?branch=code-jdk7">
 
 `java-spine` is a *minimal* **stimulus-reflex** *(event)* library for *Java*. It is based on
 [publish-subscribe pattern](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern),
