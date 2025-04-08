@@ -544,3 +544,5 @@ Use `@Speed("slow")` for slow method *(required)*
 | **value** <br/>                                                                                                            `()`, `(speed)` |                                                                                                            Speed of method (fast or slow). |
 
 <br/>
+
+![](https://ga-beacon.deno.dev/G-G1E8HNDZYY:v51jklKGTLmC3LAZ4rJbIQ/github.com/javaf/extra-event)
