@@ -546,3 +546,4 @@ Use `@Speed("slow")` for slow method *(required)*
 <br/>
 
 ![](https://ga-beacon.deno.dev/G-G1E8HNDZYY:v51jklKGTLmC3LAZ4rJbIQ/github.com/javaf/extra-event)
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-event.java)
